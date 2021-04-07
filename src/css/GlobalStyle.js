@@ -1,0 +1,56 @@
+import {createGlobalStyle} from 'styled-components';
+import {useTheme} from '../ThemeContext';
+
+const GlobalStyleCreate = createGlobalStyle`
+    @font-face {
+        font-family: 'S-CoreDream-4Regular';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-4Regular.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }
+    * {
+        box-sizing: border-box;
+        font-family: 'S-CoreDream-4Regular';
+        transition-duration: 0.2s;
+    }
+    a {
+        text-decoration: none;
+        &:active {
+            color: black;
+        }
+        user-select: none;
+    }
+    body {
+        margin: 0;
+        width: calc(100vw-10px);
+        height: 100vh;
+        background-color: ${p=>p.theme.background};
+    }
+    div {
+        color: ${p=>p.theme.text};
+    }
+    ::-webkit-scrollbar {
+        width: 10px;
+        
+    } 
+    ::-webkit-scrollbar-thumb {
+        background-color: ${p=>p.theme.text};
+        border-radius: 10px;
+        background-clip: padding-box;
+        border: 2px solid transparent;
+    } 
+    ::-webkit-scrollbar-track {
+        background-color: ${p=>p.theme.background};
+        border-radius: 3px;
+    }
+`;
+
+const GlobalStyle = () => {
+    const theme = useTheme();
+
+    return (
+        <GlobalStyleCreate theme={theme}/>
+    );
+}
+
+export default GlobalStyle;
