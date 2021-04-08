@@ -65,7 +65,7 @@ const Navigation = () => {
                     <Route path='/seasons' component={RC.Seasons} />
                     <Route path='/search' component={RC.Search} />
                     <Route path='/mypage' component={RC.MyPage} />
-                    <Route path='/detail/:id' component={RC.Detail} />
+                    <Route path='/detail/:id/:media' component={RC.Detail} />
                 </Switch>
             </BodyContainer>
         </Container>

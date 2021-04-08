@@ -11,7 +11,6 @@ const GlobalStyleCreate = createGlobalStyle`
     * {
         box-sizing: border-box;
         font-family: 'S-CoreDream-4Regular';
-        transition-duration: 0.2s;
     }
     a {
         text-decoration: none;
@@ -19,15 +18,18 @@ const GlobalStyleCreate = createGlobalStyle`
             color: black;
         }
         user-select: none;
+        transition-duration: 0.2s;
     }
     body {
         margin: 0;
         width: calc(100vw-10px);
         height: 100vh;
         background-color: ${p=>p.theme.background};
+        transition-duration: 0.2s;
     }
     div {
         color: ${p=>p.theme.text};
+        transition-duration: 0.2s;
     }
     ::-webkit-scrollbar {
         width: 10px;
@@ -42,6 +44,12 @@ const GlobalStyleCreate = createGlobalStyle`
     ::-webkit-scrollbar-track {
         background-color: ${p=>p.theme.background};
         border-radius: 3px;
+    }
+    .noTransition {
+        -moz-transition: none;
+        -webkit-transition: none;
+        -o-transition: none;
+        transition: none;
     }
 `;
 

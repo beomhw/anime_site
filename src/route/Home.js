@@ -31,12 +31,19 @@ const Home = () => {
         <HomeProvider>
             <Container>
                 <ContentContainer>
-                    <TrendText>にんきTOP 20</TrendText>
+                    <TrendText>アニメ TOP 20</TrendText>
                     <AniList media="tv" type="16"/>
                 </ContentContainer>
                 <ContentContainer>
+                    <TrendText>MOVIE TOP 20</TrendText>
+                    <AniList media="movie" type="16"/>
+                </ContentContainer>
+                <ContentContainer>
                     <TrendText>ドラマTOP 20</TrendText>
-                    <AniList media="movie" type="16,18"/>
+                    <AniList media="tv" type="16,18"/>
+                </ContentContainer>                <ContentContainer>
+                    <TrendText>コメディTOP 20</TrendText>
+                    <AniList media="tv" type="16,35"/>
                 </ContentContainer>
             </Container>
         </HomeProvider>

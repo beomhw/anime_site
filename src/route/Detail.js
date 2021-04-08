@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useMemo} from 'react';
 import styled from 'styled-components';
 import {useTheme} from '../ThemeContext';
 import {flexAlign} from '../css/cssModule';
@@ -6,6 +6,8 @@ import * as api from '../api';
 import dogeza from '../asset/dogeza.png';
 import {IMG_URL} from '../Util';
 import Cast from '../components/Detail/Cast';
+import Description from '../components/Detail/Description';
+import Loading from '../components/Loading';
 
 const Container = styled.div`
     ${flexAlign};
@@ -31,7 +33,7 @@ const BackdropCover = styled.div`
 `;
 
 const PosterContainer = styled.div`
-    padding-top: 100px;
+    padding-top: 70px;
     flex: 3;
     backdrop-filter: blur(2px);
     ${flexAlign};
@@ -39,6 +41,7 @@ const PosterContainer = styled.div`
 
 const HeaderInfoContainer = styled.div`
     flex: 7;
+    margin: 20px;
 `;
 
 const Content = styled.div`
@@ -59,26 +62,40 @@ const TextH1 = styled.div`
     font-weight: bold;
 `;
 
+const GenreContainer = styled.div`
+    display: flex;
+    flex-direction: flex-start;
+    margin-top: 10px;
+`;
 
+const GenreBox = styled.div`
+    padding: 10px;
+    height: 30px;
+    border-radius: 5px;
+    background-color: ${p=>p.theme.background};
+    margin-right: 10px;
+    border: 1px solid #dddddd;
+    ${flexAlign};
+`;
 
 const Detail = ({match}) => {
     const theme= useTheme();
-    const {params: {id}} = match;
+    const {params: {id}, params: {media}} = match;
     const [anime, setAnime] = useState({});
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        api.getAnimeInfo(id).then(res => {
+        api.getAnimeInfo(media, id).then(res => {
             console.log(res);
             setAnime(res);
             setLoading(false);
         })
-        api.getAnimeVideo(id).then(res => {
+        api.getAnimeVideo(media, id).then(res => {
             console.log(res);
         })
     },[]);
 
-    if(loading) return <Container>Now Loading...</Container>
+    if(loading) return <Container><Loading /></Container>
 
     return (
         <Container url={`${IMG_URL}${anime.backdrop_path}`}>
@@ -94,15 +111,22 @@ const Detail = ({match}) => {
                     </PosterContainer>
                 </BackdropCover>
                 <HeaderInfoContainer>
-                    <TextH1>{anime.name}</TextH1>
+                    {media === 'tv' 
+                    ?<TextH1>{anime.name}</TextH1> 
+                    :<TextH1>{anime.original_title}</TextH1>}
+                    <GenreContainer>
+                        {anime.genres.map((ge, i) => 
+                        <GenreBox theme={theme}>{ge.name}</GenreBox>)}
+                    </GenreContainer>
                 </HeaderInfoContainer>
             </Header>
             <Content>
-                
+                <TextH1>개요</TextH1>
+                <Description overview={anime.overview}/>
             </Content>
             <Content>
                 <TextH1>출연진</TextH1>
-                <Cast id={id}/>
+                <Cast media={media} id={id}/>
             </Content>
         </Container>
     );

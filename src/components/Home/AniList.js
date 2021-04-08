@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import {flexAlign} from '../../css/cssModule';
-import {useTheme} from '../../ThemeContext';
 import * as api from '../../api';
 import dogeza from '../../asset/dogeza.png';
 import {IMG_URL} from '../../Util';
@@ -10,6 +9,7 @@ import {Swiper, SwiperSlide} from 'swiper/react';
 import 'swiper/swiper-bundle.css';
 import '../../css/swiperStyle.css';
 import {Link} from 'react-router-dom';
+import Loading from '../Loading';
 
 // install Swiper modules
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
@@ -32,11 +32,11 @@ const AniContainer = styled.div`
     cursor: pointer;
 `;
 
-const Loading = styled.div`
+const LoadingBox = styled.div`
     ${flexAlign};
     height: 500px;
     font-size: 1.4em;
-    color: ${p=>p.theme.text};
+    transition: unset;
 `;
 
 const Img = styled.img`
@@ -70,8 +70,6 @@ const breakpoints = {
 const AniList = ({media,type}) => {
     const [trend, setTrend] = useState([]);
     const [loading, setLoading] = useState(true);
-    const theme = useTheme();
-
 
     useEffect(() => {
         api.getAnime(media,type).then(res => {
@@ -80,7 +78,7 @@ const AniList = ({media,type}) => {
         })
     },[]);
 
-    if(loading) return <Loading theme={theme}>Now Loading...</Loading>
+    if(loading) return <LoadingBox><Loading /></LoadingBox>
 
     return (
         <Container>
@@ -94,7 +92,7 @@ const AniList = ({media,type}) => {
             {trend.map((da, i) => {
                 return (
                     <SwiperSlide key={i}>
-                        <LinkStyle to={`/detail/${da.id}`}>
+                        <LinkStyle to={`/detail/${da.id}/${media}`}>
                         <AniContainer>
                             {da.poster_path === null ? 
                                 <Img src={dogeza}/> :

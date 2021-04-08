@@ -13,8 +13,6 @@ import dogeza from '../../asset/dogeza.png';
 // install Swiper modules
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
-// 더보기 추가해서 클릭 시 밑으로 리스트 보여주기
-
 const CastContainer = styled.div`
     width: 80vw;
     height: 100%;
@@ -22,7 +20,7 @@ const CastContainer = styled.div`
     justify-content: flex-start;
     flex-direction: row;
     align-items: center;
-    margin-top: 50px;
+    margin-top: 20px;
     overflow: hidden;
 `;
 
@@ -76,13 +74,13 @@ const breakpoints = {
     }
 }
 
-const Cast = ({id}) => {
+const Cast = ({media, id}) => {
     const [casts, setCasts] = useState();
     const [loading, setLoading] = useState(true);
     const theme = useTheme();
 
     useEffect(() => {
-        api.getAnimeCast(id).then(res => {
+        api.getAnimeCast(media, id).then(res => {
             console.log(res.data);
             setCasts(res.data);
             setLoading(false);
@@ -99,8 +97,8 @@ const Cast = ({id}) => {
         <CastContainer>
             <Swiper style={{width: '100%'}} breakpoints={breakpoints} navigation>
             {casts && casts.cast.map((cast, i) => 
-                <SwiperSlide>
-                <CastCard key={i} theme={theme}>
+                <SwiperSlide key={i}>
+                <CastCard theme={theme}>
                     {cast.profile_path ? 
                     <CastImg src={`${IMG_URL}${cast.profile_path}`} /> :
                     <CastImg src={dogeza} />
