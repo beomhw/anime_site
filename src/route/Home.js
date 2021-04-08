@@ -41,9 +41,14 @@ const Home = () => {
                 <ContentContainer>
                     <TrendText>ドラマTOP 20</TrendText>
                     <AniList media="tv" type="16,18"/>
-                </ContentContainer>                <ContentContainer>
+                </ContentContainer>                
+                <ContentContainer>
                     <TrendText>コメディTOP 20</TrendText>
                     <AniList media="tv" type="16,35"/>
+                </ContentContainer>
+                <ContentContainer>
+                    <TrendText>アクション・ファンタジー TOP 20</TrendText>
+                    <AniList media="tv" type="16,10759,10765"/>
                 </ContentContainer>
             </Container>
         </HomeProvider>

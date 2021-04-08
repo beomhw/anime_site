@@ -51,6 +51,18 @@ const GlobalStyleCreate = createGlobalStyle`
         -o-transition: none;
         transition: none;
     }
+    .air_date {
+        width: 100%;
+        padding-top: 5px;
+        margin: 0;
+        font-weight: bold;
+    }
+
+    .overview {
+        width: 100%;
+        padding-top: 15px;
+        margin: 0;
+    }
 `;
 
 const GlobalStyle = () => {

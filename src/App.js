@@ -2,7 +2,6 @@
 import React from 'react';
 import Navigation from './Navigation';
 import styled from 'styled-components';
-import GlobalStyle from './css/GlobalStyle';
 
 const Container = styled.div`
     display: flex;
@@ -16,12 +15,9 @@ const Container = styled.div`
 const App = () => {
 
     return (
-        <>
-            <GlobalStyle/>
-            <Container>
-                <Navigation />
-            </Container>
-        </>
+        <Container>
+            <Navigation />
+        </Container>
     );
 }
 

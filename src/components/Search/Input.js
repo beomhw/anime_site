@@ -33,6 +33,10 @@ const SearchButton = styled.div`
     color: ${p=>p.theme.text};
     ${flexAlign};
     font-size: 2.2em;
+    &:hover {
+        color: #ac0d0d;
+    }
+    cursor: pointer;
 `;
 
 const Input = () => {

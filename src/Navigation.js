@@ -6,6 +6,7 @@ import ThemeToggle from './components/ThemeToggle';
 import * as RC from './route/export';
 import logo from './asset/logo.png';
 import {flexAlign} from './css/cssModule';
+import {AiFillGithub, AiFillFacebook, AiFillTwitterCircle} from 'react-icons/ai';
 
 const Container = styled.div`
     width: 100%;
@@ -39,6 +40,44 @@ const LinkStyle = styled(Link)`
     }
 `;
 
+const Footer = styled.div`
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    height: 200px;
+    margin-top: 50px;
+    background-color: ${p=>p.theme.container};
+    padding: 50px;
+    ${flexAlign};
+`;
+
+const FooterText = styled.div`
+    flex: 6;
+    font-size: 2em;
+    ${flexAlign};
+`;
+
+const TMDB = styled.a`
+    &:hover {
+        color: #ac0d0d;
+    }
+    cursor: pointer;
+`;
+
+const FooterIcons = styled.div`
+    flex: 4;
+    ${flexAlign};
+`;
+
+const IconsBox = styled.a`
+    font-size: 2em;
+    margin-left: 20px;
+    &:hover {
+        color: #ac0d0d;
+    }
+    cursor: pointer;
+`;
+
 function usePathname () {
     let location = useLocation();
     return location.pathname;
@@ -67,9 +106,25 @@ const Navigation = () => {
                     <Route path='/mypage' component={RC.MyPage} />
                     <Route path='/detail/:id/:media' component={RC.Detail} />
                 </Switch>
+                <Footer theme={theme}> 
+                    <FooterText>
+                        THANKS FOR&nbsp;<TMDB>TMDB!</TMDB>
+                    </FooterText>
+                    <FooterIcons>
+                        <IconsBox>
+                            <AiFillGithub />
+                        </IconsBox>
+                        <IconsBox>
+                            <AiFillFacebook /> 
+                        </IconsBox>
+                        <IconsBox>
+                            <AiFillTwitterCircle />
+                        </IconsBox>
+                    </FooterIcons>
+                </Footer>
             </BodyContainer>
         </Container>
     );
 }
 
-export default Navigation;
+export default Navigation;  

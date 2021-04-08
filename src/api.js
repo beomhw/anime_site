@@ -55,3 +55,13 @@ export async function getAnimeVideo (media, anime_id) {
         })
     return res;
 }
+
+// 특정 애니 관련 목록 get
+export async function getAnimeRecommendation (media, anime_id) {
+    let res = await api.get(`${media}/${anime_id}/recommendations?api_key=${API.API_KEY}&language=ko`)
+        .then(res => {
+            console.log('request result : ', res);
+            return res;
+        })
+    return res;
+}
