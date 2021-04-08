@@ -129,15 +129,18 @@ const Detail = ({match}) => {
         api.getAnimeInfo(media, id).then(res => {
             console.log(res);
             setAnime(res);
-            setLastSeason(res.seasons[res.seasons.length-1]);
-        })
-        api.getAnimeVideo(media, id).then(res => {
-            console.log(res);
-        })
-        api.getAnimeRecommendation(media, id).then(res => {
-            console.log(res.data.results);
-            setRecommendations(res.data.results);
-            setLoading(false);
+            if(media === 'tv')
+                setLastSeason(res.seasons[res.seasons.length-1]);
+        }).then(() => {
+            api.getAnimeVideo(media, id).then(res => {
+                console.log(res);
+            }).then(() => {
+                api.getAnimeRecommendation(media, id).then(res => {
+                    console.log(res.data.results);
+                    setRecommendations(res.data.results);
+                    setLoading(false);
+                })
+            })
         })
     },[]);
 
@@ -170,6 +173,7 @@ const Detail = ({match}) => {
                 <TextH1>개요</TextH1>
                 <Comp.Description overview={anime.overview}/>
             </Content>
+            {media === 'tv' && 
             <Content>
                 <TextH1>최근 시즌</TextH1>
                 <SeasonContainer theme={theme}>
@@ -183,14 +187,14 @@ const Detail = ({match}) => {
                         </p>
                     </SeasonDescription>
                 </SeasonContainer>
-            </Content>
+            </Content> }
             <Content>
                 <TextH1>출연진</TextH1>
                 <Comp.Cast media={media} id={id}/>
             </Content>
             <Content>
                 <TextH1>추천</TextH1>
-                <Comp.Recommend recommendations={recommendations} />
+                <Comp.Recommend media={media} recommendations={recommendations} />
             </Content>
         </Container>
     );

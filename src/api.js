@@ -9,7 +9,7 @@ const api = axios.create({
 export async function getAnime (media, type) {
     let res = await api.get(`discover/${media}?api_key=${API.API_KEY}&with_genres=${type}&with_keywords=${API.KEYWORD}&page=1&language=ko`)
         .then(res => {
-        console.log('request result : ',res);
+        console.log('request animeList : ',res);
         return res.data;
     })
 
@@ -20,7 +20,7 @@ export async function getAnime (media, type) {
 export async function getAnimeInfo (media, anime_id) {
     let res = await api.get(`${media}/${anime_id}?api_key=${API.API_KEY}&language=ko`)
         .then(res => {
-            console.log('request result : ', res);
+            console.log('request getAnimeInfo : ', res);
             return res.data;
         })
     return res;
@@ -30,7 +30,7 @@ export async function getAnimeInfo (media, anime_id) {
 export async function getAnimeImg (media, anime_id) {
     let res = await api.get(`${media}/${anime_id}/images?api_key=${API.API_KEY}`)
         .then(res => {
-            console.log('request result : ', res);
+            console.log('request animeImg : ', res);
             return res;
         })
     return res;
@@ -40,7 +40,7 @@ export async function getAnimeImg (media, anime_id) {
 export async function getAnimeCast (media, anime_id) {
     let res = await api.get(`${media}/${anime_id}/credits?api_key=${API.API_KEY}`)
         .then(res => {
-            console.log('request result : ', res);
+            console.log('request animeCasts : ', res);
             return res;
         })
     return res;
@@ -50,7 +50,7 @@ export async function getAnimeCast (media, anime_id) {
 export async function getAnimeVideo (media, anime_id) {
     let res = await api.get(`${media}/${anime_id}/videos?api_key=${API.API_KEY}`)
         .then(res => {
-            console.log('request result : ', res);
+            console.log('request animeVedio : ', res);
             return res;
         })
     return res;
@@ -60,7 +60,7 @@ export async function getAnimeVideo (media, anime_id) {
 export async function getAnimeRecommendation (media, anime_id) {
     let res = await api.get(`${media}/${anime_id}/recommendations?api_key=${API.API_KEY}&language=ko`)
         .then(res => {
-            console.log('request result : ', res);
+            console.log('request recommendation : ', res);
             return res;
         })
     return res;

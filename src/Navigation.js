@@ -62,6 +62,7 @@ const TMDB = styled.a`
         color: #ac0d0d;
     }
     cursor: pointer;
+    color: ${p=>p.theme.text};
 `;
 
 const FooterIcons = styled.div`
@@ -76,6 +77,7 @@ const IconsBox = styled.a`
         color: #ac0d0d;
     }
     cursor: pointer;
+    color: ${p=>p.theme.text};
 `;
 
 function usePathname () {
@@ -108,16 +110,16 @@ const Navigation = () => {
                 </Switch>
                 <Footer theme={theme}> 
                     <FooterText>
-                        THANKS FOR&nbsp;<TMDB>TMDB!</TMDB>
+                        THANKS FOR&nbsp;<TMDB theme={theme} href="https://www.themoviedb.org/">TMDB!</TMDB>
                     </FooterText>
                     <FooterIcons>
-                        <IconsBox>
+                        <IconsBox theme={theme} href="https://github.com/beomhw">
                             <AiFillGithub />
                         </IconsBox>
-                        <IconsBox>
+                        <IconsBox theme={theme}>
                             <AiFillFacebook /> 
                         </IconsBox>
-                        <IconsBox>
+                        <IconsBox theme={theme}>
                             <AiFillTwitterCircle />
                         </IconsBox>
                     </FooterIcons>

@@ -45,15 +45,15 @@ const Img = styled.img`
 `;
 
 const breakpoints = {
-    0: {
+    500: {
         slidesPerView: 1,
         spaceBetween: 5
     },
-    610: {
+    620: {
         slidesPerView: 2,
         spaceBetween: 5
     },
-    910: {
+    920: {
       slidesPerView: 3,
       spaceBetween: 5
     },
