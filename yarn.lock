@@ -9264,6 +9264,11 @@
     "iconv-lite" "0.4.24"
     "unpipe" "1.0.0"
 
+"react-apng@^1.4.0":
+  "integrity" "sha512-LzPUOXDwtBoiCNME66qAkZq8lFuKHZDHgiPW9KLu6an+o25S7EEQ/Xy+Q5f+Y2v1kPJfwEumroHmHxRNEzHbPw=="
+  "resolved" "https://registry.npmjs.org/react-apng/-/react-apng-1.4.0.tgz"
+  "version" "1.4.0"
+
 "react-app-polyfill@^2.0.0":
   "integrity" "sha512-0sF4ny9v/B7s6aoehwze9vJNWcmCemAUYBVasscVr92+UYiEqDXOxfKjXN685mDaMRNF3WdhHQs76oTODMocFA=="
   "resolved" "https://registry.npmjs.org/react-app-polyfill/-/react-app-polyfill-2.0.0.tgz"

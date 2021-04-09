@@ -10,6 +10,7 @@ import 'swiper/swiper-bundle.css';
 import '../../css/swiperStyle.css';
 import dogeza from '../../asset/dogeza.png';
 
+
 // install Swiper modules
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
@@ -22,6 +23,7 @@ const CastContainer = styled.div`
     align-items: center;
     margin-top: 20px;
     overflow: hidden;
+    margin-bottom: 20px;
 `;
 
 const CastCard = styled.div`

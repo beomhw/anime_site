@@ -2,9 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import {flexAlign} from '../../css/cssModule';
 import {useTheme} from '../../ThemeContext';
+import ghost from '../../asset/ghost.png';
+import ApngComponent from 'react-apng';
 
 const DescriptionContainer = styled.div`
-    width: 80vw;
+    max-width: 80vw;
     height: 100%;
     display: flex;
     ${flexAlign};
@@ -15,8 +17,39 @@ const DescriptionContainer = styled.div`
     padding: 20px;
 `;
 
+const GhostBox = styled.div`
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    flex: 4;
+`;
+
+const TextBox = styled.div`
+    flex: 6;
+    display: flex;
+    flex-direction: column;
+`;
+
+const Text = styled.p`
+    font-size: 1.4em;
+    margin: 0;
+`;
+
 const Description = ({overview}) => {
     const theme = useTheme();
+
+    if(overview.length === 0) {
+        return (
+            <DescriptionContainer style={{width: '80vw'}}>
+                <GhostBox>
+                    <ApngComponent autoPlay={true} src={ghost} />
+                </GhostBox>
+                <TextBox>
+                    <Text>이런! 이 작품은 아직 한국어 번역이 없네요..</Text>
+                </TextBox>
+            </DescriptionContainer>
+        );
+    }
 
     return (
         <DescriptionContainer theme={theme}>

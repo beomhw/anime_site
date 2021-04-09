@@ -9,6 +9,10 @@ import 'swiper/swiper-bundle.css';
 import '../../css/swiperStyle.css';
 import {BsCalendar} from 'react-icons/bs';
 import {Link} from 'react-router-dom';
+import {GiCampCookingPot} from 'react-icons/gi';
+import ghost from '../../asset/ghost.png';
+import dogeza from '../../asset/dogeza.png';
+import ApngComponent from 'react-apng';
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
@@ -71,6 +75,11 @@ const Title = styled.div`
     flex: 1;
 `;
 
+const NoneAl = styled.h1`
+    ${flexAlign};
+    height: 200px;
+`;
+
 const breakpoints = {
     500: {
         slidesPerView: 1,
@@ -94,27 +103,40 @@ const breakpoints = {
     }
 }
 
-const Recommend = ({recommendations, media}) => {
+const Recommend = ({recommendations, media, history, setAnimeId}) => {
     const theme = useTheme();
     console.log(recommendations);
+
+    if(recommendations.length === 0) {
+        return (
+            <NoneAl>
+                <ApngComponent autoPlay={true} src={ghost} /> 
+                이 작품에 대한 추천 알고리즘을 점검 중인 거 같아요..
+            </NoneAl>
+        )
+    }
 
     return (
         <Container>
             <Swiper
-                onSwiper={(swiper) => console.log(swiper)}
-                onSlideChange={() => console.log('slide change')}
                 freeMode
                 breakpoints={breakpoints}
             >
                 {recommendations.map((re, i) => 
                     <SwiperSlide key={i}>
                         <ContentBox>
-                            <LinkStyle to={`/detail/${re.id}/${media}`}>
+                            <LinkStyle to={`/detail/${re.id}/${media}`} replace={true} >
+                            {re.backdrop_path === null ?
+                            <BackDrop url={`${dogeza}`}>
+                                <OpacityInfo>
+                                    <BsCalendar /> {re.first_air_date}   
+                                </OpacityInfo>
+                            </BackDrop> :
                             <BackDrop url={`${IMG_URL}${re.backdrop_path}`}>
                                 <OpacityInfo>
                                     <BsCalendar /> {re.first_air_date}   
                                 </OpacityInfo>
-                            </BackDrop>
+                            </BackDrop> }
                             </LinkStyle>
                             <Title>
                                 {re.name}

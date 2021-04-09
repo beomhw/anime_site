@@ -117,7 +117,7 @@ const SeasonDescription = styled.div`
     padding: 40px 20px 20px 20px;
 `;
 
-const Detail = ({match}) => {
+const Detail = ({match, history}) => {
     const theme= useTheme();
     const {params: {id}, params: {media}} = match;
     const [anime, setAnime] = useState({});
@@ -126,6 +126,8 @@ const Detail = ({match}) => {
     const [recommendations, setRecommendations] = useState();
 
     useEffect(() => {
+        setLoading(true);
+        window.scrollTo(0,0);
         api.getAnimeInfo(media, id).then(res => {
             console.log(res);
             setAnime(res);
@@ -142,7 +144,7 @@ const Detail = ({match}) => {
                 })
             })
         })
-    },[]);
+    },[id]);
 
     if(loading) return <Container><LoadingBox><Loading /></LoadingBox></Container>
 
@@ -165,7 +167,7 @@ const Detail = ({match}) => {
                     :<TextH1>{anime.original_title}</TextH1>}
                     <GenreContainer>
                         {anime.genres.map((ge, i) => 
-                        <GenreBox theme={theme}>{ge.name}</GenreBox>)}
+                        <GenreBox key={i} theme={theme}>{ge.name}</GenreBox>)}
                     </GenreContainer>
                 </HeaderInfoContainer>
             </Header>
@@ -177,14 +179,22 @@ const Detail = ({match}) => {
             <Content>
                 <TextH1>최근 시즌</TextH1>
                 <SeasonContainer theme={theme}>
-                    <SeasonPoster url={`${IMG_URL}${lastSeason.poster_path}`} />
+                    <SeasonPoster url={lastSeason.poster_path ? 
+                        `${IMG_URL}${lastSeason.poster_path}` :
+                        `${IMG_URL}${anime.poster_path}`
+                    } />
                     <SeasonDescription>
                         <TextH2>{lastSeason.name}</TextH2>
-                        <p className="air_date">{new Date(lastSeason.air_date).getFullYear()} | {lastSeason.episode_count}화</p>
-                        <p className="overview">
-                            {anime.name}의 {lastSeason.season_number}번째 
-                            시즌이 {new Date(lastSeason.air_date).getMonth()+1}월 {new Date(lastSeason.air_date).getDay()+1}일, {new Date(lastSeason.air_date).getFullYear()}년에 방영되었습니다.
-                        </p>
+                        {lastSeason.air_date === null ?
+                            <p className="overview">{anime.name}의 {lastSeason.season_number}번째 시즌이 방영 예정입니다.</p> :
+                            <>
+                            <p className="air_date">{new Date(lastSeason.air_date).getFullYear()} | {lastSeason.episode_count}화</p>
+                            <p className="overview">
+                                {anime.name}의 {lastSeason.season_number}번째 
+                                시즌이 {new Date(lastSeason.air_date).getMonth()+1}월 {new Date(lastSeason.air_date).getDay()+1}일, {new Date(lastSeason.air_date).getFullYear()}년에 방영되었습니다.
+                            </p>
+                            </>
+                        }
                     </SeasonDescription>
                 </SeasonContainer>
             </Content> }
@@ -194,7 +204,7 @@ const Detail = ({match}) => {
             </Content>
             <Content>
                 <TextH1>추천</TextH1>
-                <Comp.Recommend media={media} recommendations={recommendations} />
+                <Comp.Recommend media={media} history={history} recommendations={recommendations} />
             </Content>
         </Container>
     );
