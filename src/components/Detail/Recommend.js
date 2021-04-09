@@ -9,7 +9,7 @@ import 'swiper/swiper-bundle.css';
 import '../../css/swiperStyle.css';
 import {BsCalendar} from 'react-icons/bs';
 import {Link} from 'react-router-dom';
-import {GiCampCookingPot} from 'react-icons/gi';
+import {GiCampCookingPot, GiTurret} from 'react-icons/gi';
 import ghost from '../../asset/ghost.png';
 import dogeza from '../../asset/dogeza.png';
 import ApngComponent from 'react-apng';
@@ -106,8 +106,10 @@ const breakpoints = {
 const Recommend = ({recommendations, media, history, setAnimeId}) => {
     const theme = useTheme();
     console.log(recommendations);
+    // 추천 알고리즘에서 애니메이션만 선별
+    const recommend = recommendations.filter(re => re.genre_ids.includes(16));
 
-    if(recommendations.length === 0) {
+    if(recommend.length === 0) {
         return (
             <NoneAl>
                 <ApngComponent autoPlay={true} src={ghost} /> 
@@ -122,7 +124,7 @@ const Recommend = ({recommendations, media, history, setAnimeId}) => {
                 freeMode
                 breakpoints={breakpoints}
             >
-                {recommendations.map((re, i) => 
+                {recommend.map((re, i) => 
                     <SwiperSlide key={i}>
                         <ContentBox>
                             <LinkStyle to={`/detail/${re.id}/${media}`} replace={true} >

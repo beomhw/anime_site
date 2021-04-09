@@ -7,6 +7,7 @@ import * as RC from './route/export';
 import logo from './asset/logo.png';
 import {flexAlign} from './css/cssModule';
 import {AiFillGithub, AiFillFacebook, AiFillTwitterCircle} from 'react-icons/ai';
+import UpToggle from './components/UpToggle';
 
 const Container = styled.div`
     width: 100%;
@@ -108,6 +109,7 @@ const Navigation = () => {
                     <Route path='/mypage' component={RC.MyPage} />
                     <Route path='/detail/:id/:media' component={RC.Detail} />
                 </Switch>
+                <UpToggle/>
                 <Footer theme={theme}> 
                     <FooterText>
                         THANKS FOR&nbsp;<TMDB theme={theme} href="https://www.themoviedb.org/">TMDB!</TMDB>

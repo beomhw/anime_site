@@ -177,7 +177,7 @@ const Detail = ({match, history}) => {
             </Content>
             {media === 'tv' && 
             <Content>
-                <TextH1>최근 시즌</TextH1>
+                <TextH1>시즌</TextH1>
                 <SeasonContainer theme={theme}>
                     <SeasonPoster url={lastSeason.poster_path ? 
                         `${IMG_URL}${lastSeason.poster_path}` :

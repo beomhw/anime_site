@@ -65,3 +65,13 @@ export async function getAnimeRecommendation (media, anime_id) {
         })
     return res;
 }
+
+// anime search
+export async function searchAnime (query) {
+    let res = await api.get(`search/multi?api_key=${API.API_KEY}&query=${query}&page=1&language=ko`)
+        .then(res => {
+            console.log('search results : ', res);
+            return res;
+        })
+    return res;
+}

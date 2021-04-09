@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import {flexAlign} from '../../css/cssModule';
 import {useTheme} from '../../ThemeContext';
 import {BsSearch} from 'react-icons/bs';
+import * as api from '../../api';
 
 const SearchContainer = styled.div`
     ${flexAlign};
@@ -39,13 +40,26 @@ const SearchButton = styled.div`
     cursor: pointer;
 `;
 
-const Input = () => {
+const Input = ({setLoading, input, setInput, setSearchResults}) => {
     const theme = useTheme();
+    
+    const onChange = e => {
+        setInput(e.target.value);
+        console.log(input);
+    }
+
+    const onSearch = query => {
+        setLoading(true);
+        api.searchAnime(query).then(res => {
+            console.log(res.data.results);
+            setSearchResults(res.data.results.filter(re => re.genre_ids.includes(16)));
+        })
+    }
 
     return (
         <SearchContainer>
-            <SearchInput placeholder="Search" theme={theme} />
-            <SearchButton theme={theme}><BsSearch/></SearchButton>
+            <SearchInput autoComplete="off" onChange={e => onChange(e)} value={input} name="query" placeholder="Search" theme={theme} />
+            <SearchButton onClick={() => onSearch(input)} theme={theme}><BsSearch/></SearchButton>
         </SearchContainer>
     );
 }
