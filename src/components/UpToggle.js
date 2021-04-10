@@ -22,8 +22,15 @@ const Circle = styled.div`
     color: white;
 `;
 
+function useGetY () {
+    console.log(window.scrollY);
+    return window.scrollY;
+}
 
+// 스크롤 내릴 시 나타나게 하고 맨 위에 위치 시 안 보이게
 const UpToggle = () => {
+    let Y = useGetY();
+
     const onTop = () => {
         window.scrollTo(0,0);
     }

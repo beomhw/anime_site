@@ -10,12 +10,14 @@ const Container = styled.div`
     height: 100%;
     ${flexAlign};
     flex-direction: column;
-    margin-top: 20px;
+    margin-top: 70px;
+    
 `;
 
 const ContentContainer = styled.div`
     width: 100%;
     height: 540px;
+    margin-bottom: 30px;
 `;
 
 const TrendText = styled.p`

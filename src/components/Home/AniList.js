@@ -47,23 +47,28 @@ const Img = styled.img`
 const breakpoints = {
     500: {
         slidesPerView: 1,
-        spaceBetween: 5
+        spaceBetween: 5,
+        freeMode: true
     },
     620: {
         slidesPerView: 2,
-        spaceBetween: 5
+        spaceBetween: 5,
+        freeMode: false,
     },
     920: {
-      slidesPerView: 3,
-      spaceBetween: 5
+        slidesPerView: 3,
+        spaceBetween: 5,
+        freeMode: false,
     },
     1280: {
-      slidesPerView: 4,
-      spaceBetween: 5
+        slidesPerView: 4,
+        spaceBetween: 5,
+        freeMode: false,
     },
     1620: {
-      slidesPerView: 5,
-      spaceBetween: 5
+        slidesPerView: 5,
+        spaceBetween: 5,
+        freeMode: false,
     }
 }
 

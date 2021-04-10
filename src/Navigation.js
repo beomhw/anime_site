@@ -11,8 +11,9 @@ import UpToggle from './components/UpToggle';
 
 const Container = styled.div`
     width: 100%;
-    height: 100%;
+    min-height: 100vh;
     ${flexAlign};
+    flex-direction: column;
 `;
 
 const HeaderContainer = styled.div`
@@ -28,8 +29,9 @@ const HeaderContainer = styled.div`
 
 const BodyContainer = styled.div`
     width: 100%;
-    position: relative;
-    top: 50px;
+    height: 100%;
+    ${flexAlign};
+    flex-direction: column;
 `;
 
 const LinkStyle = styled(Link)`
@@ -42,11 +44,9 @@ const LinkStyle = styled(Link)`
 `;
 
 const Footer = styled.div`
-    position: relative;
-    bottom: 0;
     width: 100%;
     height: 200px;
-    margin-top: 50px;
+    margin-top: auto;
     background-color: ${p=>p.theme.container};
     padding: 50px;
     ${flexAlign};
@@ -110,23 +110,23 @@ const Navigation = () => {
                     <Route path='/detail/:id/:media' component={RC.Detail} />
                 </Switch>
                 <UpToggle/>
-                <Footer theme={theme}> 
-                    <FooterText>
-                        THANKS FOR&nbsp;<TMDB theme={theme} href="https://www.themoviedb.org/">TMDB!</TMDB>
-                    </FooterText>
-                    <FooterIcons>
-                        <IconsBox theme={theme} href="https://github.com/beomhw">
-                            <AiFillGithub />
-                        </IconsBox>
-                        <IconsBox theme={theme}>
-                            <AiFillFacebook /> 
-                        </IconsBox>
-                        <IconsBox theme={theme}>
-                            <AiFillTwitterCircle />
-                        </IconsBox>
-                    </FooterIcons>
-                </Footer>
             </BodyContainer>
+            <Footer theme={theme}> 
+                <FooterText>
+                    THANKS FOR&nbsp;<TMDB theme={theme} href="https://www.themoviedb.org/">TMDB!</TMDB>
+                </FooterText>
+                <FooterIcons>
+                    <IconsBox theme={theme} href="https://github.com/beomhw">
+                        <AiFillGithub />
+                    </IconsBox>
+                    <IconsBox theme={theme}>
+                        <AiFillFacebook /> 
+                    </IconsBox>
+                    <IconsBox theme={theme}>
+                        <AiFillTwitterCircle />
+                    </IconsBox>
+                </FooterIcons>
+            </Footer>
         </Container>
     );
 }

@@ -11,6 +11,8 @@ export async function getAnime (media, type) {
         .then(res => {
         console.log('request animeList : ',res);
         return res.data;
+    }).catch(e => {
+        console.log(e);
     })
 
     return res;
@@ -22,6 +24,8 @@ export async function getAnimeInfo (media, anime_id) {
         .then(res => {
             console.log('request getAnimeInfo : ', res);
             return res.data;
+        }).catch(e => {
+            console.log(e);
         })
     return res;
 }
@@ -32,6 +36,8 @@ export async function getAnimeImg (media, anime_id) {
         .then(res => {
             console.log('request animeImg : ', res);
             return res;
+        }).catch(e => {
+            console.log(e);
         })
     return res;
 }
@@ -42,6 +48,8 @@ export async function getAnimeCast (media, anime_id) {
         .then(res => {
             console.log('request animeCasts : ', res);
             return res;
+        }).catch(e => {
+            console.log(e);
         })
     return res;
 }
@@ -52,6 +60,8 @@ export async function getAnimeVideo (media, anime_id) {
         .then(res => {
             console.log('request animeVedio : ', res);
             return res;
+        }).catch(e => {
+            console.log(e);
         })
     return res;
 }
@@ -62,6 +72,8 @@ export async function getAnimeRecommendation (media, anime_id) {
         .then(res => {
             console.log('request recommendation : ', res);
             return res;
+        }).catch(e => {
+            console.log(e);
         })
     return res;
 }
@@ -72,6 +84,8 @@ export async function searchAnime (query) {
         .then(res => {
             console.log('search results : ', res);
             return res;
+        }).catch(e => {
+            console.log(e);
         })
     return res;
 }

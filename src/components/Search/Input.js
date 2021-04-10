@@ -49,10 +49,13 @@ const Input = ({setLoading, input, setInput, setSearchResults}) => {
     }
 
     const onSearch = query => {
+        let check = query.trim();
+        if(check.length === 0) return 0;
+
         setLoading(true);
         api.searchAnime(query).then(res => {
-            console.log(res.data.results);
-            setSearchResults(res.data.results.filter(re => re.genre_ids.includes(16)));
+            console.log(res.data);
+            setSearchResults(res.data.results.filter(re => re.media_type !== 'person' && re.genre_ids.includes(16)));
         })
     }
 

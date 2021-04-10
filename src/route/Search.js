@@ -1,13 +1,15 @@
+// 장르별 검색 구현 예정
+
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import * as Comp from '../components/Search/export';
-import tokei from '../asset/tokei.png';
-import ApngComponent from 'react-apng';
 import {flexAlign} from '../css/cssModule';
+import Loading from '../components/Loading';
 
 const Container = styled.div`
     width: 100%;
     height: 100%;
+    margin-top: 40px;
 `;
 
 const LoadingContainer = styled.div`
@@ -21,7 +23,7 @@ const Search = () => {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        setTimeout(() => setLoading(false), 1500);
+        setTimeout(() => setLoading(false), 1000);
     },[searchResults])
 
     console.log(searchResults);
@@ -30,7 +32,7 @@ const Search = () => {
         <Container>
             <Comp.Input setLoading={setLoading} setSearchResults={setSearchResults} input={input} setInput={setInput}/>
             {loading ?
-            <LoadingContainer><ApngComponent autoPlay={true} src={tokei} /></LoadingContainer> :
+            <LoadingContainer><Loading /></LoadingContainer> :
             <Comp.SearchResults results={searchResults} /> }
         </Container>
     );

@@ -1,6 +1,5 @@
 import React from 'react';
-import styled,{css} from 'styled-components';
-import {useTheme} from '../../ThemeContext';
+import styled from 'styled-components';
 import {flexAlign} from '../../css/cssModule';
 import {IMG_URL} from '../../Util';
 import SwiperCore, {Navigation, Pagination, Scrollbar, A11y} from 'swiper';
@@ -9,9 +8,8 @@ import 'swiper/swiper-bundle.css';
 import '../../css/swiperStyle.css';
 import {BsCalendar} from 'react-icons/bs';
 import {Link} from 'react-router-dom';
-import {GiCampCookingPot, GiTurret} from 'react-icons/gi';
 import ghost from '../../asset/ghost.png';
-import dogeza from '../../asset/dogeza.png';
+import dogeza from '../../asset/dogeza_reco.png';
 import ApngComponent from 'react-apng';
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
@@ -103,8 +101,7 @@ const breakpoints = {
     }
 }
 
-const Recommend = ({recommendations, media, history, setAnimeId}) => {
-    const theme = useTheme();
+const Recommend = ({recommendations, media}) => {
     console.log(recommendations);
     // 추천 알고리즘에서 애니메이션만 선별
     const recommend = recommendations.filter(re => re.genre_ids.includes(16));
@@ -122,6 +119,8 @@ const Recommend = ({recommendations, media, history, setAnimeId}) => {
         <Container>
             <Swiper
                 freeMode
+                freeModeMomentumBounce={0.1}
+                freeModeMomentumBounceRatio={0.1}
                 breakpoints={breakpoints}
             >
                 {recommend.map((re, i) => 
@@ -131,17 +130,17 @@ const Recommend = ({recommendations, media, history, setAnimeId}) => {
                             {re.backdrop_path === null ?
                             <BackDrop url={`${dogeza}`}>
                                 <OpacityInfo>
-                                    <BsCalendar /> {re.first_air_date}   
+                                    <BsCalendar />  {media === 'movie' ? re.release_date : re.first_air_date}
                                 </OpacityInfo>
                             </BackDrop> :
                             <BackDrop url={`${IMG_URL}${re.backdrop_path}`}>
                                 <OpacityInfo>
-                                    <BsCalendar /> {re.first_air_date}   
+                                    <BsCalendar /> {media === 'movie' ? re.release_date : re.first_air_date} 
                                 </OpacityInfo>
                             </BackDrop> }
                             </LinkStyle>
                             <Title>
-                                {re.name}
+                                {media === 'movie' ? re.title : re.name}
                             </Title>
                         </ContentBox>
                     </SwiperSlide>

@@ -8,11 +8,14 @@ import {IMG_URL} from '../Util';
 import Loading from '../components/Loading';
 import * as Comp from '../components/Detail/export';
 
+// pinterest api로 캐릭터 이름에 대한 사진들 보여주기
+
 const Container = styled.div`
     ${flexAlign};
     width: 100%;
     height: 100%;
     flex-direction: column;
+    margin-top: 50px;
 `;
 
 const Header = styled.div`
@@ -164,7 +167,7 @@ const Detail = ({match, history}) => {
                 <HeaderInfoContainer>
                     {media === 'tv' 
                     ?<TextH1>{anime.name} ({new Date(anime.first_air_date).getFullYear()})</TextH1> 
-                    :<TextH1>{anime.original_title}</TextH1>}
+                    :<><TextH1>{anime.original_title}</TextH1><p>{anime.release_date} 개봉</p></>}
                     <GenreContainer>
                         {anime.genres.map((ge, i) => 
                         <GenreBox key={i} theme={theme}>{ge.name}</GenreBox>)}
