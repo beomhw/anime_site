@@ -49,6 +49,7 @@ const Input = ({setLoading, input, setInput, setSearchResults}) => {
     }
 
     const onSearch = query => {
+        setInput('');
         let check = query.trim();
         if(check.length === 0) return 0;
 

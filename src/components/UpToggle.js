@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 import styled from 'styled-components';
 import {flexAlign} from '../css/cssModule';
 import {BsCaretUpFill} from 'react-icons/bs';
@@ -20,23 +20,39 @@ const Circle = styled.div`
     }
     cursor: pointer;
     color: white;
+    opacity: ${p=>p.opacity};
+    visibility: ${p=>p.visibility};
 `;
-
-function useGetY () {
-    console.log(window.scrollY);
-    return window.scrollY;
-}
 
 // 스크롤 내릴 시 나타나게 하고 맨 위에 위치 시 안 보이게
 const UpToggle = () => {
-    let Y = useGetY();
+    const [state, setState] = useState({
+        opacity: 0,
+        visibility: 'hidden'
+    });
+
+    useEffect(() => {
+        window.onscroll = function () {
+            if(window.pageYOffset > 200) {
+                setState({
+                    opacity: 1,
+                    visibility: 'visible'
+                })
+            } else {
+                setState({
+                    opacity: 0,
+                    visibility: 'hidden'
+                })
+            }
+        }
+    },[])
 
     const onTop = () => {
-        window.scrollTo(0,0);
+        window.scrollTo({top: 0, behavior: 'smooth'});
     }
 
     return (
-        <Circle onClick={onTop}>
+        <Circle onClick={onTop} opacity={state.opacity} visibility={state.visibility}>
             <BsCaretUpFill />
         </Circle>
     );
