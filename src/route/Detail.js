@@ -127,6 +127,14 @@ const Detail = ({match, history}) => {
     const [loading, setLoading] = useState(true);
     const [lastSeason, setLastSeason] = useState();
     const [recommendations, setRecommendations] = useState();
+    const [modal, setModal] = useState({
+        opacity: 0,
+        visibility: 'hidden'
+    });
+    const onOpen = () => setModal({
+        opacity: 1,
+        visibility: 'visible'
+    })
 
     useEffect(() => {
         setLoading(true);
@@ -153,6 +161,7 @@ const Detail = ({match, history}) => {
 
     return (
         <Container url={`${IMG_URL}${anime.backdrop_path}`}>
+            <Comp.SeasonInfo id={anime.id} seasons={anime.seasons} modal={modal} setModal={setModal} />
             <Header theme={theme}>
                 <BackdropCover 
                     url={anime.backdrop_path ? 
@@ -199,6 +208,7 @@ const Detail = ({match, history}) => {
                             </>
                         }
                     </SeasonDescription>
+                    <TextH2 onClick={onOpen}>상세..</TextH2>
                 </SeasonContainer>
             </Content> }
             <Content>

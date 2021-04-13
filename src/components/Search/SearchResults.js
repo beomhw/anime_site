@@ -53,7 +53,9 @@ const SearchResults = ({results}) => {
     const [loading, setLoading] = useState(false);
     const theme = useTheme();
 
-    function onMore () {
+    
+
+    const onMore = () => {
         setLoading(true);
         setCount(count + 1);
         setTimeout(setLoading(false), 1500);
@@ -71,7 +73,7 @@ const SearchResults = ({results}) => {
                 )}
                 <ViewmoreBox theme={theme}>
                     <ViewmoreButton onClick={() => onMore()} theme={theme}>
-                        {loading ? <>now</> : <BsCaretDownFill />}
+                        {loading ? <></> : <BsCaretDownFill />}
                     </ViewmoreButton>
                 </ViewmoreBox> 
             </> : 

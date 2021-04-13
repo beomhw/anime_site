@@ -3,6 +3,7 @@ import {IMG_URL} from '../../Util';
 import dogeza from '../../asset/dogeza_search.png';
 import {useTheme} from '../../ThemeContext';
 import {flexAlign} from '../../css/cssModule';
+import {Link} from 'react-router-dom';
 
 const ResultBox = styled.div`
     background-color: ${p=>p.theme.container};
@@ -20,8 +21,6 @@ const PosterImg = styled.div`
     background-size: contain;
     width: 100px;
     height: 150px;
-    min-width: 50px;
-    min-height: 80px;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
 `;
@@ -29,6 +28,7 @@ const PosterImg = styled.div`
 const DescriptionBox = styled.div`
     display: flex;
     flex-direction: column;
+    width: calc(60vw - 100px);
     height: 100%;
     padding: 15px;
 `;
@@ -46,17 +46,38 @@ const MediaTypeBox = styled.div`
     ${flexAlign};
 `;
 
+const AniTitle = styled.div`
+    flex: 1;
+    font-size: 1.3em;
+`;
+
+const LinkS = styled(Link)`
+    color: ${p=>p.theme.text};
+`;
+
+const OverviewBox = styled.div`
+    padding: 10px;
+    
+`;
+
 const SearchResult = ({ani}) => {
     const theme = useTheme();
 
+    const description = ani.overview.slice(0, 70) + '...';
+    
     return (
         <ResultBox theme={theme}>
-            {ani.poster_path ? 
+            {ani.poster_path ? /* 애니 이미지 */
             <PosterImg url={`${IMG_URL}${ani.poster_path}`} ><MediaTypeBox>{ani.media_type}</MediaTypeBox></PosterImg> :
             <PosterImg url={dogeza}><MediaTypeBox>{ani.media_type}</MediaTypeBox></PosterImg>
             }
             <DescriptionBox>
-            {ani.media_type === 'movie' ? ani.title : ani.name}
+                <AniTitle> {/* 애니 제목 */}
+                    <LinkS theme={theme} to={`/detail/${ani.id}/${ani.media_type}`} >
+                        {ani.media_type === 'movie' ? ani.title : ani.name}
+                    </LinkS>
+                </AniTitle>
+                <OverviewBox>{description}</OverviewBox>
             </DescriptionBox>
         </ResultBox>
     );

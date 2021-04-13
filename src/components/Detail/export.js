@@ -3,4 +3,4 @@ import Cast from './Cast';
 import SeasonInfo from './SeasonInfo';
 import Recommend from './Recommend';
 
-export {Description, Cast, SeasonInfo, Recommend};
+export {Description, Cast, SeasonInfo, Recommend,};

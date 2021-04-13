@@ -89,3 +89,15 @@ export async function searchAnime (query) {
         })
     return res;
 }
+
+// 애니메이션 시즌
+export async function getSeasonEpisodes(id, seasonNum) {
+    let res = await api.get(`tv/${id}/season/${seasonNum}?api_key=${API.API_KEY}&language=ko`)
+        .then(res => {
+            console.log('season info : ', res);
+            return res;
+        }).catch(e => {
+            console.log(e);
+        })
+    return res;
+}
