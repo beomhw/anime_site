@@ -114,7 +114,8 @@ const SeasonInfo = ({id, seasons, modal, setModal}) => {
         setLoading(true);
         api.getSeasonEpisodes(id, seasonId).then(res => {
             console.log(res.data);
-            setSeasonInfo(res.data);
+            let data = res.data.episodes.filter(ep => new Date(ep.air_date) < new Date());
+            setSeasonInfo({name: res.data.name, data: data});
             setLoading(false);
         })
     },[seasonId]);
@@ -133,11 +134,11 @@ const SeasonInfo = ({id, seasons, modal, setModal}) => {
                 <Header><Exit onClick={onExit}><ImCancelCircle /></Exit></Header>
                 <Nav>{seasonInfo.name}
                     <Menu value={seasonId} onChange={onChange}>
-                        {seasons.map((se,i) => <option value={i}> {se.name} </option>)}
+                        {seasons.map((se,i) => <option key={i} value={i}> {se.name} </option>)}
                     </Menu>
                 </Nav>
                 <EpisodeContainer>
-                {seasonInfo.episodes.map((ep,i) => 
+                {seasonInfo.data.map((ep,i) => 
                     <Episode key={i} ep={ep}/>
                 )}
                 </EpisodeContainer>
