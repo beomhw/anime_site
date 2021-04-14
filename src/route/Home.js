@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {useTheme} from '../ThemeContext';
+import {useLanguage} from '../LanguageContext';
 import {flexAlign} from '../css/cssModule';
 import {AniList} from '../components/Home/export';
 import {HomeProvider} from '../HomeContext';
@@ -27,29 +27,29 @@ const TrendText = styled.p`
 `;
 
 const Home = () => {
-    const theme = useTheme();
+    const text = useLanguage();
 
     return (
         <HomeProvider>
             <Container>
                 <ContentContainer>
-                    <TrendText>アニメ TOP 20</TrendText>
+                    <TrendText>{text.Home.popular_tv}</TrendText>
                     <AniList media="tv" type="16"/>
                 </ContentContainer>
                 <ContentContainer>
-                    <TrendText>MOVIE TOP 20</TrendText>
+                    <TrendText>{text.Home.popular_movie}</TrendText>
                     <AniList media="movie" type="16"/>
                 </ContentContainer>
                 <ContentContainer>
-                    <TrendText>ドラマTOP 20</TrendText>
+                    <TrendText>{text.Home.popular_drama}</TrendText>
                     <AniList media="tv" type="16,18"/>
                 </ContentContainer>                
                 <ContentContainer>
-                    <TrendText>コメディTOP 20</TrendText>
+                    <TrendText>{text.Home.popular_comedy}</TrendText>
                     <AniList media="tv" type="16,35"/>
                 </ContentContainer>
                 <ContentContainer>
-                    <TrendText>アクション・ファンタジー TOP 20</TrendText>
+                    <TrendText>{text.Home.popular_action}</TrendText>
                     <AniList media="tv" type="16,10759,10765"/>
                 </ContentContainer>
             </Container>

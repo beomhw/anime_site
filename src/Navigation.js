@@ -8,6 +8,7 @@ import logo from './asset/logo.png';
 import {flexAlign} from './css/cssModule';
 import {AiFillGithub, AiFillFacebook, AiFillTwitterCircle} from 'react-icons/ai';
 import UpToggle from './components/UpToggle';
+import LanguageToggle from './components/LanguageToggle';
 
 const Container = styled.div`
     width: 100%;
@@ -99,6 +100,7 @@ const Navigation = () => {
                 <LinkStyle theme={theme} style={pathname === '/seasons' ? {color: '#8c0000'} : {}} to='/seasons'>SEASONS</LinkStyle>
                 <LinkStyle theme={theme} style={pathname === '/search' ? {color: '#8c0000'} : {}} to='/search'>SEARCH</LinkStyle>
                 <LinkStyle theme={theme} style={pathname === '/mypage' ? {color: '#8c0000'} : {}} to='/mypage'>MYPAGE</LinkStyle>
+                <LanguageToggle/>
                 <ThemeToggle />
             </HeaderContainer>
             <BodyContainer>

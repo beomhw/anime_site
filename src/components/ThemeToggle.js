@@ -50,6 +50,7 @@ const ThemeToggle = () => {
     const dispatch = useThemeDispatch();
 
     useEffect(() => {
+        setOn(true);
         on ? dispatch({
             type: 'DARK',
         }) :
