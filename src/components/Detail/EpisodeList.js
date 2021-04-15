@@ -103,7 +103,7 @@ function useGetSize () {
     return size;
 }
 
-const SeasonInfo = ({id, seasons, modal, setModal}) => {
+const EpisodeList = ({id, seasons, modal, setModal}) => {
     const la = useLanguage();
     const [seasonId, setSeasonId] = useState(1);
     const [seasonInfo, setSeasonInfo] = useState();
@@ -150,4 +150,4 @@ const SeasonInfo = ({id, seasons, modal, setModal}) => {
     );
 }
 
-export default SeasonInfo;
+export default EpisodeList;

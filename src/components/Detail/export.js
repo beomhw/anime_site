@@ -1,6 +1,6 @@
 import Description from './Description';
 import Cast from './Cast';
-import SeasonInfo from './SeasonInfo';
+import EpisodeList from './EpisodeList';
 import Recommend from './Recommend';
 
-export {Description, Cast, SeasonInfo, Recommend,};
+export {Description, Cast, EpisodeList, Recommend,};

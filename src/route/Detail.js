@@ -163,7 +163,7 @@ const Detail = ({match, history}) => {
 
     return (
         <Container url={`${IMG_URL}${anime.backdrop_path}`}>
-            {media === 'tv' && <Comp.SeasonInfo id={anime.id} seasons={anime.seasons} modal={modal} setModal={setModal} /> }
+            {media === 'tv' && <Comp.EpisodeList id={anime.id} seasons={anime.seasons} modal={modal} setModal={setModal} /> }
             <Header theme={theme}>
                 <BackdropCover 
                     url={anime.backdrop_path ? 

@@ -101,3 +101,16 @@ export async function getSeasonEpisodes(id, seasonNum, la) {
         })
     return res;
 }
+
+// 애니 리스트 top get
+export async function getSeason (first, last, page) {
+    let res = await api.get(`discover/tv?api_key=${API.API_KEY}&with_keywords=${API.KEYWORD}&page=${page}&language=ko&first_air_date.gte=${first}&first_air_date.lte=${last}`)
+        .then(res => {
+        console.log('request seasonList : ',res);
+        return res.data;
+    }).catch(e => {
+        console.log(e);
+    })
+
+    return res;
+}

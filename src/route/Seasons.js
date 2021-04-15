@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import styled from 'styled-components';
 import {flexAlign} from '../css/cssModule';
 import * as Comp from '../components/Seasons/export';
@@ -13,9 +13,12 @@ const Container = styled.div`
 
 
 const Seasons = () => {
+    const [list, setList] = useState([]);
+
     return (
         <Container>
-            <Comp.SeasonMenu />
+            <Comp.SeasonMenu list={list} setList={setList} />
+            <Comp.SeasonList list={list} />
         </Container>
     );
 };

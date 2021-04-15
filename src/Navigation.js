@@ -57,8 +57,7 @@ const Footer = styled.div`
 
 const FooterText = styled.div`
     flex: 6;
-
-    font-size: 3.5vw;
+    font-size: 2.3em;
     ${flexAlign};
 `;
 
@@ -103,7 +102,7 @@ const Navigation = () => {
 
     useEffect(() => {
         setLoading(1);
-
+        
         setTimeout(setLoading(0), 1500);
     },[state])
 
