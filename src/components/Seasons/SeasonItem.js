@@ -5,7 +5,7 @@ import {flexAlign} from '../../css/cssModule';
 import {Link} from 'react-router-dom';
 
 const Title = styled.div`
-    width: 200px;
+    width: 250px;
     height: 50px;
     opacity: 0;
     visibility: hidden;
@@ -21,8 +21,8 @@ const Title = styled.div`
 const Container = styled.div`
     display: flex;
     flex-direction: column-reverse;
-    width: 200px;
-    height: 100px;
+    width: 250px;
+    height: 150px;
     border: 1px solid #dddddd;
     border-radius: 10px;
     background-image: url(${p=>p.url});

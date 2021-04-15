@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useMemo} from 'react';
-import styled from 'styled-components';
+import styled,{css} from 'styled-components';
 import {useTheme} from '../ThemeContext';
 import {flexAlign} from '../css/cssModule';
 import * as api from '../api';
@@ -21,10 +21,21 @@ const Container = styled.div`
 
 const Header = styled.div`
     width: 100%;
-    height: 300px;
+    min-height: 300px;
     background-color: ${p=>p.theme.container};
     ${flexAlign};
     margin-bottom: 50px;
+    @media(max-width: 500px) {
+        padding-top: 100px;
+        background-image: url(${p=>p.url});
+        background-size: cover;
+        max-height: 400px;
+        background-position-x: -100px;
+        ${p=>p.theme.mode === 'dark' ? 
+        css`box-shadow: inset 0px 100px 10px 0px rgba(0, 0, 0, 0.7);` : 
+        css`box-shadow: inset 0px 100px 10px 0px rgba(255, 255, 255, 0.7);`
+        }
+    }
 `;
 
 const BackdropCover = styled.div`
@@ -34,17 +45,20 @@ const BackdropCover = styled.div`
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+    @media(max-width: 500px) {
+        background-image: none;
+        background-size: cover;
+    }
 `;
 
 const PosterContainer = styled.div`
-    padding-top: 70px;
     flex: 3;
-    backdrop-filter: blur(2px);
+    position: relative;
+    top: 50px;
     ${flexAlign};
-    &:hover {
-        backdrop-filter: blur(0);
+    @media(max-width: 500px) {
+        top: 0;
     }
-
 `;
 
 const HeaderInfoContainer = styled.div`
@@ -63,6 +77,19 @@ const AnimePoster = styled.div`
     background-image: url(${p=>p.url});
     background-size: contain;
     background-repeat: no-repeat;
+    @media(max-width: 500px) {
+        margin-left: 10px;
+    }
+`;
+
+const TitleText = styled.div`
+    font-size: 2em;
+    font-weight: bold;
+    @media(max-width: 500px) {
+        position: absolute;
+        top: 60px;
+        left: 0px;
+    }
 `;
 
 const TextH1 = styled.div`
@@ -79,16 +106,17 @@ const GenreContainer = styled.div`
     display: flex;
     flex-direction: flex-start;
     margin-top: 10px;
+    flex-wrap: wrap;
 `;
 
 const GenreBox = styled.div`
     padding: 10px;
-    height: 30px;
     border-radius: 5px;
     background-color: ${p=>p.theme.background};
-    margin-right: 10px;
+    margin: 5px;
     border: 1px solid #dddddd;
     ${flexAlign};
+
 `;
 
 const LoadingBox = styled.div`
@@ -105,6 +133,10 @@ const SeasonContainer = styled.div`
     margin-bottom: 20px;
     display: flex;
     flex-direction: flex-start;
+    @media(max-width: 500px) {
+        flex-wrap: wrap;
+        height: auto;
+    }
 `;
 
 const SeasonPoster = styled(AnimePoster)`
@@ -164,7 +196,7 @@ const Detail = ({match, history}) => {
     return (
         <Container url={`${IMG_URL}${anime.backdrop_path}`}>
             {media === 'tv' && <Comp.EpisodeList id={anime.id} seasons={anime.seasons} modal={modal} setModal={setModal} /> }
-            <Header theme={theme}>
+            <Header theme={theme} url={`${IMG_URL}${anime.backdrop_path}`}>
                 <BackdropCover 
                     url={anime.backdrop_path ? 
                     `${IMG_URL}${anime.backdrop_path}` : 
@@ -177,8 +209,8 @@ const Detail = ({match, history}) => {
                 </BackdropCover>
                 <HeaderInfoContainer>
                     {media === 'tv' 
-                    ?<TextH1>{anime.name} ({new Date(anime.first_air_date).getFullYear()})</TextH1> 
-                    :<><TextH1>{anime.original_title}</TextH1><p>{anime.release_date} 개봉</p></>}
+                    ?<TitleText>{anime.name} ({new Date(anime.first_air_date).getFullYear()})</TitleText> 
+                    :<><TitleText>{anime.original_title}</TitleText><p>{anime.release_date} 개봉</p></>}
                     <GenreContainer>
                         {anime.genres.map((ge, i) => 
                         <GenreBox key={i} theme={theme}>{ge.name}</GenreBox>)}
@@ -210,7 +242,7 @@ const Detail = ({match, history}) => {
                             </>
                         }
                     </SeasonDescription>
-                    <TextH2 onClick={onOpen}>상세..</TextH2>
+                    <p style={{width: '60px', marginRight: '10px'}} onClick={onOpen}>상세..</p>
                 </SeasonContainer>
             </Content> }
             <Content>

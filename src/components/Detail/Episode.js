@@ -9,16 +9,17 @@ const Container = styled.div`
     border-radius: 10px;
     border: 1px solid #dddddd;
     margin-bottom: 15px;
-    grid-template-columns: minmax(290px, auto);
     grid-gap: 5px; // 그리드 셀 사이 공간\
     @media(max-width: 1024px) {
         grid-template: auto;
         height: 400px;
         grid-template-rows: minmax(150px, auto);
+        grid-template-columns: minmax(150px, auto);
     }
     @media(min-width: 1025px) {
         height: 200px;
         grid-template-rows: auto;
+        grid-template-columns: minmax(300px, auto);
     }
 `;
 

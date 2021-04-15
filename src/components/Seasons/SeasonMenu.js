@@ -7,34 +7,55 @@ import * as api from '../../api';
 const Container = styled.div`
     ${flexAlign};
     width: 80vw;
-    height: 200px;
     margin-top: 50px;
+    flex-wrap: wrap;
+    @media(max-width: 500px) {
+        flex-direction: column;
+    }
 `;
 
 const SelectYearBox = styled.div`
     ${flexAlign};
-    flex: 4;
     height: 100%;
-    border: 1px solid #dddddd;
+    margin-right: 10px;
 `;
 
 const SelectSeasonBox = styled.div`
     ${flexAlign};
     height: 100%;
-    flex: 4;
-    border: 1px solid #dddddd;
+    margin-right: 10px;
 `;
 
 const ViewButtonBox = styled.div`
     ${flexAlign};
     height: 100%;
-    flex: 1;
-    border: 1px solid #dddddd;
+`;
+
+const Button = styled.button`
+    width: 60px;
+    height: 60px;
+    border: 5px solid #8c0000;
+    font-weight: bold;
+    background: 0;
+    border-radius: 30px;
+    color: #8c0000;
+    cursor: pointer;
+    &:focus {
+        outline: none;
+    }
+    &:hover {
+        border-color: #ac0d0d;
+        color: #ac0d0d;
+    }
+    transition-duration: 0.2s;
 `;
 
 const Select = styled.select`
+    margin-bottom: 10px;
     width: 200px;
-    height: 30px;
+    height: 50px;
+    font-size: 1.4em;
+    text-align-last: center;
     border-radius: 5px;
     border: none;
     background-color: ${p=>p.theme.container};
@@ -116,7 +137,7 @@ const SeasonMenu = ({list, setList}) => {
                 </Select>
             </SelectSeasonBox>
             <ViewButtonBox>
-                <button onClick={onView}>조회</button>
+                <Button onClick={onView}>조회</Button>
             </ViewButtonBox>
         </Container>
     );

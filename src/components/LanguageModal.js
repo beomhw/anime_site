@@ -30,7 +30,7 @@ const Container = styled.div`
     background-color: ${p=>p.theme.container};
     margin: 0 auto;
     position: fixed;
-    z-index: 100;
+    z-index: 500;
     display: flex;
     flex-direction: column;
 `;

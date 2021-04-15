@@ -14,13 +14,17 @@ const ResultBox = styled.div`
     display: flex;
     flex-direction: flex-start;
     box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    @media(max-width: 500px) {
+        width: 80vw;
+    }
 `;
 
 const PosterImg = styled.div`
     background-image: url(${p=>p.url});
-    background-size: contain;
+    background-size: cover;
+    background-position: center;
     width: 100px;
-    height: 150px;
+    max-height: 200px;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
 `;
@@ -31,6 +35,9 @@ const DescriptionBox = styled.div`
     width: calc(60vw - 100px);
     height: 100%;
     padding: 15px;
+    @media(max-width: 500px) {
+        width: calc(80vw - 100px);
+    }
 `;
 
 const MediaTypeBox = styled.div`

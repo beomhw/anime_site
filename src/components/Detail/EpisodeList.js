@@ -136,7 +136,7 @@ const EpisodeList = ({id, seasons, modal, setModal}) => {
                 <Header><Exit onClick={onExit}><ImCancelCircle /></Exit></Header>
                 <Nav>{seasonInfo.name}
                     <Menu value={seasonId} onChange={onChange}>
-                        {seasons.map((se,i) => <option key={i} value={i}> {se.name} </option>)}
+                        {seasons.map((se,i) => <option key={i} value={i+1}> {se.name} </option>)}
                     </Menu>
                 </Nav>
                 <EpisodeContainer>

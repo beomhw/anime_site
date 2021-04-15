@@ -33,7 +33,6 @@ const GlobalStyleCreate = createGlobalStyle`
     }
     ::-webkit-scrollbar {
         width: 10px;
-        
     } 
     ::-webkit-scrollbar-thumb {
         background-color: ${p=>p.theme.text};
@@ -42,7 +41,6 @@ const GlobalStyleCreate = createGlobalStyle`
         border: 2px solid transparent;
     } 
     ::-webkit-scrollbar-track {
-        background-color: ${p=>p.theme.background};
         border-radius: 3px;
     }
     .noTransition {

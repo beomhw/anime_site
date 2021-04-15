@@ -11,6 +11,8 @@ import UpToggle from './components/UpToggle';
 import LanguageToggle from './components/LanguageToggle';
 import LanguageModal from './components/LanguageModal';
 import {useLanguage} from './LanguageContext';
+import MobileNav from './components/MobileNav';
+import Hamburger from './components/Hamburger';
 
 const Container = styled.div`
     width: 100%;
@@ -44,6 +46,9 @@ const LinkStyle = styled(Link)`
     &:active {
         color: ${p=>p.theme.text};
     }
+    @media(max-width: 500px) {
+        margin: 0;
+    }
 `;
 
 const Footer = styled.div`
@@ -59,6 +64,9 @@ const FooterText = styled.div`
     flex: 6;
     font-size: 2.3em;
     ${flexAlign};
+    @media(max-width: 500px) {
+        font-size: 1.2em;
+    }
 `;
 
 const TMDB = styled.a`
@@ -72,6 +80,9 @@ const TMDB = styled.a`
 const FooterIcons = styled.div`
     flex: 4;
     ${flexAlign};
+    @media(max-width: 500px) {
+        flex-wrap: wrap;
+    }
 `;
 
 const IconsBox = styled.a`
@@ -89,7 +100,36 @@ function usePathname () {
     return location.pathname;
 }
 
+function useGetSize () {
+    const [size, setSize] = useState({
+        width: undefined,
+        height: undefined
+    })
+
+    useEffect(() => {
+        function handleResize() {
+            setSize({
+                width: window.document.documentElement.clientWidth,
+                height: window.document.documentElement.clientHeight
+            })
+        }
+        window.addEventListener('resize', handleResize);
+
+        handleResize();
+
+        return () => window.removeEventListener('resize', handleResize);
+    },[]);
+
+    return size;
+}
+
 const Navigation = () => {
+    const [on, setOn] = useState({
+        nav: false,
+        opacity: 0,
+        visibility: 'hidden'
+    });
+    const size = useGetSize();
     const theme = useTheme();
     const pathname = usePathname();
     const state = useLanguage();
@@ -109,6 +149,7 @@ const Navigation = () => {
     return (
         <Container>
             {loading ? <>Now Loading..</> : <>
+            {size.width > 960 ? 
             <HeaderContainer theme={theme}>
                 <LinkStyle theme={theme} to='/'><img src={logo} /></LinkStyle>
                 <LinkStyle theme={theme} style={pathname === '/' ? {color: '#8c0000'} : {}} to='/'>HOME</LinkStyle>
@@ -117,7 +158,13 @@ const Navigation = () => {
                 <LinkStyle theme={theme} style={pathname === '/mypage' ? {color: '#8c0000'} : {}} to='/mypage'>MYPAGE</LinkStyle>
                 <LanguageToggle setModal={setModal}/>
                 <ThemeToggle />
+            </HeaderContainer> :
+            <HeaderContainer theme={theme}>
+                <MobileNav on={on} theme={theme} pathname={pathname} setModal={setModal} />
+                <LinkStyle theme={theme} to='/'><img src={logo} /></LinkStyle>
+                <Hamburger theme={theme} setOn={setOn} nav={on.nav} />
             </HeaderContainer>
+            }
             <BodyContainer>
                 <LanguageModal modal={modal} setModal={setModal}/>
                 <Switch>
