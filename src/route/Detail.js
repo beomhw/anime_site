@@ -7,6 +7,7 @@ import dogeza from '../asset/dogeza.png';
 import {IMG_URL} from '../Util';
 import Loading from '../components/Loading';
 import * as Comp from '../components/Detail/export';
+import {useLanguage} from '../LanguageContext';
 
 // pinterest api로 캐릭터 이름에 대한 사진들 보여주기
 
@@ -121,6 +122,7 @@ const SeasonDescription = styled.div`
 `;
 
 const Detail = ({match, history}) => {
+    const la = useLanguage();
     const theme= useTheme();
     const {params: {id}, params: {media}} = match;
     const [anime, setAnime] = useState({});
@@ -139,7 +141,7 @@ const Detail = ({match, history}) => {
     useEffect(() => {
         setLoading(true);
         window.scrollTo(0,0);
-        api.getAnimeInfo(media, id).then(res => {
+        api.getAnimeInfo(media, id, la.type).then(res => {
             console.log(res);
             setAnime(res);
             if(media === 'tv')
@@ -148,20 +150,20 @@ const Detail = ({match, history}) => {
             api.getAnimeVideo(media, id).then(res => {
                 console.log(res);
             }).then(() => {
-                api.getAnimeRecommendation(media, id).then(res => {
+                api.getAnimeRecommendation(media, id, la.type).then(res => {
                     console.log(res.data.results);
                     setRecommendations(res.data.results);
                     setLoading(false);
                 })
             })
         })
-    },[id]);
+    },[id, la.type]);
 
     if(loading) return <Container><LoadingBox><Loading /></LoadingBox></Container>
 
     return (
         <Container url={`${IMG_URL}${anime.backdrop_path}`}>
-            <Comp.SeasonInfo id={anime.id} seasons={anime.seasons} modal={modal} setModal={setModal} />
+            {media === 'tv' && <Comp.SeasonInfo id={anime.id} seasons={anime.seasons} modal={modal} setModal={setModal} /> }
             <Header theme={theme}>
                 <BackdropCover 
                     url={anime.backdrop_path ? 
@@ -184,12 +186,12 @@ const Detail = ({match, history}) => {
                 </HeaderInfoContainer>
             </Header>
             <Content>
-                <TextH1>개요</TextH1>
+                <TextH1>{la.Detail.intro}</TextH1>
                 <Comp.Description overview={anime.overview}/>
             </Content>
             {media === 'tv' && 
             <Content>
-                <TextH1>시즌</TextH1>
+                <TextH1>{la.Detail.season}</TextH1>
                 <SeasonContainer theme={theme}>
                     <SeasonPoster url={lastSeason.poster_path ? 
                         `${IMG_URL}${lastSeason.poster_path}` :
@@ -212,11 +214,11 @@ const Detail = ({match, history}) => {
                 </SeasonContainer>
             </Content> }
             <Content>
-                <TextH1>출연진</TextH1>
+                <TextH1>{la.Detail.casts}</TextH1>
                 <Comp.Cast media={media} id={id}/>
             </Content>
             <Content>
-                <TextH1>추천</TextH1>
+                <TextH1>{la.Detail.recommend}</TextH1>
                 <Comp.Recommend media={media} history={history} recommendations={recommendations} />
             </Content>
         </Container>

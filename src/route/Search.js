@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import * as Comp from '../components/Search/export';
 import {flexAlign} from '../css/cssModule';
 import Loading from '../components/Loading';
+import {useLanguage} from '../LanguageContext';
 
 const Container = styled.div`
     width: 100%;
@@ -18,6 +19,7 @@ const LoadingContainer = styled.div`
 `;
 
 const Search = () => {
+    const la = useLanguage();
     const [input, setInput] = useState('');
     const [searchResults, setSearchResults] = useState();
     const [loading, setLoading] = useState(false);
@@ -30,7 +32,7 @@ const Search = () => {
 
     return (
         <Container>
-            <Comp.Input setLoading={setLoading} setSearchResults={setSearchResults} input={input} setInput={setInput}/>
+            <Comp.Input la={la.type} setLoading={setLoading} setSearchResults={setSearchResults} input={input} setInput={setInput}/>
             {loading ?
             <LoadingContainer><Loading /></LoadingContainer> :
             <Comp.SearchResults results={searchResults} /> }

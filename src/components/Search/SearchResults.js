@@ -4,6 +4,7 @@ import {flexAlign} from '../../css/cssModule';
 import {useTheme} from '../../ThemeContext';
 import {BsCaretDownFill} from 'react-icons/bs';
 import SearchResult from './SearchResult';
+import {useLanguage} from '../../LanguageContext';
 
 const Container = styled.div`
     width: 80vw;
@@ -52,7 +53,7 @@ const SearchResults = ({results}) => {
     const [count, setCount] = useState(1);
     const [loading, setLoading] = useState(false);
     const theme = useTheme();
-
+    const la = useLanguage();
     
 
     const onMore = () => {
@@ -66,7 +67,7 @@ const SearchResults = ({results}) => {
             {results ? 
             <>
                 <CountText>
-                    검색 결과가 {results.length}개 있습니다!
+                    {la.Search.search_result_front}{results.length} {la.Search.search_result_back}
                 </CountText>
                 {results.map((ani, i) => 
                     <SearchResult ani={ani} key={i} />

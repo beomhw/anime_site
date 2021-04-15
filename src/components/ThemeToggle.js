@@ -13,10 +13,7 @@ const Button = styled.div`
     background-color: ${p => p.theme.container};
     cursor: pointer;
     transition-duration: 0.3s;
-    border-color: #ac0d0d;
-    float: right;
-    right: 20px;
-    position: relative;
+    border-color: #ac0d0d;    
 `;
 
 const SwitchButton = styled.div`
@@ -40,7 +37,7 @@ const SwitchButton = styled.div`
 const Div = styled.div`
     display: flex;
     flex-direction: row-reverse;
-    width: 100%;
+    margin-right: 10px;
 `;
 
 const ThemeToggle = () => {

@@ -43,7 +43,8 @@ const TitleContainer = styled.div`
     border-bottom: 1px solid #dddddd;
     grid-column: 2 / 4;
     grid-row: 1;
-    ${flexAlign};
+    display: flex;
+    align-items: center;
     @media(max-width: 1024px) {
         grid-column: 1 / 4;
         grid-row: 5;
@@ -56,7 +57,10 @@ const Title = styled.p`
 `;
 
 const AirDate = styled.p`
-    
+    font-size: 1.1em;
+    margin: 0;
+    margin-left: auto;
+    margin-right: 15px;
 `;
 
 const OverviewContainer = styled.div`
@@ -64,6 +68,7 @@ const OverviewContainer = styled.div`
     grid-row: 2 / 4;
     padding: 10px;
     font-size: 0.9em;
+    overflow-y: auto;
     @media(max-width: 1024px) {
         grid-column: 1 / 4;
         grid-row: 6 / 8;
@@ -71,17 +76,12 @@ const OverviewContainer = styled.div`
 `;
 
 const Episode = ({ep}) => {
-    console.log('ep : ', ep);
-
-    // if(ep.overview.length > 300) {
-    //     ep.overview = ep.overview.slice(0, 300) + '...';
-    // }
 
     return (
         <Container>
             <StillContainer url={`${IMG_URL}${ep.still_path}`} />
             <TitleContainer>
-                <Title>{ep.name}</Title>
+                <Title>{ep.name}</Title><AirDate>{ep.air_date}</AirDate>
             </TitleContainer>
             <OverviewContainer>{ep.overview}</OverviewContainer>
         </Container>

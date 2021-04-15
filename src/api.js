@@ -6,8 +6,8 @@ const api = axios.create({
 });
 
 // 애니 리스트 top get
-export async function getAnime (media, type) {
-    let res = await api.get(`discover/${media}?api_key=${API.API_KEY}&with_genres=${type}&with_keywords=${API.KEYWORD}&page=1&language=ko`)
+export async function getAnime (media, type, la) {
+    let res = await api.get(`discover/${media}?api_key=${API.API_KEY}&with_genres=${type}&with_keywords=${API.KEYWORD}&page=1&language=${la}`)
         .then(res => {
         console.log('request animeList : ',res);
         return res.data;
@@ -19,8 +19,8 @@ export async function getAnime (media, type) {
 }
 
 // 특정 애니 디테일 정보 get
-export async function getAnimeInfo (media, anime_id) {
-    let res = await api.get(`${media}/${anime_id}?api_key=${API.API_KEY}&language=ko`)
+export async function getAnimeInfo (media, anime_id, la) {
+    let res = await api.get(`${media}/${anime_id}?api_key=${API.API_KEY}&language=${la}`)
         .then(res => {
             console.log('request getAnimeInfo : ', res);
             return res.data;
@@ -67,8 +67,8 @@ export async function getAnimeVideo (media, anime_id) {
 }
 
 // 특정 애니 관련 목록 get
-export async function getAnimeRecommendation (media, anime_id) {
-    let res = await api.get(`${media}/${anime_id}/recommendations?api_key=${API.API_KEY}&language=ko`)
+export async function getAnimeRecommendation (media, anime_id, la) {
+    let res = await api.get(`${media}/${anime_id}/recommendations?api_key=${API.API_KEY}&language=${la}`)
         .then(res => {
             console.log('request recommendation : ', res);
             return res;
@@ -79,8 +79,8 @@ export async function getAnimeRecommendation (media, anime_id) {
 }
 
 // anime search
-export async function searchAnime (query) {
-    let res = await api.get(`search/multi?api_key=${API.API_KEY}&query=${query}&page=1&language=ko`)
+export async function searchAnime (query, la) {
+    let res = await api.get(`search/multi?api_key=${API.API_KEY}&query=${query}&page=1&language=${la}`)
         .then(res => {
             console.log('search results : ', res);
             return res;
@@ -91,8 +91,8 @@ export async function searchAnime (query) {
 }
 
 // 애니메이션 시즌
-export async function getSeasonEpisodes(id, seasonNum) {
-    let res = await api.get(`tv/${id}/season/${seasonNum}?api_key=${API.API_KEY}&language=ko`)
+export async function getSeasonEpisodes(id, seasonNum, la) {
+    let res = await api.get(`tv/${id}/season/${seasonNum}?api_key=${API.API_KEY}&language=${la}`)
         .then(res => {
             console.log('season info : ', res);
             return res;

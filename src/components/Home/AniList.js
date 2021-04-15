@@ -72,16 +72,17 @@ const breakpoints = {
     }
 }
 
-const AniList = ({media,type}) => {
+const AniList = ({media,type,la}) => {
     const [trend, setTrend] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        api.getAnime(media,type).then(res => {
+        setLoading(true);
+        api.getAnime(media,type,la).then(res => {
             setTrend(res.results);
             setLoading(false);
         })
-    },[]);
+    },[la]);
 
     if(loading) return <LoadingBox><Loading /></LoadingBox>
 

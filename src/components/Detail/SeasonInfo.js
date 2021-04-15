@@ -6,6 +6,7 @@ import {flexAlign} from '../../css/cssModule';
 import {ImCancelCircle} from 'react-icons/im';
 import * as api from '../../api';
 import Episode from './Episode';
+import {useLanguage} from '../../LanguageContext';
 
 const Overlay = styled.div`
     width: ${p=>p.size.width}px;
@@ -103,6 +104,7 @@ function useGetSize () {
 }
 
 const SeasonInfo = ({id, seasons, modal, setModal}) => {
+    const la = useLanguage();
     const [seasonId, setSeasonId] = useState(1);
     const [seasonInfo, setSeasonInfo] = useState();
     const [loading, setLoading] = useState(true);
@@ -112,7 +114,7 @@ const SeasonInfo = ({id, seasons, modal, setModal}) => {
 
     useEffect(() => {
         setLoading(true);
-        api.getSeasonEpisodes(id, seasonId).then(res => {
+        api.getSeasonEpisodes(id, seasonId, la.type).then(res => {
             console.log(res.data);
             let data = res.data.episodes.filter(ep => new Date(ep.air_date) < new Date());
             setSeasonInfo({name: res.data.name, data: data});

@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState, useEffect} from 'react';
 import styled from 'styled-components';
 import {Link, Switch, Route, useLocation} from 'react-router-dom';
 import {useTheme} from './ThemeContext';
@@ -9,6 +9,8 @@ import {flexAlign} from './css/cssModule';
 import {AiFillGithub, AiFillFacebook, AiFillTwitterCircle} from 'react-icons/ai';
 import UpToggle from './components/UpToggle';
 import LanguageToggle from './components/LanguageToggle';
+import LanguageModal from './components/LanguageModal';
+import {useLanguage} from './LanguageContext';
 
 const Container = styled.div`
     width: 100%;
@@ -49,13 +51,14 @@ const Footer = styled.div`
     height: 200px;
     margin-top: auto;
     background-color: ${p=>p.theme.container};
-    padding: 50px;
+    padding: 30px;
     ${flexAlign};
 `;
 
 const FooterText = styled.div`
     flex: 6;
-    font-size: 2em;
+
+    font-size: 3.5vw;
     ${flexAlign};
 `;
 
@@ -90,20 +93,34 @@ function usePathname () {
 const Navigation = () => {
     const theme = useTheme();
     const pathname = usePathname();
+    const state = useLanguage();
+    const [loading, setLoading] = useState(0);
+    const [modal, setModal] = useState({
+        opacity: 0,
+        visibility: 'hidden'
+    });
     console.log(pathname);
+
+    useEffect(() => {
+        setLoading(1);
+
+        setTimeout(setLoading(0), 1500);
+    },[state])
 
     return (
         <Container>
+            {loading ? <>Now Loading..</> : <>
             <HeaderContainer theme={theme}>
                 <LinkStyle theme={theme} to='/'><img src={logo} /></LinkStyle>
                 <LinkStyle theme={theme} style={pathname === '/' ? {color: '#8c0000'} : {}} to='/'>HOME</LinkStyle>
                 <LinkStyle theme={theme} style={pathname === '/seasons' ? {color: '#8c0000'} : {}} to='/seasons'>SEASONS</LinkStyle>
                 <LinkStyle theme={theme} style={pathname === '/search' ? {color: '#8c0000'} : {}} to='/search'>SEARCH</LinkStyle>
                 <LinkStyle theme={theme} style={pathname === '/mypage' ? {color: '#8c0000'} : {}} to='/mypage'>MYPAGE</LinkStyle>
-                <LanguageToggle/>
+                <LanguageToggle setModal={setModal}/>
                 <ThemeToggle />
             </HeaderContainer>
             <BodyContainer>
+                <LanguageModal modal={modal} setModal={setModal}/>
                 <Switch>
                     <Route path='/' exact component={RC.Home} />
                     <Route path='/seasons' component={RC.Seasons} />
@@ -129,6 +146,7 @@ const Navigation = () => {
                     </IconsBox>
                 </FooterIcons>
             </Footer>
+            </> }
         </Container>
     );
 }

@@ -4,10 +4,9 @@ import {ImEarth} from 'react-icons/im';
 
 const Toggle = styled.div`
     border-radius: 10px;
-    position: absolute;
-    right: 90px;
     font-size: 1.5em;
     margin: 10px;
+    margin-left: auto;
     &:hover {
         color: #ac0d0d;
     }
@@ -17,18 +16,9 @@ const Toggle = styled.div`
     cursor: pointer;
 `;
 
-const LanguageToggle = () => {
-    const [on, setOn] = useState({
-        opacity: 0,
-        visibility: 'hidden'
-    })
+const LanguageToggle = ({setModal}) => {
 
-    const onOpen = () => {
-        setOn({
-            opacity: 1,
-            visibility: 'visible'
-        })
-    }
+    const onOpen = () => setModal({opacity: 1, visibility: 'visible'})
 
     return (
         <Toggle>

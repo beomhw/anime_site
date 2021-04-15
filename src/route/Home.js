@@ -34,23 +34,23 @@ const Home = () => {
             <Container>
                 <ContentContainer>
                     <TrendText>{text.Home.popular_tv}</TrendText>
-                    <AniList media="tv" type="16"/>
+                    <AniList media="tv" type="16" la={text.type}/>
                 </ContentContainer>
                 <ContentContainer>
                     <TrendText>{text.Home.popular_movie}</TrendText>
-                    <AniList media="movie" type="16"/>
+                    <AniList media="movie" type="16" la={text.type}/>
                 </ContentContainer>
                 <ContentContainer>
                     <TrendText>{text.Home.popular_drama}</TrendText>
-                    <AniList media="tv" type="16,18"/>
+                    <AniList media="tv" type="16,18" la={text.type}/>
                 </ContentContainer>                
                 <ContentContainer>
                     <TrendText>{text.Home.popular_comedy}</TrendText>
-                    <AniList media="tv" type="16,35"/>
+                    <AniList media="tv" type="16,35" la={text.type}/>
                 </ContentContainer>
                 <ContentContainer>
                     <TrendText>{text.Home.popular_action}</TrendText>
-                    <AniList media="tv" type="16,10759,10765"/>
+                    <AniList media="tv" type="16,10759,10765" la={text.type}/>
                 </ContentContainer>
             </Container>
         </HomeProvider>
