@@ -158,9 +158,9 @@ const Navigation = () => {
             {size.width > 960 ? 
             <HeaderContainer theme={theme}>
                 <LinkStyle theme={theme} to='/'><img src={logo} /></LinkStyle>
-                <LinkStyle theme={theme} style={pathname === '/' ? {color: '#8c0000'} : {}} to='/'>HOME</LinkStyle>
-                <LinkStyle theme={theme} style={pathname === '/seasons' ? {color: '#8c0000'} : {}} to='/seasons'>SEASONS</LinkStyle>
-                <LinkStyle theme={theme} style={pathname === '/search' ? {color: '#8c0000'} : {}} to='/search'>SEARCH</LinkStyle>
+                <LinkStyle theme={theme} style={pathname === '/anime_site/' ? {color: '#8c0000'} : {}} to='/anime_site/'>HOME</LinkStyle>
+                <LinkStyle theme={theme} style={pathname === '/anime_site/seasons' ? {color: '#8c0000'} : {}} to='/anime_site/seasons'>SEASONS</LinkStyle>
+                <LinkStyle theme={theme} style={pathname === '/anime_site/search' ? {color: '#8c0000'} : {}} to='/anime_site/search'>SEARCH</LinkStyle>
                 {/* <LinkStyle theme={theme} style={pathname === '/mypage' ? {color: '#8c0000'} : {}} to='/mypage'>MYPAGE</LinkStyle> */}
                 <LanguageToggle setModal={setModal}/>
                 <ThemeToggle />

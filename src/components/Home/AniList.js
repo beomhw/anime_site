@@ -98,7 +98,7 @@ const AniList = ({media,type,la}) => {
             {trend.map((da, i) => {
                 return (
                     <SwiperSlide key={i}>
-                        <LinkStyle to={`/detail/${da.id}/${media}`}>
+                        <LinkStyle to={`/anime_site/detail/${da.id}/${media}`}>
                         <AniContainer>
                             {da.poster_path === null ? 
                                 <Img src={dogeza}/> :

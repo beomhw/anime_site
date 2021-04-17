@@ -132,7 +132,7 @@ const Recommend = ({recommendations, media, la}) => {
                 {recommend.map((re, i) => 
                     <SwiperSlide key={i}>
                         <ContentBox>
-                            <LinkStyle to={`/detail/${re.id}/${media}`} replace={true} >
+                            <LinkStyle to={`/anime_site/detail/${re.id}/${media}`} replace={true} >
                             {re.backdrop_path === null ?
                             <BackDrop url={`${dogeza}`}>
                                 <OpacityInfo>

@@ -48,7 +48,7 @@ const Container = styled.div`
 
 const SeasonItem = ({item}) => {
     return (
-        <Link to={`/detail/${item.id}/tv`} >
+        <Link to={`/anime_site/detail/${item.id}/tv`} >
         {item.backdrop_path === null ? <Container url={dogeza}></Container> :
             <Container url={`${IMG_URL}${item.backdrop_path}`}>
                 <Title>{item.name}</Title>

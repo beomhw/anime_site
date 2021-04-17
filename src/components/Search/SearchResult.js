@@ -80,7 +80,7 @@ const SearchResult = ({ani}) => {
             }
             <DescriptionBox>
                 <AniTitle> {/* 애니 제목 */}
-                    <LinkS theme={theme} to={`/detail/${ani.id}/${ani.media_type}`} >
+                    <LinkS theme={theme} to={`/anime_site/detail/${ani.id}/${ani.media_type}`} >
                         {ani.media_type === 'movie' ? ani.title : ani.name}
                     </LinkS>
                 </AniTitle>
