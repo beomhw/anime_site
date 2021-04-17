@@ -140,8 +140,17 @@ const SeasonContainer = styled.div`
 `;
 
 const SeasonPoster = styled(AnimePoster)`
-    height: 200px;
-    border-radius: 20px;
+    height: 100%;
+    border-radius: 20px 0 0 20px;
+`;
+
+const SeasonPosterMobile = styled.div`
+    width: 100%;
+    min-height: 200px;
+    background-image: url(${p=>p.url});
+    background-size: cover;
+    border-radius: 20px 20px 0 0;
+    background-position-x: center;
 `;
 
 const SeasonDescription = styled.div`
@@ -153,7 +162,32 @@ const SeasonDescription = styled.div`
     padding: 40px 20px 20px 20px;
 `;
 
+function useGetSize () {
+    const [size, setSize] = useState({
+        width: undefined,
+        height: undefined
+    })
+
+    useEffect(() => {
+        function handleResize() {
+            setSize({
+                width: window.document.documentElement.clientWidth,
+                height: window.document.documentElement.clientHeight
+            })
+        }
+        window.addEventListener('resize', handleResize);
+
+        handleResize();
+
+        return () => window.removeEventListener('resize', handleResize);
+    },[]);
+
+    return size;
+}
+
 const Detail = ({match, history}) => {
+    const size = useGetSize();
+    console.log(size);
     const la = useLanguage();
     const theme= useTheme();
     const {params: {id}, params: {media}} = match;
@@ -225,10 +259,17 @@ const Detail = ({match, history}) => {
             <Content>
                 <TextH1>{la.Detail.season}</TextH1>
                 <SeasonContainer theme={theme}>
-                    <SeasonPoster url={lastSeason.poster_path ? 
+                    {size.width < 500 ? 
+                    <SeasonPosterMobile url={lastSeason.backdrop_path ? 
                         `${IMG_URL}${lastSeason.poster_path}` :
-                        `${IMG_URL}${anime.poster_path}`
+                        `${IMG_URL}${anime.backdrop_path}`
                     } />
+                    : 
+                        <SeasonPoster url={lastSeason.poster_path ? 
+                            `${IMG_URL}${lastSeason.poster_path}` :
+                            `${IMG_URL}${anime.poster_path}`
+                        } />
+                    }
                     <SeasonDescription>
                         <TextH2>{lastSeason.name}</TextH2>
                         {lastSeason.air_date === null ?

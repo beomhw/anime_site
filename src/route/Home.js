@@ -18,12 +18,20 @@ const ContentContainer = styled.div`
     width: 100%;
     height: 540px;
     margin-bottom: 30px;
+    ${flexAlign};
+    flex-direction: column;
+    @media(max-width: 500px) {
+        height: 300px;
+    }
 `;
 
 const TrendText = styled.p`
+    width: 80vw;
     font-size: 1.6em;
     margin: 0;
-    margin-left: 20px;
+    @media(max-width: 500px) {
+        width: 100%;
+    }
 `;
 
 const Home = () => {
@@ -40,6 +48,10 @@ const Home = () => {
                     <TrendText>{text.Home.popular_movie}</TrendText>
                     <AniList media="movie" type="16" la={text.type}/>
                 </ContentContainer>
+                <ContentContainer>
+                    <TrendText>{text.Home.popular_year}</TrendText>
+                    <AniList media="tv" type="16,18" la={text.type} year="2020"/>
+                </ContentContainer>   
                 <ContentContainer>
                     <TrendText>{text.Home.popular_drama}</TrendText>
                     <AniList media="tv" type="16,18" la={text.type}/>

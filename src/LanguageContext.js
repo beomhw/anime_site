@@ -11,7 +11,8 @@ const Language = {
             popular_movie: '인기 영화 TOP 20',
             popular_drama: '드라마 TOP 20',
             popular_comedy: '코미디 TOP 20',
-            popular_action: '액션 판타지 TOP 20'
+            popular_action: '액션 판타지 TOP 20',
+            popular_year: '2020년 애니메이션!'
         },
         Season: {
 
@@ -41,7 +42,8 @@ const Language = {
             popular_movie: 'MOVIE TOP 20',
             popular_drama: 'DRAMA TOP 20',
             popular_comedy: 'COMEDY TOP 20',
-            popular_action: 'ACTION FANTASY TOP 20'
+            popular_action: 'ACTION FANTASY TOP 20',
+            popular_year: "2020's ANIME"
         },
         Season: {
 
@@ -71,7 +73,8 @@ const Language = {
             popular_movie: '映画 TOP 20',
             popular_drama: 'ドラマ TOP 20',
             popular_comedy: 'コメディ TOP 20',
-            popular_action: 'アクション・ファンタジー TOP 20'
+            popular_action: 'アクション・ファンタジー TOP 20',
+            popular_year: '2020年 アニメ!'
         },
         Season: {
 

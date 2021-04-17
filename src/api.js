@@ -6,8 +6,8 @@ const api = axios.create({
 });
 
 // 애니 리스트 top get
-export async function getAnime (media, type, la) {
-    let res = await api.get(`discover/${media}?api_key=${API.API_KEY}&with_genres=${type}&with_keywords=${API.KEYWORD}&page=1&language=${la}`)
+export async function getAnime (media, type, la, year) {
+    let res = await api.get(`discover/${media}?api_key=${API.API_KEY}&with_genres=${type}&with_keywords=${API.KEYWORD}&page=1&language=${la}&first_air_date_year=${year}`)
         .then(res => {
         console.log('request animeList : ',res);
         return res.data;

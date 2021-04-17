@@ -54,11 +54,15 @@ const CastName = styled.div`
 `;
 
 const breakpoints = {
-    0: {
+    320: {
         slidesPerView: 1,
         spaceBetween: 3
     },
-    610: {
+    400: {
+        slidesPerView: 2,
+        spaceBetween: 3
+    },
+    540: {
         slidesPerView: 3,
         spaceBetween: 3
     },

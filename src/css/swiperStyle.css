@@ -8,6 +8,32 @@
     bottom: -5px;
     margin-bottom: 10px;
 }
+
+.swiper-button-prev, .swiper-button-next {
+    opacity: 0;
+    visibility: hidden;
+}
+
+@media(max-width: 500px) {
+    .swiper-pagination, .swiper-button-prev, .swiper-button-next {
+        display: none;
+    }
+    .swiper-slide {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@media(min-width: 768px) {
+    .swiper-container:hover .swiper-button-prev{
+        opacity: 1;
+        visibility: visible;  
+    }
+    .swiper-container:hover .swiper-button-next{
+        opacity: 1;
+        visibility: visible;
+    }
+}
   
 @media screen and (min-width: 500px) {
     .swiper-container {

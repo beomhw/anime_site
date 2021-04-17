@@ -73,7 +73,6 @@ const ThemeToggle = () => {
         <Div>
             <Button onClick={Change} theme={theme}>
                 <SwitchButton move={x}>
-                    {on ? <HiSun/> : <BsMoon/>}
                 </SwitchButton>
             </Button>
         </Div>

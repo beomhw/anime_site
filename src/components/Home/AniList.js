@@ -21,6 +21,10 @@ const LinkStyle = styled(Link)`
 const Container = styled.div`
     width: 100%;
     height: 500px;
+    @media(max-width: 500px) {
+        height: 250px;
+        margin: 10px 0 10px 0px;
+    }
 `;
 
 const AniContainer = styled.div`
@@ -30,6 +34,10 @@ const AniContainer = styled.div`
     height: 500px;
     flex-direction: column;
     cursor: pointer;
+    @media(max-width: 500px) {
+        width: 180px;
+        height: 250px;
+    }
 `;
 
 const LoadingBox = styled.div`
@@ -37,48 +45,55 @@ const LoadingBox = styled.div`
     height: 500px;
     font-size: 1.4em;
     transition: unset;
+    @media(max-width: 500px) {
+        height: 250px;
+    }
 `;
 
 const Img = styled.img`
     max-width: 300px;
     height: auto;
+    @media(max-width: 500px) {
+        max-width: 150px;
+        object-fit: cover;
+    }
 `;
 
 const breakpoints = {
-    500: {
-        slidesPerView: 1,
-        spaceBetween: 5,
+    0: {
+        slidesPerView: 2,
+        spaceBetween: 0,
         freeMode: true
     },
     620: {
         slidesPerView: 2,
         spaceBetween: 5,
-        freeMode: false,
+        slidesPerGroup: 2
     },
     920: {
         slidesPerView: 3,
         spaceBetween: 5,
-        freeMode: false,
+        slidesPerGroup: 3
     },
     1280: {
         slidesPerView: 4,
         spaceBetween: 5,
-        freeMode: false,
+        slidesPerGroup: 4
     },
     1620: {
         slidesPerView: 5,
-        spaceBetween: 5,
-        freeMode: false,
+        spaceBetween: 6,
+        slidesPerGroup: 5
     }
 }
 
-const AniList = ({media,type,la}) => {
+const AniList = ({media,type,la,year}) => {
     const [trend, setTrend] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         setLoading(true);
-        api.getAnime(media,type,la).then(res => {
+        api.getAnime(media,type,la,year).then(res => {
             setTrend(res.results);
             setLoading(false);
         })
@@ -89,8 +104,6 @@ const AniList = ({media,type,la}) => {
     return (
         <Container>
             <Swiper
-                onSwiper={(swiper) => console.log(swiper)}
-                onSlideChange={() => console.log('slide change')}
                 breakpoints={breakpoints}
                 pagination={{clickable: true}}
                 navigation

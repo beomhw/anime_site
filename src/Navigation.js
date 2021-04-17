@@ -157,7 +157,7 @@ const Navigation = () => {
             {loading ? <>Now Loading..</> : <>
             {size.width > 960 ? 
             <HeaderContainer theme={theme}>
-                <LinkStyle theme={theme} to='/'><img src={logo} /></LinkStyle>
+                <LinkStyle theme={theme} to='/anime_site/'><img src={logo} /></LinkStyle>
                 <LinkStyle theme={theme} style={pathname === '/anime_site/' ? {color: '#8c0000'} : {}} to='/anime_site/'>HOME</LinkStyle>
                 <LinkStyle theme={theme} style={pathname === '/anime_site/seasons' ? {color: '#8c0000'} : {}} to='/anime_site/seasons'>SEASONS</LinkStyle>
                 <LinkStyle theme={theme} style={pathname === '/anime_site/search' ? {color: '#8c0000'} : {}} to='/anime_site/search'>SEARCH</LinkStyle>
@@ -167,7 +167,7 @@ const Navigation = () => {
             </HeaderContainer> :
             <HeaderContainer theme={theme}>
                 <MobileNav on={on} theme={theme} pathname={pathname} />
-                <LinkStyle theme={theme} to='/'><img src={logo} /></LinkStyle>
+                <LinkStyle theme={theme} to='/anime_site/'><img src={logo} /></LinkStyle>
                 <Hamburger la={state} pathname={pathname} theme={theme} setOn={setOn} nav={on.nav} />
             </HeaderContainer>
             }
