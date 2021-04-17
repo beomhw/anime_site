@@ -174,11 +174,11 @@ const Navigation = () => {
             <BodyContainer>
                 <LanguageModal modal={modal} setModal={setModal}/>
                 <Switch>
-                    <Route path='/' exact component={RC.Home} />
-                    <Route path='/seasons' component={RC.Seasons} />
-                    <Route path='/search' component={RC.Search} />
-                    <Route path='/mypage' component={RC.MyPage} />
-                    <Route path='/detail/:id/:media' component={RC.Detail} />
+                    <Route path='/anime_site/' exact component={RC.Home} />
+                    <Route path='/anime_site/seasons' component={RC.Seasons} />
+                    <Route path='/anime_site/search' component={RC.Search} />
+                    {/* <Route path='/mypage' component={RC.MyPage} /> */}
+                    <Route path='/anime_site/detail/:id/:media' component={RC.Detail} />
                 </Switch>
                 <UpToggle/>
             </BodyContainer>
