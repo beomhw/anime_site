@@ -16,6 +16,11 @@ const Title = styled.div`
     user-select: none;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+    @media(max-width: 500px) {
+        width: 140px;
+        height: 20px;
+        font-size: 0.7em;
+    }
 `;
 
 const Container = styled.div`
@@ -34,6 +39,11 @@ const Container = styled.div`
     }
     cursor: pointer;
     box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    @media(max-width: 500px) {
+        width: 140px;
+        height: 90px;
+        margin: 5px;
+    }
 `;
 
 const SeasonItem = ({item}) => {

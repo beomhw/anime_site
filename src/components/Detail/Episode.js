@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import {flexAlign} from '../../css/cssModule';
 import {IMG_URL} from '../../Util';
+import dogeza from '../../asset/dogeza_reco.png';
 
 const Container = styled.div`
     display: grid; // grid 디자인
@@ -49,6 +50,9 @@ const TitleContainer = styled.div`
     @media(max-width: 1024px) {
         grid-column: 1 / 4;
         grid-row: 5;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 `;
 
@@ -62,6 +66,9 @@ const AirDate = styled.p`
     margin: 0;
     margin-left: auto;
     margin-right: 15px;
+    @media(max-width: 1024px) {
+        margin: 0 auto;
+    }
 `;
 
 const OverviewContainer = styled.div`
@@ -80,11 +87,11 @@ const Episode = ({ep}) => {
 
     return (
         <Container>
-            <StillContainer url={`${IMG_URL}${ep.still_path}`} />
+            {ep.still_path === null ? <StillContainer url={dogeza} /> : <StillContainer url={`${IMG_URL}${ep.still_path}`} /> }
             <TitleContainer>
                 <Title>{ep.name}</Title><AirDate>{ep.air_date}</AirDate>
             </TitleContainer>
-            <OverviewContainer>{ep.overview}</OverviewContainer>
+            <OverviewContainer>{ep.overview === "" ? "null overview" : ep.overview}</OverviewContainer>
         </Container>
     );
 }

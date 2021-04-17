@@ -76,13 +76,13 @@ const breakpoints = {
     }
 }
 
-const Cast = ({media, id}) => {
+const Cast = ({media, id, la}) => {
     const [casts, setCasts] = useState();
     const [loading, setLoading] = useState(true);
     const theme = useTheme();
 
     useEffect(() => {
-        api.getAnimeCast(media, id).then(res => {
+        api.getAnimeCast(media, id, la.type).then(res => {
             console.log(res.data);
             setCasts(res.data);
             setLoading(false);
@@ -92,7 +92,7 @@ const Cast = ({media, id}) => {
     if(loading) return <CastContainer>Now Loading...</CastContainer>
 
     if(casts.cast.length === 0) {
-        return <CastContainer>출연진 정보가 없어요</CastContainer>
+        return <CastContainer>{la.no_casts}</CastContainer>
     } 
 
     return (

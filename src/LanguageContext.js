@@ -29,7 +29,9 @@ const Language = {
             casts: '출연진',
             recommend: '추천',
             null_intro: '이런! 이 작품은 아직 한국어 번역이 없네요..',
-            null_recommend: '이 작품에 대한 추천 알고리즘을 점검 중인 거 같아요...'
+            null_recommend: '이 작품에 대한 추천 알고리즘을 점검 중인 거 같아요...',
+            more: '상세..',
+            no_casts: '출연진 정보가 없어요..'
         }
     },
     en: {
@@ -56,8 +58,10 @@ const Language = {
             season: 'Season',
             casts: 'Casts',
             recommend: 'Recommend',
-            null_intro: 'OOPS! There is not intro :(',
-            null_recommend: "I think we're checking the recommended algorithms for this piece."
+            null_intro: "OOPS! There's no intro! :( ",
+            null_recommend: "Checking the recommended algorithms for this piece.",
+            more: 'more..',
+            no_casts: "Couldn't find any information about the voice actors..."
         }
     },
     jp: {
@@ -85,7 +89,9 @@ const Language = {
             casts: 'せいゆう',
             recommend: 'おすすめ',
             popular_action: 'あらあら、日本語バージョンがありません。',
-            null_recommend: 'この作品に対するおすすめアルゴリズムを 点検中のようです。'
+            null_recommend: 'この作品に対するおすすめアルゴリズムを 点検中のようです。',
+            more: 'しょうさい..',
+            no_casts: '声優さんたちの情報を見つけませんでした..'
         }
     }
 }

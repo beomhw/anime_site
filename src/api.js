@@ -43,8 +43,8 @@ export async function getAnimeImg (media, anime_id) {
 }
 
 // 특정 애니 캐스팅 get
-export async function getAnimeCast (media, anime_id) {
-    let res = await api.get(`${media}/${anime_id}/credits?api_key=${API.API_KEY}`)
+export async function getAnimeCast (media, anime_id, la_type) {
+    let res = await api.get(`${media}/${anime_id}/credits?api_key=${API.API_KEY}&language=${la_type}`)
         .then(res => {
             console.log('request animeCasts : ', res);
             return res;

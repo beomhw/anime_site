@@ -35,7 +35,7 @@ const Text = styled.p`
     margin: 0;
 `;
 
-const Description = ({overview}) => {
+const Description = ({la, overview}) => {
     const theme = useTheme();
 
     if(overview.length === 0) {
@@ -45,7 +45,7 @@ const Description = ({overview}) => {
                     <ApngComponent autoPlay={true} src={ghost} />
                 </GhostBox>
                 <TextBox>
-                    <Text>이런! 이 작품은 아직 한국어 번역이 없네요..</Text>
+                    <Text>{la.Detail.null_intro}</Text>
                 </TextBox>
             </DescriptionContainer>
         );

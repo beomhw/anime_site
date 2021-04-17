@@ -58,6 +58,9 @@ const Footer = styled.div`
     background-color: ${p=>p.theme.container};
     padding: 30px;
     ${flexAlign};
+    @media(max-width: 500px) {
+        flex-direction: column;
+    }
 `;
 
 const FooterText = styled.div`
@@ -65,7 +68,7 @@ const FooterText = styled.div`
     font-size: 2.3em;
     ${flexAlign};
     @media(max-width: 500px) {
-        font-size: 1.2em;
+        font-size: 1.6em;
     }
 `;
 
@@ -93,6 +96,9 @@ const IconsBox = styled.a`
     }
     cursor: pointer;
     color: ${p=>p.theme.text};
+    @media(max-width: 500px) {
+        margin: 5px;
+    }
 `;
 
 function usePathname () {
@@ -155,14 +161,14 @@ const Navigation = () => {
                 <LinkStyle theme={theme} style={pathname === '/' ? {color: '#8c0000'} : {}} to='/'>HOME</LinkStyle>
                 <LinkStyle theme={theme} style={pathname === '/seasons' ? {color: '#8c0000'} : {}} to='/seasons'>SEASONS</LinkStyle>
                 <LinkStyle theme={theme} style={pathname === '/search' ? {color: '#8c0000'} : {}} to='/search'>SEARCH</LinkStyle>
-                <LinkStyle theme={theme} style={pathname === '/mypage' ? {color: '#8c0000'} : {}} to='/mypage'>MYPAGE</LinkStyle>
+                {/* <LinkStyle theme={theme} style={pathname === '/mypage' ? {color: '#8c0000'} : {}} to='/mypage'>MYPAGE</LinkStyle> */}
                 <LanguageToggle setModal={setModal}/>
                 <ThemeToggle />
             </HeaderContainer> :
             <HeaderContainer theme={theme}>
-                <MobileNav on={on} theme={theme} pathname={pathname} setModal={setModal} />
+                <MobileNav on={on} theme={theme} pathname={pathname} />
                 <LinkStyle theme={theme} to='/'><img src={logo} /></LinkStyle>
-                <Hamburger theme={theme} setOn={setOn} nav={on.nav} />
+                <Hamburger la={state} pathname={pathname} theme={theme} setOn={setOn} nav={on.nav} />
             </HeaderContainer>
             }
             <BodyContainer>

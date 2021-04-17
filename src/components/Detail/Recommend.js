@@ -76,6 +76,12 @@ const Title = styled.div`
 const NoneAl = styled.h1`
     ${flexAlign};
     height: 200px;
+    @media(max-width: 800px) {
+        flex-direction: column;
+    }
+    @media(max-width: 425px) {
+        font-size: 1em;
+    }
 `;
 
 const breakpoints = {
@@ -101,7 +107,7 @@ const breakpoints = {
     }
 }
 
-const Recommend = ({recommendations, media}) => {
+const Recommend = ({recommendations, media, la}) => {
     console.log(recommendations);
     // 추천 알고리즘에서 애니메이션만 선별
     const recommend = recommendations.filter(re => re.genre_ids.includes(16));
@@ -110,7 +116,7 @@ const Recommend = ({recommendations, media}) => {
         return (
             <NoneAl>
                 <ApngComponent autoPlay={true} src={ghost} /> 
-                이 작품에 대한 추천 알고리즘을 점검 중인 거 같아요..
+                {la.Detail.null_recommend}
             </NoneAl>
         )
     }

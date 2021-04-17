@@ -26,7 +26,7 @@ const Nav = styled.div`
     justify-content: center;
     width: 100vw;
     height: 100vh;
-    background-color: #ed6103;
+    background-color: #693c72;
     opacity: ${p=>p.on.opacity};
     visibility: ${p=>p.on.visibility};
     z-index: 100;
@@ -60,7 +60,7 @@ const Flag = styled.div`
     }
 `;
 
-const MobileNav = ({on, theme, pathname, setModal}) => {
+const MobileNav = ({on, theme, pathname}) => {
     const dispatch = useLanguageDispatch();
 
     const onChange = (lg_type) => {
@@ -72,7 +72,8 @@ const MobileNav = ({on, theme, pathname, setModal}) => {
             <LinkStyle theme={theme} style={pathname === '/' ? {color: '#8c0000'} : {}} to='/'>HOME</LinkStyle>
             <LinkStyle theme={theme} style={pathname === '/seasons' ? {color: '#8c0000'} : {}} to='/seasons'>SEASONS</LinkStyle>
             <LinkStyle theme={theme} style={pathname === '/search' ? {color: '#8c0000'} : {}} to='/search'>SEARCH</LinkStyle>
-            <LinkStyle theme={theme} style={pathname === '/mypage' ? {color: '#8c0000'} : {}} to='/mypage'>MYPAGE</LinkStyle>
+            {/* <LinkStyle theme={theme} style={pathname === '/mypage' ? {color: '#8c0000'} : {}} to='/mypage'>MYPAGE</LinkStyle> */}
+            Choose your language!
             <Content>
                 <Flag url={kr} onClick={() => onChange('KO')}/>
                 <Flag url={en} onClick={() => onChange('EN')} />

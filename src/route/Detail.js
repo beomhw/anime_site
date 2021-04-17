@@ -179,7 +179,7 @@ const Detail = ({match, history}) => {
             if(media === 'tv')
                 setLastSeason(res.seasons[res.seasons.length-1]);
         }).then(() => {
-            api.getAnimeVideo(media, id).then(res => {
+            api.getAnimeImg(media, id).then(res => {
                 console.log(res);
             }).then(() => {
                 api.getAnimeRecommendation(media, id, la.type).then(res => {
@@ -219,7 +219,7 @@ const Detail = ({match, history}) => {
             </Header>
             <Content>
                 <TextH1>{la.Detail.intro}</TextH1>
-                <Comp.Description overview={anime.overview}/>
+                <Comp.Description la={la} overview={anime.overview}/>
             </Content>
             {media === 'tv' && 
             <Content>
@@ -242,16 +242,16 @@ const Detail = ({match, history}) => {
                             </>
                         }
                     </SeasonDescription>
-                    <p style={{width: '60px', marginRight: '10px'}} onClick={onOpen}>상세..</p>
+                    <p style={{width: '60px', marginRight: '10px', cursor: 'pointer', userSelect: 'none'}} onClick={onOpen}>{la.Detail.more}</p>
                 </SeasonContainer>
             </Content> }
             <Content>
                 <TextH1>{la.Detail.casts}</TextH1>
-                <Comp.Cast media={media} id={id}/>
+                <Comp.Cast media={media} id={id} la={la}/>
             </Content>
             <Content>
                 <TextH1>{la.Detail.recommend}</TextH1>
-                <Comp.Recommend media={media} history={history} recommendations={recommendations} />
+                <Comp.Recommend la={la} media={media} history={history} recommendations={recommendations} />
             </Content>
         </Container>
     );

@@ -36,7 +36,8 @@ const Container = styled.div`
 
 const Header = styled.div`
     width: 100%;
-    height: 80px;
+    height: 100px;
+    border-bottom: 2px solid #dddddd;
 `;
 
 const Nav = styled.div`
@@ -105,7 +106,7 @@ function useGetSize () {
 
 const EpisodeList = ({id, seasons, modal, setModal}) => {
     const la = useLanguage();
-    const [seasonId, setSeasonId] = useState(1);
+    const [seasonId, setSeasonId] = useState(seasons[0].season_number);
     const [seasonInfo, setSeasonInfo] = useState();
     const [loading, setLoading] = useState(true);
     const theme = useTheme();
@@ -114,6 +115,7 @@ const EpisodeList = ({id, seasons, modal, setModal}) => {
 
     useEffect(() => {
         setLoading(true);
+        // null이면 안되는데..
         api.getSeasonEpisodes(id, seasonId, la.type).then(res => {
             console.log(res.data);
             let data = res.data.episodes.filter(ep => new Date(ep.air_date) < new Date());
@@ -136,7 +138,7 @@ const EpisodeList = ({id, seasons, modal, setModal}) => {
                 <Header><Exit onClick={onExit}><ImCancelCircle /></Exit></Header>
                 <Nav>{seasonInfo.name}
                     <Menu value={seasonId} onChange={onChange}>
-                        {seasons.map((se,i) => <option key={i} value={i+1}> {se.name} </option>)}
+                        {seasons.map((se,i) => <option key={i} value={se.season_number}> {se.name} </option>)}
                     </Menu>
                 </Nav>
                 <EpisodeContainer>

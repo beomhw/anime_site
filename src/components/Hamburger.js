@@ -1,9 +1,9 @@
-import React,{ useState } from 'react';
+import React,{ useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -14,8 +14,8 @@ const Container = styled.div`
     margin-right: 10px;
     user-select: none;
     .burger {
-        width: 40px;
-        height: 5px;
+        width: 30px;
+        height: 3px;
         border-radius: 2px;
         background-color: ${p=>p.theme.text};
         margin-bottom: 5px;
@@ -38,7 +38,7 @@ const Container = styled.div`
     }
 `;
 
-const Hamburger = ({setOn, nav, theme}) => {
+const Hamburger = ({la, setOn, nav, theme, pathname}) => {
     const [burgerOn, setBurgerOn] = useState({
         opacity: 1,
         visibility: 'visible',
@@ -46,6 +46,21 @@ const Hamburger = ({setOn, nav, theme}) => {
         x: 0,
         y: 0
     })
+
+    useEffect(() => {
+        setOn({
+            nav: false,
+            opacity: 0,
+            visibility: 'hidden'
+        })
+        setBurgerOn({
+            opacity: 1,
+            visibility: 'visible',
+            rotate: 0,
+            x: 0,
+            y: 0
+        })
+    },[pathname, la]);
 
     const onActive = () => {
         if(nav) {
@@ -72,7 +87,7 @@ const Hamburger = ({setOn, nav, theme}) => {
                 visibility: 'hidden',
                 rotate: 130,
                 x: -5,
-                y: 10
+                y: 8
             })
         }
     }
