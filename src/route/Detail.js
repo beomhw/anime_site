@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useMemo} from 'react';
+import React, {useState, useEffect} from 'react';
 import styled,{css} from 'styled-components';
 import {useTheme} from '../ThemeContext';
 import {flexAlign} from '../css/cssModule';
@@ -9,7 +9,7 @@ import Loading from '../components/Loading';
 import * as Comp from '../components/Detail/export';
 import {useLanguage} from '../LanguageContext';
 
-// pinterest api로 캐릭터 이름에 대한 사진들 보여주기
+// 스틸 컷 및 티저 영상 보여주기
 
 const Container = styled.div`
     ${flexAlign};
@@ -202,6 +202,7 @@ const Detail = ({match, history}) => {
     const onOpen = () => setModal({
         opacity: 1,
         visibility: 'visible'
+        
     })
 
     useEffect(() => {
@@ -215,11 +216,20 @@ const Detail = ({match, history}) => {
         }).then(() => {
             api.getAnimeImg(media, id).then(res => {
                 console.log(res);
+                // setAnime({...anime, img: res.data.backdrops});
             }).then(() => {
                 api.getAnimeRecommendation(media, id, la.type).then(res => {
                     console.log(res.data.results);
                     setRecommendations(res.data.results);
-                    setLoading(false);
+                    // setLoading(false);
+                })
+                .then(() => {
+                    api.getAnimeVideo(media, id, la.type).then(res => {
+                        console.log(res.data);
+                        // setAnime({...anime, video: res.data.results});
+                        console.log(anime);
+                        setLoading(false);
+                    })
                 })
             })
         })
@@ -244,7 +254,7 @@ const Detail = ({match, history}) => {
                 <HeaderInfoContainer>
                     {media === 'tv' 
                     ?<TitleText>{anime.name} ({new Date(anime.first_air_date).getFullYear()})</TitleText> 
-                    :<><TitleText>{anime.original_title}</TitleText><p>{anime.release_date} 개봉</p></>}
+                    :<><TitleText>{anime.title}</TitleText><p>{anime.release_date} 개봉</p></>}
                     <GenreContainer>
                         {anime.genres.map((ge, i) => 
                         <GenreBox key={i} theme={theme}>{ge.name}</GenreBox>)}
@@ -286,6 +296,9 @@ const Detail = ({match, history}) => {
                     <p style={{width: '60px', marginRight: '10px', cursor: 'pointer', userSelect: 'none'}} onClick={onOpen}>{la.Detail.more}</p>
                 </SeasonContainer>
             </Content> }
+            <Content>
+                <Comp.StillCut />
+            </Content>
             <Content>
                 <TextH1>{la.Detail.casts}</TextH1>
                 <Comp.Cast media={media} id={id} la={la}/>

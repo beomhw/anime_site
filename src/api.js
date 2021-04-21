@@ -55,10 +55,10 @@ export async function getAnimeCast (media, anime_id, la_type) {
 }
 
 // 특정 애니 PV get
-export async function getAnimeVideo (media, anime_id) {
-    let res = await api.get(`${media}/${anime_id}/videos?api_key=${API.API_KEY}`)
+export async function getAnimeVideo (media, anime_id, la_type) {
+    let res = await api.get(`${media}/${anime_id}/videos?api_key=${API.API_KEY}&language=${la_type}`)
         .then(res => {
-            console.log('request animeVedio : ', res);
+            console.log('request animeVideo : ', res);
             return res;
         }).catch(e => {
             console.log(e);
@@ -103,8 +103,8 @@ export async function getSeasonEpisodes(id, seasonNum, la) {
 }
 
 // 애니 리스트 top get
-export async function getSeason (first, last, page) {
-    let res = await api.get(`discover/tv?api_key=${API.API_KEY}&with_keywords=${API.KEYWORD}&page=${page}&language=ko&first_air_date.gte=${first}&first_air_date.lte=${last}`)
+export async function getSeason (first, last, page, la) {
+    let res = await api.get(`discover/tv?api_key=${API.API_KEY}&with_keywords=${API.KEYWORD}&page=${page}&language=${la}&first_air_date.gte=${first}&first_air_date.lte=${last}`)
         .then(res => {
         console.log('request seasonList : ',res);
         return res.data;

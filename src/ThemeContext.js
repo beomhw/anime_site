@@ -1,4 +1,4 @@
-import React, {createContext, useReducer, useContext} from 'react';
+import React, {useEffect, createContext, useReducer, useContext} from 'react';
 import * as THEME from './Util';
 
 const Theme = {
@@ -18,14 +18,7 @@ const Theme = {
     }
 }
 
-const initialTheme = {
-    mode: 'light',
-    text: THEME.TEXT_LI,
-    container: THEME.CONTAINER_LI,
-    background: THEME.BACKGROUND_LI,
-    input: THEME.INPUT_LI
-};
-
+const initialTheme = {};
 const ThemeContext = createContext();
 const ThemeDispatchContext = createContext();
 
@@ -42,6 +35,10 @@ const ThemeReducer = (state, action) => {
 
 export const ThemeProvider = ({children}) => {
     const [state, dispatch] = useReducer(ThemeReducer, initialTheme);
+
+    useEffect(() => {
+        dispatch({type: 'DARK'});
+    },[])
 
     return (
         <ThemeContext.Provider value={state}>

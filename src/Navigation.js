@@ -1,5 +1,5 @@
 import React,{useState, useEffect} from 'react';
-import styled from 'styled-components';
+import styled,{css} from 'styled-components';
 import {Link, Switch, Route, useLocation} from 'react-router-dom';
 import {useTheme} from './ThemeContext';
 import ThemeToggle from './components/ThemeToggle';
@@ -34,9 +34,15 @@ const HeaderContainer = styled.div`
 
 const BodyContainer = styled.div`
     width: 100%;
-    height: 100%;
     ${flexAlign};
     flex-direction: column;
+    ${p=>p.on.nav ? css`
+        height: 0px;
+        overflow: hidden;
+    ` : css`
+        height: 100%;
+        overflow: auto;
+    `}
 `;
 
 const LinkStyle = styled(Link)`
@@ -166,12 +172,12 @@ const Navigation = () => {
                 <ThemeToggle />
             </HeaderContainer> :
             <HeaderContainer theme={theme}>
-                <MobileNav on={on} theme={theme} pathname={pathname} />
+                <MobileNav setOn={setOn} on={on} theme={theme} pathname={pathname} />
                 <LinkStyle theme={theme} to='/anime_site/'><img src={logo} /></LinkStyle>
                 <Hamburger la={state} pathname={pathname} theme={theme} setOn={setOn} nav={on.nav} />
             </HeaderContainer>
             }
-            <BodyContainer>
+            <BodyContainer on={on}>
                 <LanguageModal modal={modal} setModal={setModal}/>
                 <Switch>
                     <Route path='/anime_site/' exact component={RC.Home} />

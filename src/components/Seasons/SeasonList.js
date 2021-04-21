@@ -10,6 +10,9 @@ const Container = styled.div`
     justify-content: center;
     flex-wrap: wrap;
     margin-bottom: 20px;
+    @media(max-width: 500px) {
+        width: 100vw;
+    }
 `;
 
 const SeasonList = ({list}) => {

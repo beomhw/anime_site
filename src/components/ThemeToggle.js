@@ -41,19 +41,14 @@ const Div = styled.div`
 `;
 
 const ThemeToggle = () => {
-    const [x, setX] = useState(-1);
-    const [on, setOn] = useState(true);
+    const [x, setX] = useState();
+    const [on, setOn] = useState();
     const theme = useTheme();
     const dispatch = useThemeDispatch();
 
     useEffect(() => {
         setOn(true);
-        on ? dispatch({
-            type: 'DARK',
-        }) :
-        dispatch({
-            type: 'LIGHT'
-        })
+        setX(-1);
     },[]);
 
     console.log(theme);

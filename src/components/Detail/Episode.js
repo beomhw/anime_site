@@ -20,7 +20,7 @@ const Container = styled.div`
     @media(min-width: 1025px) {
         height: 200px;
         grid-template-rows: auto;
-        grid-template-columns: minmax(300px, auto);
+        grid-template-columns: minmax(300px, 300px);
     }
 `;
 

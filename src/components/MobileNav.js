@@ -60,10 +60,15 @@ const Flag = styled.div`
     }
 `;
 
-const MobileNav = ({on, theme, pathname}) => {
+const MobileNav = ({on, theme, pathname, setOn}) => {
     const dispatch = useLanguageDispatch();
 
     const onChange = (lg_type) => {
+        setOn({
+            nav: false,
+            opacity: 0,
+            visibility: 'hidden'
+        })
         return dispatch({type: lg_type});
     }
 

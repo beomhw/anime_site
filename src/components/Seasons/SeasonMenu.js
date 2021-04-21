@@ -1,8 +1,9 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 import styled from 'styled-components';
 import {flexAlign} from '../../css/cssModule';
 import {useTheme} from '../../ThemeContext';
 import * as api from '../../api';
+import {useLanguage} from '../../LanguageContext';
 
 const Container = styled.div`
     ${flexAlign};
@@ -32,22 +33,21 @@ const ViewButtonBox = styled.div`
 `;
 
 const Button = styled.button`
-    width: 60px;
-    height: 60px;
-    border: 5px solid #8c0000;
-    font-weight: bold;
     background: 0;
-    border-radius: 30px;
-    color: #8c0000;
+    border-radius: 10px;
+    background-color: ${p=>p.theme.container};
     cursor: pointer;
+    color: ${p=>p.theme.text};
+    font-weight: bold;
+    height: 40px;
+    border: 0;
     &:focus {
         outline: none;
     }
     &:hover {
-        border-color: #ac0d0d;
         color: #ac0d0d;
     }
-    transition-duration: 0.2s;
+    width: 60px;
 `;
 
 const Select = styled.select`
@@ -69,13 +69,18 @@ const SeasonMenu = ({list, setList}) => {
     const theme = useTheme();
     const year = new Date().getFullYear();
     const [season, setSeason] = useState({year: '2021', season: 'spring'});
+    const la = useLanguage();
+
+    useEffect(() => {
+        onView();
+    },[la.type]);
 
     const onView = () => {
         setList([]);
         console.log(season);
         let year = season.year;
-        let gte; // 지정된 값보다 큰 경우
-        let lte; // 지정된 값보다 작을 경우
+        let gte; // 지정된 값보다 크거나 같을 경우
+        let lte; // 지정된 값보다 작거나 같을 경우
         switch(season.season) {
             case 'spring':
                 gte = year + '-01-01';
@@ -96,11 +101,11 @@ const SeasonMenu = ({list, setList}) => {
             default:
                 throw new Error('unknown season!');
         }
-        api.getSeason(gte, lte, 1).then(res => {
+        api.getSeason(gte, lte, 1, la.type).then(res => {
             console.log(res);
             setList(li => li.concat(res.results));
             if(res.total_pages === 2) {
-                api.getSeason(gte, lte, 2).then(res => {
+                api.getSeason(gte, lte, 2, la.type).then(res => {
                     console.log(res);
                     setList(li => li.concat(res.results));
                     console.log(list);
@@ -130,14 +135,14 @@ const SeasonMenu = ({list, setList}) => {
             </SelectYearBox>
             <SelectSeasonBox>
                 <Select theme={theme} onChange={e => onChangeSeason(e.target.value)}>
-                    <option value="spring">spring</option>
-                    <option value="summer">summer</option>
-                    <option value="autumn">autumn</option>
-                    <option value="winter">winter</option>
+                    <option value="spring">1분기</option>
+                    <option value="summer">2분기</option>
+                    <option value="autumn">3분기</option>
+                    <option value="winter">4분기</option>
                 </Select>
             </SelectSeasonBox>
             <ViewButtonBox>
-                <Button onClick={onView}>조회</Button>
+                <Button theme={theme} onClick={onView}>조회</Button>
             </ViewButtonBox>
         </Container>
     );

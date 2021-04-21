@@ -32,7 +32,6 @@ const Container = styled.div`
     border-radius: 10px;
     background-image: url(${p=>p.url});
     background-size: cover;
-    margin: 10px;
     &:hover ${Title} {
         opacity: 1;
         visibility: visible;
@@ -46,15 +45,24 @@ const Container = styled.div`
     }
 `;
 
+const LinkStyle = styled(Link)`
+    @media(max-width: 500px) {
+        margin: 5px;
+    }
+    @media(min-width: 501px) {
+        margin: 10px;
+    }
+`;
+
 const SeasonItem = ({item}) => {
     return (
-        <Link to={`/anime_site/detail/${item.id}/tv`} >
+        <LinkStyle  to={`/anime_site/detail/${item.id}/tv`} >
         {item.backdrop_path === null ? <Container url={dogeza}></Container> :
             <Container url={`${IMG_URL}${item.backdrop_path}`}>
                 <Title>{item.name}</Title>
             </Container>
         }
-        </Link>
+        </LinkStyle>
     );
 }
 
