@@ -188,13 +188,16 @@ function useGetSize () {
 const Detail = ({match, history}) => {
     const size = useGetSize();
     console.log(size);
-    const la = useLanguage();
-    const theme= useTheme();
+    const la = useLanguage(); // 언어
+    const theme= useTheme(); // 테마
     const {params: {id}, params: {media}} = match;
-    const [anime, setAnime] = useState({});
-    const [loading, setLoading] = useState(true);
-    const [lastSeason, setLastSeason] = useState();
-    const [recommendations, setRecommendations] = useState();
+    const [anime, setAnime] = useState({}); // 애니 정보
+    const [loading, setLoading] = useState(true); // 로딩
+    const [lastSeason, setLastSeason] = useState(); // 마지막 시즌 => tv 전용
+    const [recommendations, setRecommendations] = useState(); // 추천
+    const [still, setStill] = useState(); // 애니, 영화 스틸 컷
+    const [teaser, setTeaser] = useState(); // 영화 티저 => movie 전용
+
     const [modal, setModal] = useState({
         opacity: 0,
         visibility: 'hidden'
@@ -216,20 +219,21 @@ const Detail = ({match, history}) => {
         }).then(() => {
             api.getAnimeImg(media, id).then(res => {
                 console.log(res);
-                // setAnime({...anime, img: res.data.backdrops});
+                setStill(res.data.backdrops);
             }).then(() => {
                 api.getAnimeRecommendation(media, id, la.type).then(res => {
                     console.log(res.data.results);
                     setRecommendations(res.data.results);
-                    // setLoading(false);
                 })
                 .then(() => {
-                    api.getAnimeVideo(media, id, la.type).then(res => {
-                        console.log(res.data);
-                        // setAnime({...anime, video: res.data.results});
-                        console.log(anime);
-                        setLoading(false);
-                    })
+                    if(media === 'movie') {
+                        api.getAnimeVideo(media, id, la.type).then(res => {
+                            console.log(res.data);
+                            setTeaser(res.data.results);
+                            console.log(anime);
+                            setLoading(false);
+                        })
+                    } else setLoading(false);
                 })
             })
         })
@@ -297,7 +301,8 @@ const Detail = ({match, history}) => {
                 </SeasonContainer>
             </Content> }
             <Content>
-                <Comp.StillCut />
+                <TextH1>{la.Detail.casts}</TextH1>
+                <Comp.StillCut still={still} />
             </Content>
             <Content>
                 <TextH1>{la.Detail.casts}</TextH1>

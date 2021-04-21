@@ -9,6 +9,14 @@
     margin-bottom: 10px;
 }
 
+.swiper-scrollbar-drag:hover, .swiper-scrollbar-drag:active {
+    cursor: pointer;
+    height: 10px;
+    border-radius: 5px;
+    width: auto;
+    top: -3px;
+}
+
 .swiper-button-prev, .swiper-button-next {
     opacity: 0;
     visibility: hidden;
