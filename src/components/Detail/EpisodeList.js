@@ -7,6 +7,7 @@ import {ImCancelCircle} from 'react-icons/im';
 import * as api from '../../api';
 import Episode from './Episode';
 import {useLanguage} from '../../LanguageContext';
+import Loading from '../Loading';
 
 const Overlay = styled.div`
     width: ${p=>p.size.width}px;
@@ -80,6 +81,11 @@ const EpisodeContainer = styled.div`
     overflow-y: scroll; // 스크롤
 `;
 
+const LoadingBox = styled.div`
+    ${flexAlign};
+    height: 100%;
+`;
+
 // window size get
 function useGetSize () {
     const [size, setSize] = useState({
@@ -133,7 +139,7 @@ const EpisodeList = ({id, seasons, modal, setModal}) => {
     return (
         <Overlay size={size} modal={modal}>
             <Overlay size={size} modal={modal} onClick={onExit} />
-            {loading ? <Container theme={theme}> Now loading.. </Container> :
+            {loading ? <Container theme={theme}><LoadingBox> <Loading /> </LoadingBox></Container> :
             <Container theme={theme}>
                 <Header><Exit onClick={onExit}><ImCancelCircle /></Exit></Header>
                 <Nav>{seasonInfo.name}

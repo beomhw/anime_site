@@ -62,7 +62,7 @@ const Title = styled.p`
 `;
 
 const AirDate = styled.p`
-    font-size: 1.1em;
+    font-size: 0.9em;
     margin: 0;
     margin-left: auto;
     margin-right: 15px;

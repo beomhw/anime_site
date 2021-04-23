@@ -15,7 +15,11 @@ const Language = {
             popular_year: '2020년 애니메이션!'
         },
         Season: {
-
+            quarter_1: '1분기',
+            quarter_2: '2분기',
+            quarter_3: '3분기',
+            quarter_4: '4분기',
+            select: '조회'
         },
         Search: {
             search_result_front: '검색 결과가 ',
@@ -32,7 +36,16 @@ const Language = {
             null_intro: '이런! 이 작품은 아직 한국어 번역이 없네요..',
             null_recommend: '이 작품에 대한 추천 알고리즘을 점검 중인 거 같아요...',
             more: '상세..',
-            no_casts: '출연진 정보가 없어요..'
+            no_casts: '출연진 정보가 없어요..',
+            still: '미디어',
+            last_season_first: "의 ",
+            last_season_second: " 번째 시즌이 ",
+            last_season_month: "월 ",
+            last_season_day: "일 ",
+            last_season_final: "년에 방영되었습니다.",
+            ep_count: '화',
+            next_season: '번째 시즌이 방영 예정입니다.',
+            none_img: '이미지가 없어요!'
         }
     },
     en: {
@@ -46,7 +59,11 @@ const Language = {
             popular_year: "2020's ANIME"
         },
         Season: {
-
+            quarter_1: 'Q1',
+            quarter_2: 'Q2',
+            quarter_3: 'Q3',
+            quarter_4: 'Q4',
+            select: 'view'
         },
         Search: {
             search_result_front: 'There are ',
@@ -63,7 +80,16 @@ const Language = {
             null_intro: "OOPS! There's no intro! :( ",
             null_recommend: "Checking the recommended algorithms for this piece.",
             more: 'more..',
-            no_casts: "Couldn't find any information about the voice actors..."
+            no_casts: "Couldn't find any information about the voice actors...",
+            still: 'media',
+            last_season_first: "'s ",
+            last_season_second: " season aired on ",
+            last_season_month: " ",
+            last_season_day: ", ",
+            last_season_final: ".",
+            ep_count: ' episodes',
+            next_season: ' season is scheduled to air.',
+            none_img: "There's no image!"
         }
     },
     jp: {
@@ -77,7 +103,11 @@ const Language = {
             popular_year: '2020年 アニメ!'
         },
         Season: {
-
+            quarter_1: '第1四半期',
+            quarter_2: '第2四半期',
+            quarter_3: '第3四半期',
+            quarter_4: '第4四半期',
+            select: '見る'
         },
         Search: {
             search_result_front: '検索結果が ',
@@ -93,8 +123,17 @@ const Language = {
             recommend: 'おすすめ',
             popular_action: 'あらあら、日本語バージョンがありません。',
             null_recommend: 'この作品に対するおすすめアルゴリズムを 点検中のようです。',
-            more: 'しょうさい..',
-            no_casts: '声優さんたちの情報を見つけませんでした..'
+            more: '詳しく',
+            no_casts: '声優さんたちの情報を見つけませんでした..',
+            still: 'メディア',
+            last_season_first: "の",
+            last_season_second: "回目のシーズンが",
+            last_season_month: "月",
+            last_season_day: "日",
+            last_season_final: "年に放映されました。",
+            ep_count: '話',
+            next_season: 'シーズンが放映予定です。',
+            none_img: 'イメージがありません!'
         }
     }
 }

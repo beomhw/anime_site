@@ -52,10 +52,18 @@ const LoadingBox = styled.div`
 
 const Img = styled.img`
     max-width: 300px;
-    height: auto;
+    max-height: 400px;
+    border-radius: 10px;
     @media(max-width: 500px) {
         max-width: 150px;
         object-fit: cover;
+    }
+    transition: 0.2s;
+    @media(min-width: 1100px) {
+        &:hover {
+            max-width: 350px;
+            max-height: 450px;
+        }
     }
 `;
 

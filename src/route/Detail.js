@@ -205,7 +205,6 @@ const Detail = ({match, history}) => {
     const onOpen = () => setModal({
         opacity: 1,
         visibility: 'visible'
-        
     })
 
     useEffect(() => {
@@ -287,12 +286,12 @@ const Detail = ({match, history}) => {
                     <SeasonDescription>
                         <TextH2>{lastSeason.name}</TextH2>
                         {lastSeason.air_date === null ?
-                            <p className="overview">{anime.name}의 {lastSeason.season_number}번째 시즌이 방영 예정입니다.</p> :
+                            <p className="overview">{anime.name}{la.Detail.last_season_first} {lastSeason.season_number}{la.Detail.next_season}</p> :
                             <>
-                            <p className="air_date">{new Date(lastSeason.air_date).getFullYear()} | {lastSeason.episode_count}화</p>
+                            <p className="air_date">{new Date(lastSeason.air_date).getFullYear()} | {lastSeason.episode_count}{la.Detail.ep_count}</p>
                             <p className="overview">
-                                {anime.name}의 {lastSeason.season_number}번째 
-                                시즌이 {new Date(lastSeason.air_date).getMonth()+1}월 {new Date(lastSeason.air_date).getDay()+1}일, {new Date(lastSeason.air_date).getFullYear()}년에 방영되었습니다.
+                                {anime.name}{la.Detail.last_season_first}{lastSeason.season_number}{la.Detail.last_season_second} 
+                                {la.type === 'en' ? lastSeason.air_date : new Date(lastSeason.air_date).getMonth()+1 + la.Detail.last_season_month + new Date(lastSeason.air_date).getDay()+1 + la.Detail.last_season_day + new Date(lastSeason.air_date).getFullYear() + la.Detail.last_season_final}
                             </p>
                             </>
                         }
@@ -301,7 +300,7 @@ const Detail = ({match, history}) => {
                 </SeasonContainer>
             </Content> }
             <Content>
-                <TextH1>{la.Detail.casts}</TextH1>
+                <TextH1>{la.Detail.still}</TextH1>
                 <Comp.StillCut still={still} />
             </Content>
             <Content>

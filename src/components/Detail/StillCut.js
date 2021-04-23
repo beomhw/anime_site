@@ -5,13 +5,16 @@ import {IMG_URL} from '../../Util';
 import {Swiper, SwiperSlide} from 'swiper/react';
 import SwiperCore,{Scrollbar} from 'swiper/core';
 import '../../css/swiperStyle.css';
+import ApngComponent from 'react-apng';
+import ghost from '../../asset/ghost.png';
+import {useLanguage} from '../../LanguageContext';
 
 SwiperCore.use([Scrollbar]);
 
 
 const Container = styled.div`
     width: 80vw;
-    height: 400px;
+    height: 330px;
     overflow: hidden;
     display: flex;
     flex-direction: flex-start;
@@ -19,18 +22,37 @@ const Container = styled.div`
 `;
 
 const Still = styled.img`
-    max-height: 100%;
+    max-width: 100%;
     border-radius: 10px;
+`;
+
+const NoneImg = styled.div`
+    ${flexAlign};
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
 `;
 
 const StillCut = ({still}) => {
     const theme = useTheme();
+    const la = useLanguage();
+
+    if(still.length === 0) {
+        return (
+            <Container>
+                <NoneImg>
+                    <ApngComponent autoPlay={true} src={ghost} />
+                    <h2>{la.Detail.none_img}</h2>
+                </NoneImg>
+            </Container>
+        )
+    }
 
     return (
         <Container theme={theme}>
             <Swiper
                     slidesPerView={1}
-                    scrollbar={{draggable: true}}
+                    scrollbar={{draggable: true}} 
                     >
                 {still.map((st, i) => 
                     <SwiperSlide key={i}>

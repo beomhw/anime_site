@@ -67,7 +67,7 @@ const Select = styled.select`
 
 const SeasonMenu = ({list, setList}) => {
     const theme = useTheme();
-    const year = new Date().getFullYear();
+    const year = Number(new Date().getFullYear());
     const [season, setSeason] = useState({year: '2021', season: 'spring'});
     const la = useLanguage();
 
@@ -117,32 +117,27 @@ const SeasonMenu = ({list, setList}) => {
     const onChangeYear = (year) => setSeason({...season, year: year});
     const onChangeSeason = (se) => setSeason({...season, season: se});
 
+
+
     return (
         <Container>
             <SelectYearBox>
                 <Select theme={theme} onChange={e => onChangeYear(e.target.value)}>
-                    <option value={`${year}`}>{year}</option>
-                    <option value={`${year-1}`}>{year-1}</option>
-                    <option value={`${year-2}`}>{year-2}</option>
-                    <option value={`${year-3}`}>{year-3}</option>
-                    <option value={`${year-4}`}>{year-4}</option>
-                    <option value={`${year-5}`}>{year-5}</option>
-                    <option value={`${year-6}`}>{year-6}</option>
-                    <option value={`${year-7}`}>{year-7}</option>
-                    <option value={`${year-8}`}>{year-8}</option>
-                    <option value={`${year-9}`}>{year-9}</option>
+                    {Array.apply(0, Array(20)).map((x, i) => 
+                        <option value={`${year-i}`}>{year - i}</option>
+                    )}
                 </Select>
             </SelectYearBox>
             <SelectSeasonBox>
                 <Select theme={theme} onChange={e => onChangeSeason(e.target.value)}>
-                    <option value="spring">1분기</option>
-                    <option value="summer">2분기</option>
-                    <option value="autumn">3분기</option>
-                    <option value="winter">4분기</option>
+                    <option value="spring">{la.Season.quarter_1}</option>
+                    <option value="summer">{la.Season.quarter_2}</option>
+                    <option value="autumn">{la.Season.quarter_3}</option>
+                    <option value="winter">{la.Season.quarter_4}</option>
                 </Select>
             </SelectSeasonBox>
             <ViewButtonBox>
-                <Button theme={theme} onClick={onView}>조회</Button>
+                <Button theme={theme} onClick={onView}>{la.Season.select}</Button>
             </ViewButtonBox>
         </Container>
     );
