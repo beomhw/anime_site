@@ -15,6 +15,7 @@ const DescriptionContainer = styled.div`
     border-radius: 20px;
     background-color: ${p=>p.theme.container};
     padding: 20px;
+    line-height: 30px;
 `;
 
 const GhostBox = styled.div`

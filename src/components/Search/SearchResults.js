@@ -1,10 +1,11 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 import styled from 'styled-components';
 import {flexAlign} from '../../css/cssModule';
 import {useTheme} from '../../ThemeContext';
 import {BsCaretDownFill} from 'react-icons/bs';
 import SearchResult from './SearchResult';
 import {useLanguage} from '../../LanguageContext';
+import * as api from '../../api';
 
 const Container = styled.div`
     width: 80vw;
@@ -49,7 +50,7 @@ const ViewmoreButton = styled.div`
 // if 결과에서 애니메이션 장르가 있을 경우 => 기존 state에 concat
 // if 결과에서 없을 경우 => 더 이상 없다는 메시지 출력
 
-const SearchResults = ({results}) => {
+const SearchResults = ({setSearchResults, results, pages, input}) => {
     const [count, setCount] = useState(1);
     const [loading, setLoading] = useState(false);
     const theme = useTheme();
@@ -59,8 +60,16 @@ const SearchResults = ({results}) => {
     const onMore = () => {
         setLoading(true);
         setCount(count + 1);
-        setTimeout(setLoading(false), 1500);
+        // api.searchAnime(input, la.type, count).then(res => {
+        //     setSearchResults(re => [...re, res.data.results.filter(re => re.media_type !== 'person' && re.genre_ids.includes(16))]);
+        //     setLoading(false);
+        // })
     }
+
+    useEffect(() => {
+        console.log(count);
+        console.log(input);
+    },[count]);
 
     return (
         <Container>
@@ -69,9 +78,11 @@ const SearchResults = ({results}) => {
                 <CountText>
                     {la.Search.search_result_front}{results.length} {la.Search.search_result_back}
                 </CountText>
-                {results.map((ani, i) => 
+                {loading ? <></> :
+                results.map((ani, i) => 
                     <SearchResult ani={ani} key={i} />
-                )}
+                )
+                }
                 <ViewmoreBox theme={theme}>
                     <ViewmoreButton onClick={() => onMore()} theme={theme}>
                         {loading ? <></> : <BsCaretDownFill />}

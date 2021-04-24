@@ -75,7 +75,7 @@ const AnimePoster = styled.div`
     width: 200px;
     height: 300px;
     background-image: url(${p=>p.url});
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
     @media(max-width: 500px) {
         margin-left: 10px;

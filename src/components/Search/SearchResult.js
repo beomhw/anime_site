@@ -8,7 +8,7 @@ import {Link} from 'react-router-dom';
 const ResultBox = styled.div`
     background-color: ${p=>p.theme.container};
     width: 60vw;
-    max-height: 200px;
+    height: 150px;
     margin-bottom: 20px;
     border-radius: 10px;
     display: flex;

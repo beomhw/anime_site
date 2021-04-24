@@ -23,6 +23,7 @@ const Search = () => {
     const [input, setInput] = useState('');
     const [searchResults, setSearchResults] = useState();
     const [loading, setLoading] = useState(false);
+    const [pages, setPages] = useState(0);
 
     useEffect(() => {
         setTimeout(() => setLoading(false), 1000);
@@ -32,10 +33,10 @@ const Search = () => {
 
     return (
         <Container>
-            <Comp.Input la={la.type} setLoading={setLoading} setSearchResults={setSearchResults} input={input} setInput={setInput}/>
+            <Comp.Input setPages={setPages} la={la.type} searchResults={searchResults} setLoading={setLoading} setSearchResults={setSearchResults} input={input} setInput={setInput}/>
             {loading ?
             <LoadingContainer><Loading /></LoadingContainer> :
-            <Comp.SearchResults results={searchResults} /> }
+            <Comp.SearchResults input={input} setSearchResults={setSearchResults} pages={pages} results={searchResults} /> }
         </Container>
     );
 };

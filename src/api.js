@@ -79,8 +79,8 @@ export async function getAnimeRecommendation (media, anime_id, la) {
 }
 
 // anime search
-export async function searchAnime (query, la) {
-    let res = await api.get(`search/multi?api_key=${API.API_KEY}&query=${query}&page=1&language=${la}`)
+export async function searchAnime (query, la, page) {
+    let res = await api.get(`search/multi?api_key=${API.API_KEY}&query=${query}&page=${page}&language=${la}`)
         .then(res => {
             console.log('search results : ', res);
             return res;

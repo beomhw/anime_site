@@ -40,7 +40,7 @@ const SearchButton = styled.div`
     cursor: pointer;
 `;
 
-const Input = ({setLoading, input, setInput, setSearchResults, la}) => {
+const Input = ({setPages, setLoading, input, setInput, setSearchResults, la}) => {
     const theme = useTheme();
     
     const onChange = e => {
@@ -49,14 +49,14 @@ const Input = ({setLoading, input, setInput, setSearchResults, la}) => {
     }
 
     const onSearch = query => {
-        setInput('');
         let check = query.trim();
         if(check.length === 0) return 0;
 
         setLoading(true);
-        api.searchAnime(query, la).then(res => {
+        api.searchAnime(query, la, 1).then(res => {
             console.log(res.data);
             setSearchResults(res.data.results.filter(re => re.media_type !== 'person' && re.genre_ids.includes(16)));
+            setPages(res.data.total_pages);
         })
     }
 

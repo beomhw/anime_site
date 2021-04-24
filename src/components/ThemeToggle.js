@@ -1,8 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import {useTheme, useThemeDispatch} from '../ThemeContext';
-import {BsMoon} from 'react-icons/bs';
-import {HiSun} from 'react-icons/hi';
 import {flexAlign} from '../css/cssModule';
 
 const Button = styled.div`
@@ -16,7 +14,7 @@ const Button = styled.div`
     border-color: #ac0d0d;    
 `;
 
-const SwitchButton = styled.div`
+const SwitchButton = styled.button`
     ${flexAlign};
     width: 30px;
     height: 30px;
@@ -31,6 +29,7 @@ const SwitchButton = styled.div`
     &:focus {
         outline: none;
     }
+    cursor: pointer;
     color: yellow;
 `;
 
@@ -42,19 +41,15 @@ const Div = styled.div`
 
 const ThemeToggle = () => {
     const [x, setX] = useState();
-    const [on, setOn] = useState();
+    const [on, setOn] = useState(true);
     const theme = useTheme();
     const dispatch = useThemeDispatch();
 
     useEffect(() => {
-        setOn(true);
         setX(-1);
     },[]);
 
-    console.log(theme);
-
-    const Change = () => {
-        setOn(!on);
+    useEffect(() => {
         on ? setX(-1) : setX(29);
         on ? dispatch({
             type: 'DARK',
@@ -62,13 +57,18 @@ const ThemeToggle = () => {
         dispatch({
             type: 'LIGHT'
         })
+    },[on])
+
+    console.log(theme);
+
+    const Change = () => {
+        setOn(!on);
     }
 
     return (
         <Div>
             <Button onClick={Change} theme={theme}>
-                <SwitchButton move={x}>
-                </SwitchButton>
+                <SwitchButton move={x} />
             </Button>
         </Div>
     );

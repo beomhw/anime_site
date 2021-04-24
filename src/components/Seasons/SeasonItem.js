@@ -28,7 +28,6 @@ const Container = styled.div`
     flex-direction: column-reverse;
     width: 250px;
     height: 150px;
-    border: 1px solid #dddddd;
     border-radius: 10px;
     background-image: url(${p=>p.url});
     background-size: cover;
