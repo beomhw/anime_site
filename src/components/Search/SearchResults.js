@@ -50,7 +50,7 @@ const ViewmoreButton = styled.div`
 // if 결과에서 애니메이션 장르가 있을 경우 => 기존 state에 concat
 // if 결과에서 없을 경우 => 더 이상 없다는 메시지 출력
 
-const SearchResults = ({setSearchResults, results, pages, input}) => {
+const SearchResults = ({length, setSearchResults, results, pages, input}) => {
     const [count, setCount] = useState(1);
     const [loading, setLoading] = useState(false);
     const theme = useTheme();
@@ -58,17 +58,17 @@ const SearchResults = ({setSearchResults, results, pages, input}) => {
     
 
     const onMore = () => {
-        setLoading(true);
         setCount(count + 1);
-        // api.searchAnime(input, la.type, count).then(res => {
-        //     setSearchResults(re => [...re, res.data.results.filter(re => re.media_type !== 'person' && re.genre_ids.includes(16))]);
-        //     setLoading(false);
-        // })
     }
 
     useEffect(() => {
-        console.log(count);
-        console.log(input);
+        if(count > 1) {
+            api.searchAnime(input, la.type, count).then(res => {
+                let data = res.data.results.filter(ani => ani.media_type !== 'person' && ani.genre_ids.includes(16))
+                console.log(data);
+                setSearchResults(se => se.concat(data));
+            })
+        }
     },[count]);
 
     return (
@@ -83,11 +83,13 @@ const SearchResults = ({setSearchResults, results, pages, input}) => {
                     <SearchResult ani={ani} key={i} />
                 )
                 }
+                {count === pages ? <></> : 
                 <ViewmoreBox theme={theme}>
                     <ViewmoreButton onClick={() => onMore()} theme={theme}>
                         {loading ? <></> : <BsCaretDownFill />}
                     </ViewmoreButton>
                 </ViewmoreBox> 
+                }
             </> : 
             <>
             </> }

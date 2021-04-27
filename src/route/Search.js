@@ -36,7 +36,12 @@ const Search = () => {
             <Comp.Input setPages={setPages} la={la.type} searchResults={searchResults} setLoading={setLoading} setSearchResults={setSearchResults} input={input} setInput={setInput}/>
             {loading ?
             <LoadingContainer><Loading /></LoadingContainer> :
-            <Comp.SearchResults input={input} setSearchResults={setSearchResults} pages={pages} results={searchResults} /> }
+            <>
+            {
+                searchResults && <Comp.SearchResults length={searchResults.length} input={input} setSearchResults={setSearchResults} pages={pages} results={searchResults} />
+            }
+            </>
+            }
         </Container>
     );
 };

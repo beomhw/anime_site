@@ -64,6 +64,11 @@ const PosterContainer = styled.div`
 const HeaderInfoContainer = styled.div`
     flex: 7;
     margin: 20px;
+    display: flex;
+    flex-direction: flex-start;
+    @media(max-width: 500px) {  
+        flex-direction: column;
+    }
 `;
 
 const Content = styled.div`
@@ -119,6 +124,13 @@ const GenreBox = styled.div`
 
 `;
 
+const TitleGenreContainer = styled.div`
+    flex: 7;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+`;
+
 const LoadingBox = styled.div`
     ${flexAlign};
     height: 90vh;
@@ -162,6 +174,49 @@ const SeasonDescription = styled.div`
     padding: 40px 20px 20px 20px;
 `;
 
+const CompanyImgBox = styled.div`
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: center;
+    @media(max-width: 500px) {
+        flex-direction: row;
+        background-color: mintcream;
+        border-radius: 5px;
+        border: 1px solid gray;
+    }
+`;
+
+const CompanyImg = styled.div`
+    width: 100px;
+    height: 50px;
+    background-image: url(${p=>p.url});
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    margin: 15px;
+    @media(max-width: 500px) {
+        width: 40px;
+        height: 30px;
+    }
+`;
+
+const MoreInfo = styled.div`
+    width: 100px;
+    height: 30px;
+    font-size: 1.1em;
+    border: 1px solid #dddddd;
+    background-color: #8c0000;
+    color: white;
+    z-index: 10;
+    border-radius: 8px;
+    text-align: center;
+    @media(max-width: 500px) {
+        position: relative;
+        top: 10px;
+    }
+`;
+
 function useGetSize () {
     const [size, setSize] = useState({
         width: undefined,
@@ -184,6 +239,7 @@ function useGetSize () {
 
     return size;
 }
+// Header에 제작사 추가
 
 const Detail = ({match, history}) => {
     const size = useGetSize();
@@ -255,6 +311,7 @@ const Detail = ({match, history}) => {
                     </PosterContainer>
                 </BackdropCover>
                 <HeaderInfoContainer>
+                    <TitleGenreContainer>
                     {media === 'tv' 
                     ?<TitleText>{anime.name} ({new Date(anime.first_air_date).getFullYear()})</TitleText> 
                     :<><TitleText>{anime.title}</TitleText><p>{anime.release_date} 개봉</p></>}
@@ -262,6 +319,14 @@ const Detail = ({match, history}) => {
                         {anime.genres.map((ge, i) => 
                         <GenreBox key={i} theme={theme}>{ge.name}</GenreBox>)}
                     </GenreContainer>
+                    </TitleGenreContainer>
+                    <CompanyImgBox theme={theme}>
+                        {anime.production_companies.map((com, i) => {
+                            if(com.logo_path) return (
+                                <CompanyImg key={i} url={IMG_URL + com.logo_path} />
+                            )
+                        })}
+                    </CompanyImgBox>
                 </HeaderInfoContainer>
             </Header>
             <Content>
@@ -296,7 +361,7 @@ const Detail = ({match, history}) => {
                             </>
                         }
                     </SeasonDescription>
-                    <p style={{width: '60px', marginRight: '10px', cursor: 'pointer', userSelect: 'none'}} onClick={onOpen}>{la.Detail.more}</p>
+                    <MoreInfo onClick={onOpen}>{la.Detail.more}</MoreInfo>
                 </SeasonContainer>
             </Content> }
             <Content>
