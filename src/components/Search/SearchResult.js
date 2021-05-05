@@ -56,6 +56,9 @@ const MediaTypeBox = styled.div`
 const AniTitle = styled.div`
     flex: 1;
     font-size: 1.3em;
+    @media(max-width: 500px) {
+        font-size: 1.1em;
+    }
 `;
 
 const LinkS = styled(Link)`
@@ -70,7 +73,7 @@ const OverviewBox = styled.div`
 const SearchResult = ({ani}) => {
     const theme = useTheme();
 
-    const description = ani.overview.slice(0, 70) + '...';
+    const description = ani.overview.slice(0, 40) + '...';
     
     return (
         <ResultBox theme={theme}>

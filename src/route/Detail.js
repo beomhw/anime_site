@@ -207,6 +207,8 @@ const MoreInfo = styled.div`
     font-size: 1.1em;
     border: 1px solid #dddddd;
     background-color: #8c0000;
+    user-select: none;
+    cursor: pointer;
     color: white;
     z-index: 10;
     border-radius: 8px;
@@ -356,7 +358,7 @@ const Detail = ({match, history}) => {
                             <p className="air_date">{new Date(lastSeason.air_date).getFullYear()} | {lastSeason.episode_count}{la.Detail.ep_count}</p>
                             <p className="overview">
                                 {anime.name}{la.Detail.last_season_first}{lastSeason.season_number}{la.Detail.last_season_second} 
-                                {la.type === 'en' ? lastSeason.air_date : new Date(lastSeason.air_date).getMonth()+1 + la.Detail.last_season_month + new Date(lastSeason.air_date).getDay()+1 + la.Detail.last_season_day + new Date(lastSeason.air_date).getFullYear() + la.Detail.last_season_final}
+                                {la.type === 'en' ? lastSeason.air_date : new Date(lastSeason.air_date).getMonth()+1 + la.Detail.last_season_month + new Date(lastSeason.air_date).getDate() + la.Detail.last_season_day + new Date(lastSeason.air_date).getFullYear() + la.Detail.last_season_final}
                             </p>
                             </>
                         }
