@@ -111,7 +111,7 @@ const Cast = ({media, id, la}) => {
                     }
                     <CastName>
                         <p>{cast.name}</p>
-                        <p>{cast.character} 역</p>
+                        <p>{cast.character}</p>
                     </CastName>
                 </CastCard>  
                 </SwiperSlide>

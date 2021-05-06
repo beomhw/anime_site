@@ -25,9 +25,6 @@ const Language = {
             search_result_front: '검색 결과가 ',
             search_result_back: '개 있습니다!'
         },
-        Mypage: {
-
-        },
         Detail: {
             intro: '개요',
             season: '시즌',
@@ -68,9 +65,6 @@ const Language = {
         Search: {
             search_result_front: 'There are ',
             search_result_back: 'results!'
-        },
-        Mypage: {
-            
         },
         Detail: {
             intro: 'Intro',
@@ -113,14 +107,12 @@ const Language = {
             search_result_front: '検索結果が ',
             search_result_back: '件あります!'
         },
-        Mypage: {
-            
-        },
         Detail: {
             intro: 'がいよう',
             season: 'シリーズ',
             casts: 'せいゆう',
             recommend: 'おすすめ',
+            null_intro: '日本語バージョンのがいようがありません',
             popular_action: 'あらあら、日本語バージョンがありません。',
             null_recommend: 'この作品に対するおすすめアルゴリズムを 点検中のようです。',
             more: '詳しく',

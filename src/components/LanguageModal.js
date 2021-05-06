@@ -1,27 +1,12 @@
-import React,{useState, useEffect} from 'react';
 import styled from 'styled-components';
 import {useTheme} from '../ThemeContext';
 import {RiCloseLine} from 'react-icons/ri';
 import {useLanguageDispatch} from '../LanguageContext';
+import {useGetSize} from './resize';
+import Modal from './Modal';
 import kr from '../asset/kr.png';
 import en from '../asset/en.png';
 import jp from '../asset/jp.png';
-
-const Overlay = styled.div`
-    width: ${p=>p.size.width}px;
-    height: ${p=>p.size.height}px;
-    margin: 0 auto;
-    background-color: rgba(0,0,0,0.3);
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 50;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: ${p=>p.modal.opacity};
-    visibility: ${p=>p.modal.visibility};
-`;
 
 const Container = styled.div`
     width: 400px;
@@ -73,29 +58,6 @@ const Flag = styled.div`
     cursor: pointer;
 `;
 
-// window size get
-function useGetSize () {
-    const [size, setSize] = useState({
-        width: undefined,
-        height: undefined
-    })
-
-    useEffect(() => {
-        function handleResize() {
-            setSize({
-                width: window.document.documentElement.clientWidth,
-                height: window.document.documentElement.clientHeight
-            })
-        }
-        window.addEventListener('resize', handleResize);
-
-        handleResize();
-
-        return () => window.removeEventListener('resize', handleResize);
-    },[]);
-
-    return size;
-}
 
 const LanguageModal = ({modal, setModal}) => {
     const size = useGetSize();
@@ -110,8 +72,7 @@ const LanguageModal = ({modal, setModal}) => {
     }
 
     return (
-        <Overlay size={size} modal={modal}>
-            <Overlay size={size} modal={modal} onClick={onExit} />
+        <Modal size={size} modal={modal} onExit={onExit}>
             <Container theme={theme}>
                 <Header><RiCloseLine style={{cursor: 'pointer'}} onClick={onExit} /></Header>
                 <Message>Select your language</Message>
@@ -121,7 +82,7 @@ const LanguageModal = ({modal, setModal}) => {
                     <Flag url={jp} onClick={() => onChange('JP')} />
                 </Content>
             </Container>
-        </Overlay>
+        </Modal>
     );
 }
 

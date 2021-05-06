@@ -7,21 +7,9 @@ import {ImCancelCircle} from 'react-icons/im';
 import * as api from '../../api';
 import Episode from './Episode';
 import {useLanguage} from '../../LanguageContext';
+import {useGetSize} from '../resize';
 import Loading from '../Loading';
-
-const Overlay = styled.div`
-    width: ${p=>p.size.width}px;
-    height: ${p=>p.size.height}px;
-    margin: 0 auto;
-    background-color: rgba(0,0,0,0.3);
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 50;
-    ${flexAlign};
-    opacity: ${p=>p.modal.opacity};
-    visibility: ${p=>p.modal.visibility};
-`;
+import Modal from '../Modal';
 
 const Container = styled.div`
     width: 80vw;
@@ -86,30 +74,6 @@ const LoadingBox = styled.div`
     height: 100%;
 `;
 
-// window size get
-function useGetSize () {
-    const [size, setSize] = useState({
-        width: undefined,
-        height: undefined
-    })
-
-    useEffect(() => {
-        function handleResize() {
-            setSize({
-                width: window.document.documentElement.clientWidth,
-                height: window.document.documentElement.clientHeight
-            })
-        }
-        window.addEventListener('resize', handleResize);
-
-        handleResize();
-
-        return () => window.removeEventListener('resize', handleResize);
-    },[]);
-
-    return size;
-}
-
 const EpisodeList = ({id, seasons, modal, setModal}) => {
     const la = useLanguage();
     const [seasonId, setSeasonId] = useState(seasons[0].season_number);
@@ -137,8 +101,7 @@ const EpisodeList = ({id, seasons, modal, setModal}) => {
     })
 
     return (
-        <Overlay size={size} modal={modal}>
-            <Overlay size={size} modal={modal} onClick={onExit} />
+        <Modal size={size} modal={modal} onExit={onExit}>
             {loading ? <Container theme={theme}><LoadingBox> <Loading /> </LoadingBox></Container> :
             <Container theme={theme}>
                 <Header><Exit onClick={onExit}><ImCancelCircle /></Exit></Header>
@@ -154,7 +117,7 @@ const EpisodeList = ({id, seasons, modal, setModal}) => {
                 </EpisodeContainer>
             </Container>
             }
-        </Overlay>
+        </Modal>
     );
 }
 

@@ -11,6 +11,7 @@ import UpToggle from './components/UpToggle';
 import LanguageToggle from './components/LanguageToggle';
 import LanguageModal from './components/LanguageModal';
 import {useLanguage} from './LanguageContext';
+import {useGetSize} from './components/resize';
 import MobileNav from './components/MobileNav';
 import Hamburger from './components/Hamburger';
 
@@ -110,29 +111,6 @@ const IconsBox = styled.a`
 function usePathname () {
     let location = useLocation();
     return location.pathname;
-}
-
-function useGetSize () {
-    const [size, setSize] = useState({
-        width: undefined,
-        height: undefined
-    })
-
-    useEffect(() => {
-        function handleResize() {
-            setSize({
-                width: window.document.documentElement.clientWidth,
-                height: window.document.documentElement.clientHeight
-            })
-        }
-        window.addEventListener('resize', handleResize);
-
-        handleResize();
-
-        return () => window.removeEventListener('resize', handleResize);
-    },[]);
-
-    return size;
 }
 
 const Navigation = () => {

@@ -8,6 +8,7 @@ import '../../css/swiperStyle.css';
 import ApngComponent from 'react-apng';
 import ghost from '../../asset/ghost.png';
 import {useLanguage} from '../../LanguageContext';
+import YouTube from 'react-youtube';
 
 SwiperCore.use([Scrollbar]);
 
@@ -33,7 +34,7 @@ const NoneImg = styled.div`
     flex-direction: column;
 `;
 
-const StillCut = ({still}) => {
+const StillCut = ({still, teaser, media}) => {
     const theme = useTheme();
     const la = useLanguage();
 
@@ -51,10 +52,11 @@ const StillCut = ({still}) => {
     return (
         <Container theme={theme}>
             <Swiper
-                    slidesPerView={1}
-                    scrollbar={{draggable: true}} 
-                    >
+                slidesPerView={1}
+                scrollbar={{draggable: true}} 
+            >
                 {still.map((st, i) => 
+                
                     <SwiperSlide key={i}>
                         <Still src={`${IMG_URL}${st.file_path}`} />
                     </SwiperSlide>

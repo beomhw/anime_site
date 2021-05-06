@@ -7,6 +7,7 @@ import dogeza from '../asset/dogeza.png';
 import {IMG_URL} from '../Util';
 import Loading from '../components/Loading';
 import * as Comp from '../components/Detail/export';
+import {useGetSize} from '../components/resize';
 import {useLanguage} from '../LanguageContext';
 
 // 스틸 컷 및 티저 영상 보여주기
@@ -219,29 +220,11 @@ const MoreInfo = styled.div`
     }
 `;
 
-function useGetSize () {
-    const [size, setSize] = useState({
-        width: undefined,
-        height: undefined
-    })
-
-    useEffect(() => {
-        function handleResize() {
-            setSize({
-                width: window.document.documentElement.clientWidth,
-                height: window.document.documentElement.clientHeight
-            })
-        }
-        window.addEventListener('resize', handleResize);
-
-        handleResize();
-
-        return () => window.removeEventListener('resize', handleResize);
-    },[]);
-
-    return size;
-}
-// Header에 제작사 추가
+const TeaserContainer = styled.div`
+    height: 50px;
+    width: 100%;
+    border: 1px solid gray;
+`;
 
 const Detail = ({match, history}) => {
     const size = useGetSize();
@@ -323,9 +306,10 @@ const Detail = ({match, history}) => {
                     </GenreContainer>
                     </TitleGenreContainer>
                     <CompanyImgBox theme={theme}>
-                        {anime.production_companies.map((com, i) => {
-                            if(com.logo_path) return (
-                                <CompanyImg key={i} url={IMG_URL + com.logo_path} />
+                        {anime.production_companies.map((company, i) => {
+                            if(i > 2) return <></>
+                            if(company.logo_path) return (
+                                <CompanyImg key={i} url={IMG_URL + company.logo_path} />
                             )
                         })}
                     </CompanyImgBox>
@@ -368,7 +352,7 @@ const Detail = ({match, history}) => {
             </Content> }
             <Content>
                 <TextH1>{la.Detail.still}</TextH1>
-                <Comp.StillCut still={still} />
+                <Comp.StillCut still={still} media={media} teaser={teaser} />
             </Content>
             <Content>
                 <TextH1>{la.Detail.casts}</TextH1>
@@ -383,4 +367,3 @@ const Detail = ({match, history}) => {
 }
 
 export default Detail;
-

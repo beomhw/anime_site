@@ -22,7 +22,7 @@ const GlobalStyleCreate = createGlobalStyle`
     }
     body {
         margin: 0;
-        width: calc(100vw-10px);
+        width: calc(100vw - 10px);
         min-height: 100vh;
         background-color: ${p=>p.theme.background};
         transition-duration: 0.2s;

@@ -55,7 +55,7 @@ const Img = styled.img`
     max-height: 400px;
     border-radius: 10px;
     @media(max-width: 500px) {
-        max-width: 150px;
+        width: 150px;
         object-fit: cover;
     }
     transition: 0.2s;
