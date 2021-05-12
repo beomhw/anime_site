@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import {useEffect} from 'react';
 import styled from 'styled-components';
 import {flexAlign} from '../../css/cssModule';
 import {useTheme} from '../../ThemeContext';
@@ -42,6 +42,10 @@ const SearchButton = styled.div`
 
 const Input = ({setPages, setLoading, input, setInput, setSearchResults, la}) => {
     const theme = useTheme();
+
+    useEffect(() => {
+        onSearch(input);
+    }, [la]);
     
     const onChange = e => {
         setInput(e.target.value);
@@ -57,6 +61,7 @@ const Input = ({setPages, setLoading, input, setInput, setSearchResults, la}) =>
             console.log(res.data);
             setSearchResults(res.data.results.filter(re => re.media_type !== 'person' && re.genre_ids.includes(16)));
             setPages(res.data.total_pages);
+            setLoading(false);
         })
     }
 

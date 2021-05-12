@@ -20,7 +20,8 @@
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.2.3",
     "swiper": "^6.5.3",
-    "web-vitals": "^1.0.1"
+    "web-vitals": "^1.0.1",
+    "webpack-bundle-analyzer": "^4.4.1"
   },
   "scripts": {
     "start": "react-scripts start",

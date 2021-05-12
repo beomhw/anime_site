@@ -1,6 +1,6 @@
 // 장르별 검색 구현 예정
 
-import React, {useState, useEffect} from 'react';
+import {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import * as Comp from '../components/Search/export';
 import {flexAlign} from '../css/cssModule';
@@ -24,10 +24,6 @@ const Search = () => {
     const [searchResults, setSearchResults] = useState();
     const [loading, setLoading] = useState(false);
     const [pages, setPages] = useState(0);
-
-    useEffect(() => {
-        setTimeout(() => setLoading(false), 1000);
-    },[searchResults])
 
     console.log(searchResults);
 

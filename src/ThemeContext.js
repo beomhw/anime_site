@@ -1,4 +1,4 @@
-import React, {useEffect, createContext, useReducer, useContext} from 'react';
+import {useEffect, createContext, useReducer, useContext} from 'react';
 import * as THEME from './Util';
 
 const Theme = {

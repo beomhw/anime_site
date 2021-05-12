@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import {flexAlign} from '../../css/cssModule';
 import {IMG_URL} from '../../Util';

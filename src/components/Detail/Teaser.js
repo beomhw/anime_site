@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import YouTube from 'react-youtube';
 import YoutubeIcon from '../../asset/youtube.png';

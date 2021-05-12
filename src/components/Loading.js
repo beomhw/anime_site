@@ -1,4 +1,3 @@
-import React from 'react';
 import {ReactComponent as SVG} from '../asset/loading.svg';
 
 const Loading = () => {

@@ -1,6 +1,6 @@
 // 언어 설정 구현 예정 => 모든 기능 구현 후에! => 나중에 천천히 하기로 하고...
 // en, ko, jp 세 가지 테마
-import React, {createContext, useContext, useReducer} from 'react';
+import {createContext, useContext, useReducer} from 'react';
 
 // 언어 타입
 const Language = {

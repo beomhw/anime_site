@@ -1,5 +1,5 @@
 // 모달 형식으로 시즌 정보 제공
-import React,{useState, useEffect} from 'react';
+import {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import {useTheme} from '../../ThemeContext';
 import {flexAlign} from '../../css/cssModule';

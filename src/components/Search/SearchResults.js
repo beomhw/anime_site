@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from 'react';
+import {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import {flexAlign} from '../../css/cssModule';
 import {useTheme} from '../../ThemeContext';
@@ -55,7 +55,6 @@ const SearchResults = ({length, setSearchResults, results, pages, input}) => {
     const [loading, setLoading] = useState(false);
     const theme = useTheme();
     const la = useLanguage();
-    
 
     const onMore = () => {
         setCount(count + 1);

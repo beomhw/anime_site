@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import {useState, useEffect} from 'react';
 import styled,{css} from 'styled-components';
 import {useTheme} from '../ThemeContext';
 import {flexAlign} from '../css/cssModule';

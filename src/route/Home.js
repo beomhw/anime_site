@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import {useLanguage} from '../LanguageContext';
 import {flexAlign} from '../css/cssModule';

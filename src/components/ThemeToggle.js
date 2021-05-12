@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import {useTheme, useThemeDispatch} from '../ThemeContext';
 import {flexAlign} from '../css/cssModule';
@@ -74,4 +74,4 @@ const ThemeToggle = () => {
     );
 }
 
-export default React.memo(ThemeToggle);
+export default ThemeToggle;
