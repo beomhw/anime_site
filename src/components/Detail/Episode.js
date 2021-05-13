@@ -64,8 +64,10 @@ const AirDate = styled.p`
     margin: 0;
     margin-left: auto;
     margin-right: 15px;
+    min-width: 85px;
     @media(max-width: 1024px) {
         margin: 0 auto;
+        min-width: 0;
     }
 `;
 

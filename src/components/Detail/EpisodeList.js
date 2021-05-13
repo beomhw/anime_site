@@ -30,22 +30,27 @@ const Header = styled.div`
 `;
 
 const Nav = styled.div`
-    height: 50px;
-    font-size: 2.2em;
+    height: auto;
     padding: 20px;
     position: absolute;
+    display: flex;
+    justify-content: center;
 `;
 
 const Menu = styled.select`
     width: 100px;
-    padding: 20px;
     margin-left: 20px;
     height: 30px;
     border-radius: 10px;
     border: none;
+    color: ${p=>p.theme.text};
     background-color: rgba(0,0,0,0.2);
     &:focus {
         outline: none;
+    }
+    @media(max-width: 500px) {
+        width: 70px;
+        height: 30px;
     }
 `;
 
@@ -72,6 +77,15 @@ const EpisodeContainer = styled.div`
 const LoadingBox = styled.div`
     ${flexAlign};
     height: 100%;
+`;
+
+const H3 = styled.h3`
+    font-size: 2em;
+    margin: 0;
+    display: inline;
+    @media(max-width: 500px) {
+        font-size: 1em;
+    }
 `;
 
 const EpisodeList = ({id, seasons, modal, setModal}) => {
@@ -105,8 +119,11 @@ const EpisodeList = ({id, seasons, modal, setModal}) => {
             {loading ? <Container theme={theme}><LoadingBox> <Loading /> </LoadingBox></Container> :
             <Container theme={theme}>
                 <Header><Exit onClick={onExit}><ImCancelCircle /></Exit></Header>
-                <Nav>{seasonInfo.name}
-                    <Menu value={seasonId} onChange={onChange}>
+                <Nav>
+                    <H3>
+                        {seasonInfo.name}
+                    </H3>
+                    <Menu theme={theme} value={seasonId} onChange={onChange}>
                         {seasons.map((se,i) => <option key={i} value={se.season_number}> {se.name} </option>)}
                     </Menu>
                 </Nav>

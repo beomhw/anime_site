@@ -184,7 +184,6 @@ const CompanyImgBox = styled.div`
         flex-direction: row;
         background-color: mintcream;
         border-radius: 5px;
-        border: 1px solid gray;
     }
 `;
 

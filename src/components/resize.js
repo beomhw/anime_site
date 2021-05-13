@@ -10,8 +10,8 @@ export function useGetSize () {
     useEffect(() => {
         function handleResize() {
             setSize({
-                width: window.document.documentElement.clientWidth,
-                height: window.document.documentElement.clientHeight
+                width: window.innerWidth,
+                height: window.innerHeight
             })
         }
         window.addEventListener('resize', handleResize);

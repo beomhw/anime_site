@@ -1,6 +1,6 @@
 // 장르별 검색 구현 예정
 
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import styled from 'styled-components';
 import * as Comp from '../components/Search/export';
 import {flexAlign} from '../css/cssModule';
@@ -29,12 +29,28 @@ const Search = () => {
 
     return (
         <Container>
-            <Comp.Input setPages={setPages} la={la.type} searchResults={searchResults} setLoading={setLoading} setSearchResults={setSearchResults} input={input} setInput={setInput}/>
+            <Comp.Input 
+                setPages={setPages} 
+                la={la.type} 
+                searchResults={searchResults} 
+                setLoading={setLoading} 
+                setSearchResults={setSearchResults} 
+                input={input} 
+                setInput={setInput}
+            />
             {loading ?
             <LoadingContainer><Loading /></LoadingContainer> :
             <>
             {
-                searchResults && <Comp.SearchResults length={searchResults.length} input={input} setSearchResults={setSearchResults} pages={pages} results={searchResults} />
+                searchResults 
+                && 
+                <Comp.SearchResults 
+                    length={searchResults.length} 
+                    input={input} 
+                    setSearchResults={setSearchResults} 
+                    pages={pages} 
+                    results={searchResults} 
+                />
             }
             </>
             }
