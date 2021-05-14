@@ -9,7 +9,7 @@ const Container = styled.div`
     justify-content: center;
     flex-wrap: wrap;
     margin-bottom: 20px;
-    @media(max-width: 500px) {
+    @media (max-width: ${p=>p.theme.mobile}) {
         width: 100vw;
     }
 `;

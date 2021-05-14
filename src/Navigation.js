@@ -30,7 +30,7 @@ const HeaderContainer = styled.div`
     ${flexAlign};
     width: 100%;
     z-index: 50;
-    background-color: ${p=>p.theme.background};
+    background-color: ${p=>p.themeMode.background};
 `;
 
 const BodyContainer = styled.div`
@@ -49,11 +49,11 @@ const BodyContainer = styled.div`
 const LinkStyle = styled(Link)`
     font-size: 1.2em;
     margin-right: 50px;
-    color: ${p=>p.theme.text};
+    color: ${p=>p.themeMode.text};
     &:active {
-        color: ${p=>p.theme.text};
+        color: ${p=>p.themeMode.text};
     }
-    @media(max-width: 500px) {
+    @media(max-width: ${p=>p.theme.mobile}) {
         margin: 0;
     }
 `;
@@ -62,10 +62,10 @@ const Footer = styled.div`
     width: 100%;
     height: 200px;
     margin-top: auto;
-    background-color: ${p=>p.theme.container};
+    background-color: ${p=>p.themeMode.container};
     padding: 30px;
     ${flexAlign};
-    @media(max-width: 500px) {
+    @media(max-width: ${p=>p.theme.mobile}) {
         flex-direction: column;
     }
 `;
@@ -74,7 +74,7 @@ const FooterText = styled.div`
     flex: 6;
     font-size: 2.3em;
     ${flexAlign};
-    @media(max-width: 500px) {
+    @media(max-width: ${p=>p.theme.mobile}) {
         font-size: 1.6em;
     }
 `;
@@ -84,13 +84,13 @@ const TMDB = styled.a`
         color: #ac0d0d;
     }
     cursor: pointer;
-    color: ${p=>p.theme.text};
+    color: ${p=>p.themeMode.text};
 `;
 
 const FooterIcons = styled.div`
     flex: 4;
     ${flexAlign};
-    @media(max-width: 500px) {
+    @media(max-width: ${p=>p.theme.mobile}) {
         flex-wrap: wrap;
     }
 `;
@@ -102,8 +102,8 @@ const IconsBox = styled.a`
         color: #ac0d0d;
     }
     cursor: pointer;
-    color: ${p=>p.theme.text};
-    @media(max-width: 500px) {
+    color: ${p=>p.themeMode.text};
+    @media(max-width: ${p=>p.theme.mobile}) {
         margin: 5px;
     }
 `;
@@ -140,17 +140,17 @@ const Navigation = () => {
         <Container>
             {loading ? <>Now Loading..</> : <>
             {size.width > 960 ? 
-            <HeaderContainer theme={theme}>
-                <LinkStyle theme={theme} to='/anime_site/'><img src={logo} /></LinkStyle>
-                <LinkStyle theme={theme} style={pathname === '/anime_site/' ? {color: '#8c0000'} : {}} to='/anime_site/'>HOME</LinkStyle>
-                <LinkStyle theme={theme} style={pathname === '/anime_site/seasons' ? {color: '#8c0000'} : {}} to='/anime_site/seasons'>SEASONS</LinkStyle>
-                <LinkStyle theme={theme} style={pathname === '/anime_site/search' ? {color: '#8c0000'} : {}} to='/anime_site/search'>SEARCH</LinkStyle>
+            <HeaderContainer themeMode={theme}>
+                <LinkStyle themeMode={theme} to='/anime_site/'><img src={logo} /></LinkStyle>
+                <LinkStyle themeMode={theme} style={pathname === '/anime_site/' ? {color: '#8c0000'} : {}} to='/anime_site/'>HOME</LinkStyle>
+                <LinkStyle themeMode={theme} style={pathname === '/anime_site/seasons' ? {color: '#8c0000'} : {}} to='/anime_site/seasons'>SEASONS</LinkStyle>
+                <LinkStyle themeMode={theme} style={pathname === '/anime_site/search' ? {color: '#8c0000'} : {}} to='/anime_site/search'>SEARCH</LinkStyle>
                 <LanguageToggle setModal={setModal}/>
                 <ThemeToggle />
             </HeaderContainer> :
-            <HeaderContainer theme={theme}>
+            <HeaderContainer themeMode={theme}>
                 <MobileNav setOn={setOn} on={on} theme={theme} pathname={pathname} />
-                <LinkStyle theme={theme} to='/anime_site/'><img src={logo} /></LinkStyle>
+                <LinkStyle themeMode={theme} to='/anime_site/'><img src={logo} /></LinkStyle>
                 <Hamburger la={state} pathname={pathname} theme={theme} setOn={setOn} nav={on.nav} />
             </HeaderContainer>
             }
@@ -164,18 +164,18 @@ const Navigation = () => {
                 </Switch>
                 <UpToggle/>
             </BodyContainer>
-            <Footer theme={theme}> 
+            <Footer themeMode={theme}> 
                 <FooterText>
-                    THANKS FOR&nbsp;<TMDB theme={theme} href="https://www.themoviedb.org/">TMDB!</TMDB>
+                    THANKS FOR&nbsp;<TMDB themeMode={theme} href="https://www.themoviedb.org/">TMDB!</TMDB>
                 </FooterText>
                 <FooterIcons>
-                    <IconsBox theme={theme} href="https://github.com/beomhw">
+                    <IconsBox themeMode={theme} href="https://github.com/beomhw">
                         <AiFillGithub />
                     </IconsBox>
-                    <IconsBox theme={theme}>
+                    <IconsBox themeMode={theme}>
                         <AiFillFacebook /> 
                     </IconsBox>
-                    <IconsBox theme={theme}>
+                    <IconsBox themeMode={theme}>
                         <AiFillTwitterCircle />
                     </IconsBox>
                 </FooterIcons>

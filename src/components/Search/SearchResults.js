@@ -24,7 +24,7 @@ const CountText = styled.p`
 const ViewmoreBox = styled.div`
     width: 60vw;
     height: 50px;
-    background-color: ${p=>p.theme.container};
+    background-color: ${p=>p.themeMode.container};
     margin-bottom: 20px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.2);
     border-radius: 10px;
@@ -83,8 +83,8 @@ const SearchResults = ({length, setSearchResults, results, pages, input}) => {
                 )
                 }
                 {count === pages ? <></> : 
-                <ViewmoreBox theme={theme}>
-                    <ViewmoreButton onClick={() => onMore()} theme={theme}>
+                <ViewmoreBox themeMode={theme}>
+                    <ViewmoreButton onClick={() => onMore()} themeMode={theme}>
                         {loading ? <></> : <BsCaretDownFill />}
                     </ViewmoreButton>
                 </ViewmoreBox> 

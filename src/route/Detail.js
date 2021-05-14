@@ -23,16 +23,15 @@ const Container = styled.div`
 const Header = styled.div`
     width: 100%;
     min-height: 300px;
-    background-color: ${p=>p.theme.container};
+    background-color: ${p=>p.themeMode.container};
     ${flexAlign};
     margin-bottom: 50px;
-    @media(max-width: 500px) {
+    @media (max-width: ${p=>p.theme.mobile}) {
         padding-top: 100px;
         background-image: url(${p=>p.url});
         background-size: cover;
-        max-height: 400px;
-        background-position-x: -100px;
-        ${p=>p.theme.mode === 'dark' ? 
+        background-position-x: center;
+        ${p=>p.themeMode.mode === 'dark' ? 
         css`box-shadow: inset 0px 100px 10px 0px rgba(0, 0, 0, 0.7);` : 
         css`box-shadow: inset 0px 100px 10px 0px rgba(255, 255, 255, 0.7);`
         }
@@ -46,7 +45,7 @@ const BackdropCover = styled.div`
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    @media(max-width: 500px) {
+    @media (max-width: ${p=>p.theme.mobile}) {
         background-image: none;
         background-size: cover;
     }
@@ -57,7 +56,7 @@ const PosterContainer = styled.div`
     position: relative;
     top: 50px;
     ${flexAlign};
-    @media(max-width: 500px) {
+    @media (max-width: ${p=>p.theme.mobile}) {
         top: 0;
     }
 `;
@@ -67,7 +66,7 @@ const HeaderInfoContainer = styled.div`
     margin: 20px;
     display: flex;
     flex-direction: flex-start;
-    @media(max-width: 500px) {  
+    @media (max-width: ${p=>p.theme.mobile}) {  
         flex-direction: column;
     }
 `;
@@ -83,7 +82,7 @@ const AnimePoster = styled.div`
     background-image: url(${p=>p.url});
     background-size: cover;
     background-repeat: no-repeat;
-    @media(max-width: 500px) {
+    @media (max-width: ${p=>p.theme.mobile}) {
         margin-left: 10px;
     }
 `;
@@ -91,7 +90,7 @@ const AnimePoster = styled.div`
 const TitleText = styled.div`
     font-size: 2em;
     font-weight: bold;
-    @media(max-width: 500px) {
+    @media (max-width: ${p=>p.theme.mobile}) {
         position: absolute;
         top: 60px;
         left: 0px;
@@ -118,7 +117,7 @@ const GenreContainer = styled.div`
 const GenreBox = styled.div`
     padding: 10px;
     border-radius: 5px;
-    background-color: ${p=>p.theme.background};
+    background-color: ${p=>p.themeMode.background};
     margin: 5px;
     border: 1px solid #dddddd;
     ${flexAlign};
@@ -141,12 +140,12 @@ const SeasonContainer = styled.div`
     width: 80vw;
     height: 200px;
     border-radius: 20px;
-    background-color: ${p=>p.theme.container};
+    background-color: ${p=>p.themeMode.container};
     margin-top: 10px;
     margin-bottom: 20px;
     display: flex;
     flex-direction: flex-start;
-    @media(max-width: 500px) {
+    @media (max-width: ${p=>p.theme.mobile}) {
         flex-wrap: wrap;
         height: auto;
     }
@@ -180,7 +179,7 @@ const CompanyImgBox = styled.div`
     flex-direction: column;
     flex: 1;
     justify-content: center;
-    @media(max-width: 500px) {
+    @media (max-width: ${p=>p.theme.mobile}) {
         flex-direction: row;
         background-color: mintcream;
         border-radius: 5px;
@@ -195,9 +194,10 @@ const CompanyImg = styled.div`
     background-size: contain;
     background-position: center;
     margin: 15px;
-    @media(max-width: 500px) {
+    @media (max-width: ${p=>p.theme.mobile}) {
         width: 40px;
         height: 30px;
+        margin: 10px;
     }
 `;
 
@@ -213,7 +213,7 @@ const MoreInfo = styled.div`
     z-index: 10;
     border-radius: 8px;
     text-align: center;
-    @media(max-width: 500px) {
+    @media (max-width: ${p=>p.theme.mobile}) {
         position: relative;
         top: 10px;
     }
@@ -283,7 +283,7 @@ const Detail = ({match, history}) => {
     return (
         <Container url={`${IMG_URL}${anime.backdrop_path}`}>
             {media === 'tv' && <Comp.EpisodeList id={anime.id} seasons={anime.seasons} modal={modal} setModal={setModal} /> }
-            <Header theme={theme} url={`${IMG_URL}${anime.backdrop_path}`}>
+            <Header themeMode={theme} url={`${IMG_URL}${anime.backdrop_path}`}>
                 <BackdropCover 
                     url={anime.backdrop_path ? 
                     `${IMG_URL}${anime.backdrop_path}` : 
@@ -298,13 +298,13 @@ const Detail = ({match, history}) => {
                     <TitleGenreContainer>
                     {media === 'tv' 
                     ?<TitleText>{anime.name} ({new Date(anime.first_air_date).getFullYear()})</TitleText> 
-                    :<><TitleText>{anime.title}</TitleText><p>{anime.release_date} 개봉</p></>}
+                    :<><TitleText>{anime.title}</TitleText><p>{la.Detail.movie_air_date} : {anime.release_date}</p></>}
                     <GenreContainer>
                         {anime.genres.map((ge, i) => 
-                        <GenreBox key={i} theme={theme}>{ge.name}</GenreBox>)}
+                        <GenreBox key={i} themeMode={theme}>{ge.name}</GenreBox>)}
                     </GenreContainer>
                     </TitleGenreContainer>
-                    <CompanyImgBox theme={theme}>
+                    <CompanyImgBox themeMode={theme}>
                         {anime.production_companies.map((company, i) => {
                             if(i > 2) return <></>
                             if(company.logo_path) return (
@@ -321,17 +321,17 @@ const Detail = ({match, history}) => {
             {media === 'tv' && 
             <Content>
                 <TextH1>{la.Detail.season}</TextH1>
-                <SeasonContainer theme={theme}>
+                <SeasonContainer themeMode={theme}>
                     {size.width < 500 ? 
-                    <SeasonPosterMobile url={lastSeason.backdrop_path ? 
-                        `${IMG_URL}${lastSeason.poster_path}` :
-                        `${IMG_URL}${anime.backdrop_path}`
-                    } />
+                        <SeasonPosterMobile url={lastSeason.backdrop_path ? 
+                            `${IMG_URL}${lastSeason.poster_path}` :
+                            `${IMG_URL}${anime.backdrop_path}`} 
+                        />
                     : 
                         <SeasonPoster url={lastSeason.poster_path ? 
                             `${IMG_URL}${lastSeason.poster_path}` :
-                            `${IMG_URL}${anime.poster_path}`
-                        } />
+                            `${IMG_URL}${anime.poster_path}`} 
+                        />
                     }
                     <SeasonDescription>
                         <TextH2>{lastSeason.name}</TextH2>

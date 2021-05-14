@@ -19,7 +19,7 @@ const ContentContainer = styled.div`
     margin-bottom: 30px;
     ${flexAlign};
     flex-direction: column;
-    @media(max-width: 500px) {
+    @media (max-width: ${p=>p.theme.mobile}) {
         height: 300px;
     }
 `;
@@ -28,7 +28,7 @@ const TrendText = styled.p`
     width: 80vw;
     font-size: 1.6em;
     margin: 0;
-    @media(max-width: 500px) {
+    @media (max-width: ${p=>p.theme.mobile}) {
         width: 100%;
     }
 `;

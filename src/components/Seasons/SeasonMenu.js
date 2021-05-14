@@ -10,7 +10,7 @@ const Container = styled.div`
     width: 80vw;
     margin-top: 50px;
     flex-wrap: wrap;
-    @media(max-width: 500px) {
+    @media (max-width: ${p=>p.theme.mobile}) {
         flex-direction: column;
     }
 `;
@@ -35,9 +35,9 @@ const ViewButtonBox = styled.div`
 const Button = styled.button`
     background: 0;
     border-radius: 10px;
-    background-color: ${p=>p.theme.container};
+    background-color: ${p=>p.themeMode.container};
     cursor: pointer;
-    color: ${p=>p.theme.text};
+    color: ${p=>p.themeMode.text};
     font-weight: bold;
     height: 40px;
     border: 0;
@@ -58,8 +58,8 @@ const Select = styled.select`
     text-align-last: center;
     border-radius: 5px;
     border: none;
-    background-color: ${p=>p.theme.container};
-    color: ${p=>p.theme.text};
+    background-color: ${p=>p.themeMode.container};
+    color: ${p=>p.themeMode.text};
     &:focus {
         outline: none;
     }
@@ -122,14 +122,14 @@ const SeasonMenu = ({list, setList}) => {
     return (
         <Container>
             <SelectYearBox>
-                <Select theme={theme} onChange={e => onChangeYear(e.target.value)}>
+                <Select themeMode={theme} onChange={e => onChangeYear(e.target.value)}>
                     {Array.apply(0, Array(20)).map((x, i) => 
                         <option value={`${year-i}`}>{year - i}</option>
                     )}
                 </Select>
             </SelectYearBox>
             <SelectSeasonBox>
-                <Select theme={theme} onChange={e => onChangeSeason(e.target.value)}>
+                <Select themeMode={theme} onChange={e => onChangeSeason(e.target.value)}>
                     <option value="spring">{la.Season.quarter_1}</option>
                     <option value="summer">{la.Season.quarter_2}</option>
                     <option value="autumn">{la.Season.quarter_3}</option>
@@ -137,7 +137,7 @@ const SeasonMenu = ({list, setList}) => {
                 </Select>
             </SelectSeasonBox>
             <ViewButtonBox>
-                <Button theme={theme} onClick={onView}>{la.Season.select}</Button>
+                <Button themeMode={theme} onClick={onView}>{la.Season.select}</Button>
             </ViewButtonBox>
         </Container>
     );

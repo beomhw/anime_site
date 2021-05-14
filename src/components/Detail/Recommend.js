@@ -75,10 +75,10 @@ const Title = styled.div`
 const NoneAl = styled.h1`
     ${flexAlign};
     height: 200px;
-    @media(max-width: 800px) {
+    @media (max-width: ${p=>p.theme.tabletS}) {
         flex-direction: column;
     }
-    @media(max-width: 425px) {
+    @media (max-width: ${p=>p.theme.mobile}) {
         font-size: 1em;
     }
 `;

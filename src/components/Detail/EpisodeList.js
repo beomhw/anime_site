@@ -15,7 +15,7 @@ const Container = styled.div`
     width: 80vw;
     height: 80vh;
     border-radius: 20px;
-    background-color: ${p=>p.theme.container};
+    background-color: ${p=>p.themeMode.container};
     margin: 0 auto;
     position: fixed;
     z-index: 100;
@@ -43,12 +43,12 @@ const Menu = styled.select`
     height: 30px;
     border-radius: 10px;
     border: none;
-    color: ${p=>p.theme.text};
+    color: ${p=>p.themeMode.text};
     background-color: rgba(0,0,0,0.2);
     &:focus {
         outline: none;
     }
-    @media(max-width: 500px) {
+    @media (max-width: ${p=>p.theme.mobile}) {
         width: 70px;
         height: 30px;
     }
@@ -83,7 +83,7 @@ const H3 = styled.h3`
     font-size: 2em;
     margin: 0;
     display: inline;
-    @media(max-width: 500px) {
+    @media (max-width: ${p=>p.theme.mobile}) {
         font-size: 1em;
     }
 `;
@@ -103,7 +103,7 @@ const EpisodeList = ({id, seasons, modal, setModal}) => {
         api.getSeasonEpisodes(id, seasonId, la.type).then(res => {
             console.log(res.data);
             let data = res.data.episodes.filter(ep => new Date(ep.air_date) < new Date());
-            setSeasonInfo({name: res.data.name, data: data});
+            setSeasonInfo({name: res.data.name, data: data, air_date: res.data.air_date});
             setLoading(false);
         })
     },[seasonId]);
@@ -116,22 +116,27 @@ const EpisodeList = ({id, seasons, modal, setModal}) => {
 
     return (
         <Modal size={size} modal={modal} onExit={onExit}>
-            {loading ? <Container theme={theme}><LoadingBox> <Loading /> </LoadingBox></Container> :
-            <Container theme={theme}>
+            {loading ? <Container themeMode={theme}><LoadingBox> <Loading /> </LoadingBox></Container> :
+            <Container themeMode={theme}>
                 <Header><Exit onClick={onExit}><ImCancelCircle /></Exit></Header>
                 <Nav>
                     <H3>
                         {seasonInfo.name}
                     </H3>
-                    <Menu theme={theme} value={seasonId} onChange={onChange}>
+                    <Menu themeMode={theme} value={seasonId} onChange={onChange}>
                         {seasons.map((se,i) => <option key={i} value={se.season_number}> {se.name} </option>)}
                     </Menu>
                 </Nav>
+                {seasonInfo.air_date !== '' ? 
                 <EpisodeContainer>
                 {seasonInfo.data.map((ep,i) => 
                     <Episode key={i} ep={ep}/>
                 )}
+                </EpisodeContainer> :
+                <EpisodeContainer>
+                    <h2>{la.Detail.will_air}</h2>
                 </EpisodeContainer>
+                }
             </Container>
             }
         </Modal>

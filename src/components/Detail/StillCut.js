@@ -50,7 +50,7 @@ const StillCut = ({still, teaser, media}) => {
     }
 
     return (
-        <Container theme={theme}>
+        <Container themeMode={theme}>
             <Swiper
                 slidesPerView={1}
                 scrollbar={{draggable: true}} 

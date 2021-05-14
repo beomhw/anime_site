@@ -6,7 +6,7 @@ import {flexAlign} from '../../css/cssModule';
 import {Link} from 'react-router-dom';
 
 const ResultBox = styled.div`
-    background-color: ${p=>p.theme.container};
+    background-color: ${p=>p.themeMode.container};
     width: 60vw;
     height: 150px;
     margin-bottom: 20px;
@@ -14,7 +14,7 @@ const ResultBox = styled.div`
     display: flex;
     flex-direction: flex-start;
     box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    @media(max-width: 500px) {
+    @media (max-width: ${p=>p.theme.mobile}) {
         width: 80vw;
     }
 `;
@@ -35,7 +35,7 @@ const DescriptionBox = styled.div`
     width: calc(60vw - 100px);
     height: 100%;
     padding: 15px;
-    @media(max-width: 500px) {
+    @media (max-width: ${p=>p.theme.mobile}) {
         width: calc(80vw - 100px);
     }
 `;
@@ -56,13 +56,13 @@ const MediaTypeBox = styled.div`
 const AniTitle = styled.div`
     flex: 1;
     font-size: 1.3em;
-    @media(max-width: 500px) {
+    @media (max-width: ${p=>p.theme.mobile}) {
         font-size: 1.1em;
     }
 `;
 
 const LinkS = styled(Link)`
-    color: ${p=>p.theme.text};
+    color: ${p=>p.themeMode.text};
 `;
 
 const OverviewBox = styled.div`
@@ -76,14 +76,14 @@ const SearchResult = ({ani}) => {
     const description = ani.overview.slice(0, 40) + '...';
     
     return (
-        <ResultBox theme={theme}>
+        <ResultBox themeMode={theme}>
             {ani.poster_path ? /* 애니 이미지 */
             <PosterImg url={`${IMG_URL}${ani.poster_path}`} ><MediaTypeBox>{ani.media_type}</MediaTypeBox></PosterImg> :
             <PosterImg url={dogeza}><MediaTypeBox>{ani.media_type}</MediaTypeBox></PosterImg>
             }
             <DescriptionBox>
                 <AniTitle> {/* 애니 제목 */}
-                    <LinkS theme={theme} to={`/anime_site/detail/${ani.id}/${ani.media_type}`} >
+                    <LinkS themeMode={theme} to={`/anime_site/detail/${ani.id}/${ani.media_type}`} >
                         {ani.media_type === 'movie' ? ani.title : ani.name}
                     </LinkS>
                 </AniTitle>

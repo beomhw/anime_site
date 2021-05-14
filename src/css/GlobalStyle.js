@@ -24,18 +24,18 @@ const GlobalStyleCreate = createGlobalStyle`
         margin: 0;
         width: calc(100vw - 10px);
         min-height: 100vh;
-        background-color: ${p=>p.theme.background};
+        background-color: ${p=>p.themeMode.background};
         transition-duration: 0.2s;
     }
     div {
-        color: ${p=>p.theme.text};
+        color: ${p=>p.themeMode.text};
         transition-duration: 0.2s;
     }
     ::-webkit-scrollbar {
         width: 10px;
     } 
     ::-webkit-scrollbar-thumb {
-        background-color: ${p=>p.theme.text};
+        background-color: ${p=>p.themeMode.text};
         border-radius: 10px;
         background-clip: padding-box;
         border: 2px solid transparent;
@@ -67,7 +67,7 @@ const GlobalStyle = () => {
     const theme = useTheme();
 
     return (
-        <GlobalStyleCreate theme={theme}/>
+        <GlobalStyleCreate themeMode={theme}/>
     );
 }
 

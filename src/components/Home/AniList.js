@@ -21,7 +21,7 @@ const LinkStyle = styled(Link)`
 const Container = styled.div`
     width: 100%;
     height: 500px;
-    @media(max-width: 500px) {
+    @media (max-width: ${p=>p.theme.mobile}) {
         height: 250px;
         margin: 10px 0 10px 0px;
     }
@@ -34,7 +34,7 @@ const AniContainer = styled.div`
     height: 500px;
     flex-direction: column;
     cursor: pointer;
-    @media(max-width: 500px) {
+    @media (max-width: ${p=>p.theme.mobile}) {
         width: 180px;
         height: 250px;
     }
@@ -45,7 +45,7 @@ const LoadingBox = styled.div`
     height: 500px;
     font-size: 1.4em;
     transition: unset;
-    @media(max-width: 500px) {
+    @media (max-width: ${p=>p.theme.mobile}) {
         height: 250px;
     }
 `;
@@ -54,12 +54,12 @@ const Img = styled.img`
     max-width: 300px;
     max-height: 400px;
     border-radius: 10px;
-    @media(max-width: 500px) {
+    @media (max-width: ${p=>p.theme.mobile}) {
         width: 150px;
         object-fit: cover;
     }
     transition: 0.2s;
-    @media(min-width: 1100px) {
+    @media (min-width: ${p=>p.theme.tabletS}) {
         &:hover {
             max-width: 350px;
             max-height: 450px;

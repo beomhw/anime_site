@@ -12,7 +12,7 @@ const DescriptionContainer = styled.div`
     margin-top: 10px;
     margin-bottom: 20px;
     border-radius: 20px;
-    background-color: ${p=>p.theme.container};
+    background-color: ${p=>p.themeMode.container};
     padding: 20px;
     line-height: 30px;
 `;
@@ -52,7 +52,7 @@ const Description = ({la, overview}) => {
     }
 
     return (
-        <DescriptionContainer theme={theme}>
+        <DescriptionContainer themeMode={theme}>
             {overview}
         </DescriptionContainer>
     );

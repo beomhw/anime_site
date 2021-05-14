@@ -8,7 +8,7 @@ const Button = styled.div`
     height: 30px;
     border-radius: 30px;
     border: 2px solid gray;
-    background-color: ${p => p.theme.container};
+    background-color: ${p => p.themeMode.container};
     cursor: pointer;
     transition-duration: 0.3s;
     border-color: #ac0d0d;    
@@ -67,7 +67,7 @@ const ThemeToggle = () => {
 
     return (
         <Div>
-            <Button onClick={Change} theme={theme}>
+            <Button onClick={Change} themeMode={theme}>
                 <SwitchButton move={x} />
             </Button>
         </Div>

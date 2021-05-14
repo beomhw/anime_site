@@ -9,13 +9,13 @@ const Container = styled.div`
     border: 1px solid #dddddd;
     margin-bottom: 15px;
     grid-gap: 5px; // 그리드 셀 사이 공간\
-    @media(max-width: 1024px) {
+    @media (max-width: ${p=>p.theme.tabletS}) {
         grid-template: auto;
         height: 400px;
         grid-template-rows: minmax(150px, auto);
         grid-template-columns: minmax(150px, auto);
     }
-    @media(min-width: 1025px) {
+    @media (min-width: ${p=>p.theme.tabletS}) {
         height: 200px;
         grid-template-rows: auto;
         grid-template-columns: minmax(300px, 300px);
@@ -31,7 +31,7 @@ const StillContainer = styled.div`
     background-position: center;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
-    @media(max-width: 1024px) {
+    @media (max-width: ${p=>p.theme.tabletS}) {
         border-bottom-left-radius: 0px;
         border-top-right-radius: 10px;
         grid-column: 1 / 4;
@@ -45,7 +45,7 @@ const TitleContainer = styled.div`
     grid-row: 1;
     display: flex;
     align-items: center;
-    @media(max-width: 1024px) {
+    @media (max-width: ${p=>p.theme.tabletS}) {
         grid-column: 1 / 4;
         grid-row: 5;
         flex-direction: column;
@@ -65,7 +65,7 @@ const AirDate = styled.p`
     margin-left: auto;
     margin-right: 15px;
     min-width: 85px;
-    @media(max-width: 1024px) {
+    @media (max-width: ${p=>p.theme.tabletS}) {
         margin: 0 auto;
         min-width: 0;
     }
@@ -77,7 +77,7 @@ const OverviewContainer = styled.div`
     padding: 10px;
     font-size: 0.9em;
     overflow-y: auto;
-    @media(max-width: 1024px) {
+    @media (max-width: ${p=>p.theme.tabletS}) {
         grid-column: 1 / 4;
         grid-row: 6 / 8;
     }

@@ -17,7 +17,7 @@ const SearchInput = styled.input`
     font-size: 2.2em;
     padding: 20px;
     background-color: ${p=>p.theme.background};
-    color: ${p=>p.theme.text};
+    color: ${p=>p.themeMode.text};
     box-shadow: none;
     border: 0;
     border-bottom: 1px solid #dddddd;
@@ -31,7 +31,7 @@ const SearchButton = styled.div`
     width: 50px;
     height: 80px;
     border-bottom: 1px solid #dddddd;
-    color: ${p=>p.theme.text};
+    color: ${p=>p.themeMode.text};
     ${flexAlign};
     font-size: 2.2em;
     &:hover {
@@ -67,8 +67,8 @@ const Input = ({setPages, setLoading, input, setInput, setSearchResults, la}) =>
 
     return (
         <SearchContainer>
-            <SearchInput autoComplete="off" onChange={e => onChange(e)} value={input} name="query" placeholder="Search" theme={theme} />
-            <SearchButton onClick={() => onSearch(input)} theme={theme}><BsSearch/></SearchButton>
+            <SearchInput autoComplete="off" onChange={e => onChange(e)} value={input} name="query" placeholder="Search" themeMode={theme} />
+            <SearchButton onClick={() => onSearch(input)} themeMode={theme}><BsSearch/></SearchButton>
         </SearchContainer>
     );
 }

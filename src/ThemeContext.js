@@ -33,7 +33,7 @@ const ThemeReducer = (state, action) => {
     }
 };
 
-export const ThemeProvider = ({children}) => {
+export const ThemeModeProvider = ({children}) => {
     const [state, dispatch] = useReducer(ThemeReducer, initialTheme);
 
     useEffect(() => {

@@ -34,7 +34,7 @@ const CastCard = styled.div`
     border: 1px solid #dddddd;
     flex-direction: column;
     border-radius: 10px;
-    background-color: ${p=>p.theme.container};
+    background-color: ${p=>p.themeMode.container};
     flex: none;
     overflow: hidden;
 `;
@@ -104,7 +104,7 @@ const Cast = ({media, id, la}) => {
             <Swiper style={{width: '100%'}} breakpoints={breakpoints} navigation>
             {casts && casts.cast.map((cast, i) => 
                 <SwiperSlide key={i}>
-                <CastCard theme={theme}>
+                <CastCard themeMode={theme}>
                     {cast.profile_path ? 
                     <CastImg src={`${IMG_URL}${cast.profile_path}`} /> :
                     <CastImg src={dogeza} />
