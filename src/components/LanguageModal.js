@@ -12,7 +12,7 @@ const Container = styled.div`
     width: 400px;
     height: 300px;
     border-radius: 10px;
-    background-color: ${p=>p.themeMode.container};
+    background-color: ${p=>p['data-thememode'].container};
     margin: 0 auto;
     position: fixed;
     z-index: 500;
@@ -73,7 +73,7 @@ const LanguageModal = ({modal, setModal}) => {
 
     return (
         <Modal size={size} modal={modal} onExit={onExit}>
-            <Container themeMode={theme}>
+            <Container data-thememode={theme}>
                 <Header><RiCloseLine style={{cursor: 'pointer'}} onClick={onExit} /></Header>
                 <Message>Select your language</Message>
                 <Content>

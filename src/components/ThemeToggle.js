@@ -8,7 +8,7 @@ const Button = styled.div`
     height: 30px;
     border-radius: 30px;
     border: 2px solid gray;
-    background-color: ${p => p.themeMode.container};
+    background-color: ${p => p['data-thememode'].container};
     cursor: pointer;
     transition-duration: 0.3s;
     border-color: #ac0d0d;    
@@ -59,7 +59,7 @@ const ThemeToggle = () => {
         })
     },[on])
 
-    console.log(theme);
+    //console.log(theme);
 
     const Change = () => {
         setOn(!on);
@@ -67,7 +67,7 @@ const ThemeToggle = () => {
 
     return (
         <Div>
-            <Button onClick={Change} themeMode={theme}>
+            <Button onClick={Change} data-thememode={theme}>
                 <SwitchButton move={x} />
             </Button>
         </Div>

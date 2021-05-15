@@ -12,16 +12,13 @@ const DescriptionContainer = styled.div`
     margin-top: 10px;
     margin-bottom: 20px;
     border-radius: 20px;
-    background-color: ${p=>p.themeMode.container};
+    background-color: ${p=>p['data-thememode'].container};
     padding: 20px;
     line-height: 30px;
 `;
 
 const GhostBox = styled.div`
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: center;
-    flex: 4;
+    ${flexAlign};
 `;
 
 const TextBox = styled.div`
@@ -32,7 +29,9 @@ const TextBox = styled.div`
 
 const Text = styled.p`
     font-size: 1.4em;
+    text-align: center;
     margin: 0;
+    margin-bottom: 20px;
 `;
 
 const Description = ({la, overview}) => {
@@ -40,19 +39,19 @@ const Description = ({la, overview}) => {
 
     if(overview.length === 0) {
         return (
-            <DescriptionContainer style={{width: '80vw'}}>
+            <div style={{width: '80vw'}}>
                 <GhostBox>
                     <ApngComponent autoPlay={true} src={ghost} />
                 </GhostBox>
                 <TextBox>
                     <Text>{la.Detail.null_intro}</Text>
                 </TextBox>
-            </DescriptionContainer>
+            </div>
         );
     }
 
     return (
-        <DescriptionContainer themeMode={theme}>
+        <DescriptionContainer data-thememode={theme}>
             {overview}
         </DescriptionContainer>
     );

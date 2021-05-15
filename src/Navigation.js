@@ -30,7 +30,7 @@ const HeaderContainer = styled.div`
     ${flexAlign};
     width: 100%;
     z-index: 50;
-    background-color: ${p=>p.themeMode.background};
+    background-color: ${p=>p['data-thememode'].background};
 `;
 
 const BodyContainer = styled.div`
@@ -49,9 +49,9 @@ const BodyContainer = styled.div`
 const LinkStyle = styled(Link)`
     font-size: 1.2em;
     margin-right: 50px;
-    color: ${p=>p.themeMode.text};
+    color: ${p=>p['data-thememode'].text};
     &:active {
-        color: ${p=>p.themeMode.text};
+        color: ${p=>p['data-thememode'].text};
     }
     @media(max-width: ${p=>p.theme.mobile}) {
         margin: 0;
@@ -62,7 +62,7 @@ const Footer = styled.div`
     width: 100%;
     height: 200px;
     margin-top: auto;
-    background-color: ${p=>p.themeMode.container};
+    background-color: ${p=>p['data-thememode'].container};
     padding: 30px;
     ${flexAlign};
     @media(max-width: ${p=>p.theme.mobile}) {
@@ -84,7 +84,7 @@ const TMDB = styled.a`
         color: #ac0d0d;
     }
     cursor: pointer;
-    color: ${p=>p.themeMode.text};
+    color: ${p=>p['data-thememode'].text};
 `;
 
 const FooterIcons = styled.div`
@@ -102,7 +102,7 @@ const IconsBox = styled.a`
         color: #ac0d0d;
     }
     cursor: pointer;
-    color: ${p=>p.themeMode.text};
+    color: ${p=>p['data-thememode'].text};
     @media(max-width: ${p=>p.theme.mobile}) {
         margin: 5px;
     }
@@ -128,7 +128,6 @@ const Navigation = () => {
         opacity: 0,
         visibility: 'hidden'
     });
-    console.log(pathname);
 
     useEffect(() => {
         setLoading(1);
@@ -140,17 +139,17 @@ const Navigation = () => {
         <Container>
             {loading ? <>Now Loading..</> : <>
             {size.width > 960 ? 
-            <HeaderContainer themeMode={theme}>
-                <LinkStyle themeMode={theme} to='/anime_site/'><img src={logo} /></LinkStyle>
-                <LinkStyle themeMode={theme} style={pathname === '/anime_site/' ? {color: '#8c0000'} : {}} to='/anime_site/'>HOME</LinkStyle>
-                <LinkStyle themeMode={theme} style={pathname === '/anime_site/seasons' ? {color: '#8c0000'} : {}} to='/anime_site/seasons'>SEASONS</LinkStyle>
-                <LinkStyle themeMode={theme} style={pathname === '/anime_site/search' ? {color: '#8c0000'} : {}} to='/anime_site/search'>SEARCH</LinkStyle>
+            <HeaderContainer data-thememode={theme}>
+                <LinkStyle data-thememode={theme} to='/anime_site/'><img src={logo} /></LinkStyle>
+                <LinkStyle data-thememode={theme} style={pathname === '/anime_site/' ? {color: '#8c0000'} : {}} to='/anime_site/'>HOME</LinkStyle>
+                <LinkStyle data-thememode={theme} style={pathname === '/anime_site/seasons' ? {color: '#8c0000'} : {}} to='/anime_site/seasons'>SEASONS</LinkStyle>
+                <LinkStyle data-thememode={theme} style={pathname === '/anime_site/search' ? {color: '#8c0000'} : {}} to='/anime_site/search'>SEARCH</LinkStyle>
                 <LanguageToggle setModal={setModal}/>
                 <ThemeToggle />
             </HeaderContainer> :
-            <HeaderContainer themeMode={theme}>
+            <HeaderContainer data-thememode={theme}>
                 <MobileNav setOn={setOn} on={on} theme={theme} pathname={pathname} />
-                <LinkStyle themeMode={theme} to='/anime_site/'><img src={logo} /></LinkStyle>
+                <LinkStyle data-thememode={theme} to='/anime_site/'><img src={logo} /></LinkStyle>
                 <Hamburger la={state} pathname={pathname} theme={theme} setOn={setOn} nav={on.nav} />
             </HeaderContainer>
             }
@@ -164,18 +163,18 @@ const Navigation = () => {
                 </Switch>
                 <UpToggle/>
             </BodyContainer>
-            <Footer themeMode={theme}> 
+            <Footer data-thememode={theme}> 
                 <FooterText>
-                    THANKS FOR&nbsp;<TMDB themeMode={theme} href="https://www.themoviedb.org/">TMDB!</TMDB>
+                    THANKS FOR&nbsp;<TMDB data-thememode={theme} href="https://www.themoviedb.org/">TMDB!</TMDB>
                 </FooterText>
                 <FooterIcons>
-                    <IconsBox themeMode={theme} href="https://github.com/beomhw">
+                    <IconsBox data-thememode={theme} href="https://github.com/beomhw">
                         <AiFillGithub />
                     </IconsBox>
-                    <IconsBox themeMode={theme}>
+                    <IconsBox data-thememode={theme}>
                         <AiFillFacebook /> 
                     </IconsBox>
-                    <IconsBox themeMode={theme}>
+                    <IconsBox data-thememode={theme}>
                         <AiFillTwitterCircle />
                     </IconsBox>
                 </FooterIcons>

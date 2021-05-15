@@ -17,7 +17,7 @@ const Container = styled.div`
         width: 30px;
         height: 3px;
         border-radius: 2px;
-        background-color: ${p=>p.themeMode.text};
+        background-color: ${p=>p['data-thememode'].text};
         margin-bottom: 5px;
         z-index: 200;
         user-select: none;
@@ -93,7 +93,7 @@ const Hamburger = ({la, setOn, nav, theme, pathname}) => {
     }
 
     return (
-        <Container themeMode={theme} onClick={onActive} on={burgerOn}>
+        <Container data-thememode={theme} onClick={onActive} on={burgerOn}>
             <span className="burger burger_top" />
             <span className="burger burger_center" />
             <span className="burger burger_bottom" />

@@ -16,8 +16,8 @@ const SearchInput = styled.input`
     height: 80px;
     font-size: 2.2em;
     padding: 20px;
-    background-color: ${p=>p.theme.background};
-    color: ${p=>p.themeMode.text};
+    background-color: ${p=>p['data-thememode'].background};
+    color: ${p=>p['data-thememode'].text};
     box-shadow: none;
     border: 0;
     border-bottom: 1px solid #dddddd;
@@ -31,7 +31,7 @@ const SearchButton = styled.div`
     width: 50px;
     height: 80px;
     border-bottom: 1px solid #dddddd;
-    color: ${p=>p.themeMode.text};
+    color: ${p=>p['data-thememode'].text};
     ${flexAlign};
     font-size: 2.2em;
     &:hover {
@@ -49,7 +49,7 @@ const Input = ({setPages, setLoading, input, setInput, setSearchResults, la}) =>
     
     const onChange = e => {
         setInput(e.target.value);
-        console.log(input);
+        //console.log(input);
     }
 
     const onSearch = query => {
@@ -58,7 +58,7 @@ const Input = ({setPages, setLoading, input, setInput, setSearchResults, la}) =>
 
         setLoading(true);
         api.searchAnime(query, la, 1).then(res => {
-            console.log(res.data);
+            //console.log(res.data);
             setSearchResults(res.data.results.filter(re => re.media_type !== 'person' && re.genre_ids.includes(16)));
             setPages(res.data.total_pages);
             setLoading(false);
@@ -67,8 +67,8 @@ const Input = ({setPages, setLoading, input, setInput, setSearchResults, la}) =>
 
     return (
         <SearchContainer>
-            <SearchInput autoComplete="off" onChange={e => onChange(e)} value={input} name="query" placeholder="Search" themeMode={theme} />
-            <SearchButton onClick={() => onSearch(input)} themeMode={theme}><BsSearch/></SearchButton>
+            <SearchInput autoComplete="off" onChange={e => onChange(e)} value={input} name="query" placeholder="Search" data-thememode={theme} />
+            <SearchButton onClick={() => onSearch(input)} data-thememode={theme}><BsSearch/></SearchButton>
         </SearchContainer>
     );
 }

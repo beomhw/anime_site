@@ -107,7 +107,7 @@ const breakpoints = {
 }
 
 const Recommend = ({recommendations, media, la}) => {
-    console.log(recommendations);
+    //console.log(recommendations);
     // 추천 알고리즘에서 애니메이션만 선별
     const recommend = recommendations.filter(re => re.genre_ids.includes(16));
 

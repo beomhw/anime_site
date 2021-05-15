@@ -23,7 +23,7 @@ const Container = styled.div`
 const Header = styled.div`
     width: 100%;
     min-height: 300px;
-    background-color: ${p=>p.themeMode.container};
+    background-color: ${p=>p['data-thememode'].container};
     ${flexAlign};
     margin-bottom: 50px;
     @media (max-width: ${p=>p.theme.mobile}) {
@@ -31,7 +31,7 @@ const Header = styled.div`
         background-image: url(${p=>p.url});
         background-size: cover;
         background-position-x: center;
-        ${p=>p.themeMode.mode === 'dark' ? 
+        ${p=>p['data-thememode'].mode === 'dark' ? 
         css`box-shadow: inset 0px 100px 10px 0px rgba(0, 0, 0, 0.7);` : 
         css`box-shadow: inset 0px 100px 10px 0px rgba(255, 255, 255, 0.7);`
         }
@@ -117,7 +117,7 @@ const GenreContainer = styled.div`
 const GenreBox = styled.div`
     padding: 10px;
     border-radius: 5px;
-    background-color: ${p=>p.themeMode.background};
+    background-color: ${p=>p['data-thememode'].background};
     margin: 5px;
     border: 1px solid #dddddd;
     ${flexAlign};
@@ -140,7 +140,7 @@ const SeasonContainer = styled.div`
     width: 80vw;
     height: 200px;
     border-radius: 20px;
-    background-color: ${p=>p.themeMode.container};
+    background-color: ${p=>p['data-thememode'].container};
     margin-top: 10px;
     margin-bottom: 20px;
     display: flex;
@@ -227,7 +227,6 @@ const TeaserContainer = styled.div`
 
 const Detail = ({match, history}) => {
     const size = useGetSize();
-    console.log(size);
     const la = useLanguage(); // 언어
     const theme= useTheme(); // 테마
     const {params: {id}, params: {media}} = match;
@@ -251,25 +250,25 @@ const Detail = ({match, history}) => {
         setLoading(true);
         window.scrollTo(0,0);
         api.getAnimeInfo(media, id, la.type).then(res => {
-            console.log(res);
+            //console.log(res);
             setAnime(res);
             if(media === 'tv')
                 setLastSeason(res.seasons[res.seasons.length-1]);
         }).then(() => {
             api.getAnimeImg(media, id).then(res => {
-                console.log(res);
+                //console.log(res);
                 setStill(res.data.backdrops);
             }).then(() => {
                 api.getAnimeRecommendation(media, id, la.type).then(res => {
-                    console.log(res.data.results);
+                    //console.log(res.data.results);
                     setRecommendations(res.data.results);
                 })
                 .then(() => {
                     if(media === 'movie') {
                         api.getAnimeVideo(media, id, la.type).then(res => {
-                            console.log(res.data);
+                            //console.log(res.data);
                             setTeaser(res.data.results);
-                            console.log(anime);
+                            //console.log(anime);
                             setLoading(false);
                         })
                     } else setLoading(false);
@@ -283,7 +282,7 @@ const Detail = ({match, history}) => {
     return (
         <Container url={`${IMG_URL}${anime.backdrop_path}`}>
             {media === 'tv' && <Comp.EpisodeList id={anime.id} seasons={anime.seasons} modal={modal} setModal={setModal} /> }
-            <Header themeMode={theme} url={`${IMG_URL}${anime.backdrop_path}`}>
+            <Header data-thememode={theme} url={`${IMG_URL}${anime.backdrop_path}`}>
                 <BackdropCover 
                     url={anime.backdrop_path ? 
                     `${IMG_URL}${anime.backdrop_path}` : 
@@ -301,12 +300,12 @@ const Detail = ({match, history}) => {
                     :<><TitleText>{anime.title}</TitleText><p>{la.Detail.movie_air_date} : {anime.release_date}</p></>}
                     <GenreContainer>
                         {anime.genres.map((ge, i) => 
-                        <GenreBox key={i} themeMode={theme}>{ge.name}</GenreBox>)}
+                        <GenreBox key={i} data-thememode={theme}>{ge.name}</GenreBox>)}
                     </GenreContainer>
                     </TitleGenreContainer>
-                    <CompanyImgBox themeMode={theme}>
+                    <CompanyImgBox data-thememode={theme}>
                         {anime.production_companies.map((company, i) => {
-                            if(i > 2) return <></>
+                            if(i > 2) return <div key={i}></div>
                             if(company.logo_path) return (
                                 <CompanyImg key={i} url={IMG_URL + company.logo_path} />
                             )
@@ -321,7 +320,7 @@ const Detail = ({match, history}) => {
             {media === 'tv' && 
             <Content>
                 <TextH1>{la.Detail.season}</TextH1>
-                <SeasonContainer themeMode={theme}>
+                <SeasonContainer data-thememode={theme}>
                     {size.width < 500 ? 
                         <SeasonPosterMobile url={lastSeason.backdrop_path ? 
                             `${IMG_URL}${lastSeason.poster_path}` :

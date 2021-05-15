@@ -25,8 +25,6 @@ const Search = () => {
     const [loading, setLoading] = useState(false);
     const [pages, setPages] = useState(0);
 
-    console.log(searchResults);
-
     return (
         <Container>
             <Comp.Input 

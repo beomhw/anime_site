@@ -6,7 +6,7 @@ import {Language} from './Util';
 const initialLanguage = Language.kr;
 
 const LanguageReducer = (state, action) => {
-    console.log(action);
+    //console.log(action);
     switch(action.type) {
         case 'KO':
             return Language.kr;

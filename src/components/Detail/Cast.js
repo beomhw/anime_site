@@ -34,7 +34,7 @@ const CastCard = styled.div`
     border: 1px solid #dddddd;
     flex-direction: column;
     border-radius: 10px;
-    background-color: ${p=>p.themeMode.container};
+    background-color: ${p=>p['data-thememode'].container};
     flex: none;
     overflow: hidden;
 `;
@@ -87,7 +87,7 @@ const Cast = ({media, id, la}) => {
 
     useEffect(() => {
         api.getAnimeCast(media, id, la.type).then(res => {
-            console.log(res.data);
+            //console.log(res.data);
             setCasts(res.data);
             setLoading(false);
         })
@@ -104,7 +104,7 @@ const Cast = ({media, id, la}) => {
             <Swiper style={{width: '100%'}} breakpoints={breakpoints} navigation>
             {casts && casts.cast.map((cast, i) => 
                 <SwiperSlide key={i}>
-                <CastCard themeMode={theme}>
+                <CastCard data-thememode={theme}>
                     {cast.profile_path ? 
                     <CastImg src={`${IMG_URL}${cast.profile_path}`} /> :
                     <CastImg src={dogeza} />

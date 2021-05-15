@@ -6,7 +6,7 @@ import {flexAlign} from '../../css/cssModule';
 import {Link} from 'react-router-dom';
 
 const ResultBox = styled.div`
-    background-color: ${p=>p.themeMode.container};
+    background-color: ${p=>p['data-thememode'].container};
     width: 60vw;
     height: 150px;
     margin-bottom: 20px;
@@ -62,7 +62,7 @@ const AniTitle = styled.div`
 `;
 
 const LinkS = styled(Link)`
-    color: ${p=>p.themeMode.text};
+    color: ${p=>p['data-thememode'].text};
 `;
 
 const OverviewBox = styled.div`
@@ -76,14 +76,14 @@ const SearchResult = ({ani}) => {
     const description = ani.overview.slice(0, 40) + '...';
     
     return (
-        <ResultBox themeMode={theme}>
+        <ResultBox data-thememode={theme}>
             {ani.poster_path ? /* 애니 이미지 */
             <PosterImg url={`${IMG_URL}${ani.poster_path}`} ><MediaTypeBox>{ani.media_type}</MediaTypeBox></PosterImg> :
             <PosterImg url={dogeza}><MediaTypeBox>{ani.media_type}</MediaTypeBox></PosterImg>
             }
             <DescriptionBox>
                 <AniTitle> {/* 애니 제목 */}
-                    <LinkS themeMode={theme} to={`/anime_site/detail/${ani.id}/${ani.media_type}`} >
+                    <LinkS data-thememode={theme} to={`/anime_site/detail/${ani.id}/${ani.media_type}`} >
                         {ani.media_type === 'movie' ? ani.title : ani.name}
                     </LinkS>
                 </AniTitle>

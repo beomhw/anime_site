@@ -15,7 +15,7 @@ const Container = styled.div`
     width: 80vw;
     height: 80vh;
     border-radius: 20px;
-    background-color: ${p=>p.themeMode.container};
+    background-color: ${p=>p['data-thememode'].container};
     margin: 0 auto;
     position: fixed;
     z-index: 100;
@@ -43,7 +43,7 @@ const Menu = styled.select`
     height: 30px;
     border-radius: 10px;
     border: none;
-    color: ${p=>p.themeMode.text};
+    color: ${p=>p['data-thememode'].text};
     background-color: rgba(0,0,0,0.2);
     &:focus {
         outline: none;
@@ -95,13 +95,13 @@ const EpisodeList = ({id, seasons, modal, setModal}) => {
     const [loading, setLoading] = useState(true);
     const theme = useTheme();
     const size = useGetSize();
-    console.log(seasons);
+    //console.log(seasons);
 
     useEffect(() => {
         setLoading(true);
         // null이면 안되는데..
         api.getSeasonEpisodes(id, seasonId, la.type).then(res => {
-            console.log(res.data);
+            //console.log(res.data);
             let data = res.data.episodes.filter(ep => new Date(ep.air_date) < new Date());
             setSeasonInfo({name: res.data.name, data: data, air_date: res.data.air_date});
             setLoading(false);
@@ -116,14 +116,14 @@ const EpisodeList = ({id, seasons, modal, setModal}) => {
 
     return (
         <Modal size={size} modal={modal} onExit={onExit}>
-            {loading ? <Container themeMode={theme}><LoadingBox> <Loading /> </LoadingBox></Container> :
-            <Container themeMode={theme}>
+            {loading ? <Container data-thememode={theme}><LoadingBox> <Loading /> </LoadingBox></Container> :
+            <Container data-thememode={theme}>
                 <Header><Exit onClick={onExit}><ImCancelCircle /></Exit></Header>
                 <Nav>
                     <H3>
                         {seasonInfo.name}
                     </H3>
-                    <Menu themeMode={theme} value={seasonId} onChange={onChange}>
+                    <Menu data-thememode={theme} value={seasonId} onChange={onChange}>
                         {seasons.map((se,i) => <option key={i} value={se.season_number}> {se.name} </option>)}
                     </Menu>
                 </Nav>

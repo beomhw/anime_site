@@ -15,7 +15,7 @@ const Container = styled.div`
 `;
 
 const SeasonList = ({list}) => {
-    console.log(list);
+    //console.log(list);
     return (
         <Container>
             {list.map((li,i) => <SeasonItem item={li} key={i}/>)}

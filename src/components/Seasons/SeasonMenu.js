@@ -35,9 +35,9 @@ const ViewButtonBox = styled.div`
 const Button = styled.button`
     background: 0;
     border-radius: 10px;
-    background-color: ${p=>p.themeMode.container};
+    background-color: ${p=>p['data-thememode'].container};
     cursor: pointer;
-    color: ${p=>p.themeMode.text};
+    color: ${p=>p['data-thememode'].text};
     font-weight: bold;
     height: 40px;
     border: 0;
@@ -58,8 +58,8 @@ const Select = styled.select`
     text-align-last: center;
     border-radius: 5px;
     border: none;
-    background-color: ${p=>p.themeMode.container};
-    color: ${p=>p.themeMode.text};
+    background-color: ${p=>p['data-thememode'].container};
+    color: ${p=>p['data-thememode'].text};
     &:focus {
         outline: none;
     }
@@ -77,7 +77,7 @@ const SeasonMenu = ({list, setList}) => {
 
     const onView = () => {
         setList([]);
-        console.log(season);
+        //console.log(season);
         let year = season.year;
         let gte; // 지정된 값보다 크거나 같을 경우
         let lte; // 지정된 값보다 작거나 같을 경우
@@ -102,13 +102,13 @@ const SeasonMenu = ({list, setList}) => {
                 throw new Error('unknown season!');
         }
         api.getSeason(gte, lte, 1, la.type).then(res => {
-            console.log(res);
+            //console.log(res);
             setList(li => li.concat(res.results));
             if(res.total_pages === 2) {
                 api.getSeason(gte, lte, 2, la.type).then(res => {
-                    console.log(res);
+                    //console.log(res);
                     setList(li => li.concat(res.results));
-                    console.log(list);
+                    //console.log(list);
                 })
             }
         });
@@ -122,14 +122,14 @@ const SeasonMenu = ({list, setList}) => {
     return (
         <Container>
             <SelectYearBox>
-                <Select themeMode={theme} onChange={e => onChangeYear(e.target.value)}>
+                <Select data-thememode={theme} onChange={e => onChangeYear(e.target.value)}>
                     {Array.apply(0, Array(20)).map((x, i) => 
-                        <option value={`${year-i}`}>{year - i}</option>
+                        <option key={i} value={`${year-i}`}>{year - i}</option>
                     )}
                 </Select>
             </SelectYearBox>
             <SelectSeasonBox>
-                <Select themeMode={theme} onChange={e => onChangeSeason(e.target.value)}>
+                <Select data-thememode={theme} onChange={e => onChangeSeason(e.target.value)}>
                     <option value="spring">{la.Season.quarter_1}</option>
                     <option value="summer">{la.Season.quarter_2}</option>
                     <option value="autumn">{la.Season.quarter_3}</option>
@@ -137,7 +137,7 @@ const SeasonMenu = ({list, setList}) => {
                 </Select>
             </SelectSeasonBox>
             <ViewButtonBox>
-                <Button themeMode={theme} onClick={onView}>{la.Season.select}</Button>
+                <Button data-thememode={theme} onClick={onView}>{la.Season.select}</Button>
             </ViewButtonBox>
         </Container>
     );

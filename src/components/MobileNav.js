@@ -9,9 +9,9 @@ import jp from '../asset/jp.png';
 const LinkStyle = styled(Link)`
     font-size: 1.2em;
     margin-bottom: 10px;
-    color: ${p=>p.themeMode.text};
+    color: ${p=>p['data-thememode'].text};
     &:active {
-        color: ${p=>p.themeMode.text};
+        color: ${p=>p['data-thememode'].text};
     }
 `;
 
@@ -74,9 +74,9 @@ const MobileNav = ({on, theme, pathname, setOn}) => {
 
     return (
         <Nav on={on}>
-            <LinkStyle themeMode={theme} style={pathname === '/anime_site/' ? {color: '#8c0000'} : {}} to='/anime_site/'>HOME</LinkStyle>
-            <LinkStyle themeMode={theme} style={pathname === '/anime_site/seasons' ? {color: '#8c0000'} : {}} to='/anime_site/seasons'>SEASONS</LinkStyle>
-            <LinkStyle themeMode={theme} style={pathname === '/anime_site/search' ? {color: '#8c0000'} : {}} to='/anime_site/search'>SEARCH</LinkStyle>
+            <LinkStyle data-thememode={theme} style={pathname === '/anime_site/' ? {color: '#8c0000'} : {}} to='/anime_site/'>HOME</LinkStyle>
+            <LinkStyle data-thememode={theme} style={pathname === '/anime_site/seasons' ? {color: '#8c0000'} : {}} to='/anime_site/seasons'>SEASONS</LinkStyle>
+            <LinkStyle data-thememode={theme} style={pathname === '/anime_site/search' ? {color: '#8c0000'} : {}} to='/anime_site/search'>SEARCH</LinkStyle>
             {/* <LinkStyle theme={theme} style={pathname === '/mypage' ? {color: '#8c0000'} : {}} to='/mypage'>MYPAGE</LinkStyle> */}
             Choose your language!
             <Content>

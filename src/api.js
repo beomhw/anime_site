@@ -9,10 +9,10 @@ const api = axios.create({
 export async function getAnime (media, type, la, year) {
     let res = await api.get(`discover/${media}?api_key=${API.API_KEY}&with_genres=${type}&with_keywords=${API.KEYWORD}&page=1&language=${la}&first_air_date_year=${year}`)
         .then(res => {
-        console.log('request animeList : ',res);
+        // console.log('request animeList : ',res);
         return res.data;
     }).catch(e => {
-        console.log(e);
+        // console.log(e);
     })
 
     return res;
@@ -22,10 +22,10 @@ export async function getAnime (media, type, la, year) {
 export async function getAnimeInfo (media, anime_id, la) {
     let res = await api.get(`${media}/${anime_id}?api_key=${API.API_KEY}&language=${la}`)
         .then(res => {
-            console.log('request getAnimeInfo : ', res);
+            //console.log('request getAnimeInfo : ', res);
             return res.data;
         }).catch(e => {
-            console.log(e);
+            //console.log(e);
         })
     return res;
 }
@@ -34,10 +34,10 @@ export async function getAnimeInfo (media, anime_id, la) {
 export async function getAnimeImg (media, anime_id) {
     let res = await api.get(`${media}/${anime_id}/images?api_key=${API.API_KEY}`)
         .then(res => {
-            console.log('request animeImg : ', res);
+            //console.log('request animeImg : ', res);
             return res;
         }).catch(e => {
-            console.log(e);
+            //console.log(e);
         })
     return res;
 }
@@ -46,10 +46,10 @@ export async function getAnimeImg (media, anime_id) {
 export async function getAnimeCast (media, anime_id, la_type) {
     let res = await api.get(`${media}/${anime_id}/credits?api_key=${API.API_KEY}&language=${la_type}`)
         .then(res => {
-            console.log('request animeCasts : ', res);
+            //console.log('request animeCasts : ', res);
             return res;
         }).catch(e => {
-            console.log(e);
+            //console.log(e);
         })
     return res;
 }
@@ -58,10 +58,10 @@ export async function getAnimeCast (media, anime_id, la_type) {
 export async function getAnimeVideo (media, anime_id, la_type) {
     let res = await api.get(`${media}/${anime_id}/videos?api_key=${API.API_KEY}&language=${la_type}`)
         .then(res => {
-            console.log('request animeVideo : ', res);
+            //console.log('request animeVideo : ', res);
             return res;
         }).catch(e => {
-            console.log(e);
+            //console.log(e);
         })
     return res;
 }
@@ -70,10 +70,10 @@ export async function getAnimeVideo (media, anime_id, la_type) {
 export async function getAnimeRecommendation (media, anime_id, la) {
     let res = await api.get(`${media}/${anime_id}/recommendations?api_key=${API.API_KEY}&language=${la}`)
         .then(res => {
-            console.log('request recommendation : ', res);
+            //console.log('request recommendation : ', res);
             return res;
         }).catch(e => {
-            console.log(e);
+            //console.log(e);
         })
     return res;
 }
@@ -82,10 +82,10 @@ export async function getAnimeRecommendation (media, anime_id, la) {
 export async function searchAnime (query, la, page) {
     let res = await api.get(`search/multi?api_key=${API.API_KEY}&query=${query}&page=${page}&language=${la}`)
         .then(res => {
-            console.log('search results : ', res);
+            //console.log('search results : ', res);
             return res;
         }).catch(e => {
-            console.log(e);
+            //console.log(e);
         })
     return res;
 }
@@ -94,10 +94,10 @@ export async function searchAnime (query, la, page) {
 export async function getSeasonEpisodes(id, seasonNum, la) {
     let res = await api.get(`tv/${id}/season/${seasonNum}?api_key=${API.API_KEY}&language=${la}`)
         .then(res => {
-            console.log('season info : ', res);
+            //console.log('season info : ', res);
             return res;
         }).catch(e => {
-            console.log(e);
+            //console.log(e);
         })
     return res;
 }
@@ -106,10 +106,10 @@ export async function getSeasonEpisodes(id, seasonNum, la) {
 export async function getSeason (first, last, page, la) {
     let res = await api.get(`discover/tv?api_key=${API.API_KEY}&with_keywords=${API.KEYWORD}&page=${page}&language=${la}&first_air_date.gte=${first}&first_air_date.lte=${last}`)
         .then(res => {
-        console.log('request seasonList : ',res);
+        //console.log('request seasonList : ',res);
         return res.data;
     }).catch(e => {
-        console.log(e);
+        //console.log(e);
     })
 
     return res;
