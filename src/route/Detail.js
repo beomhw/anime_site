@@ -230,8 +230,15 @@ const Detail = ({match, history}) => {
     const la = useLanguage(); // 언어
     const theme= useTheme(); // 테마
     const {params: {id}, params: {media}} = match;
-    const [anime, setAnime] = useState({}); // 애니 정보
-    const [loading, setLoading] = useState(true); // 로딩
+    const [anime, setAnime] = useState(); // 애니 정보
+
+    const [loading, setLoading] = useState({ // 로딩
+        still: true,
+        recommendations: true,
+        info: true,
+        teaser: true
+    }); 
+
     const [lastSeason, setLastSeason] = useState(); // 마지막 시즌 => tv 전용
     const [recommendations, setRecommendations] = useState(); // 추천
     const [still, setStill] = useState(); // 애니, 영화 스틸 컷
@@ -247,37 +254,42 @@ const Detail = ({match, history}) => {
     })
 
     useEffect(() => {
-        setLoading(true);
         window.scrollTo(0,0);
+
         api.getAnimeInfo(media, id, la.type).then(res => {
             //console.log(res);
             setAnime(res);
             if(media === 'tv')
                 setLastSeason(res.seasons[res.seasons.length-1]);
-        }).then(() => {
-            api.getAnimeImg(media, id).then(res => {
-                //console.log(res);
-                setStill(res.data.backdrops);
-            }).then(() => {
-                api.getAnimeRecommendation(media, id, la.type).then(res => {
-                    //console.log(res.data.results);
-                    setRecommendations(res.data.results);
-                })
-                .then(() => {
-                    if(media === 'movie') {
-                        api.getAnimeVideo(media, id, la.type).then(res => {
-                            //console.log(res.data);
-                            setTeaser(res.data.results);
-                            //console.log(anime);
-                            setLoading(false);
-                        })
-                    } else setLoading(false);
-                })
-            })
+            
+            setLoading(loading => ({...loading, info: false}))
         })
+
+        api.getAnimeImg(media, id).then(res => {
+            //console.log(res);
+            setStill(res.data.backdrops);
+            setLoading(loading => ({...loading, still: false}))
+        })
+
+        api.getAnimeRecommendation(media, id, la.type).then(res => {
+            //console.log(res.data.results);
+            setRecommendations(res.data.results);
+            setLoading(loading => ({...loading, recommendations: false}));
+        })
+
+        if(media === 'movie') {
+            api.getAnimeVideo(media, id, la.type).then(res => {
+                //console.log(res.data);
+                setTeaser(res.data.results);
+                //console.log(anime);
+                setLoading(loading => ({...loading, teaser: false}));
+            })
+        } else setLoading(loading => ({...loading, teaser: false}));
+
     },[id, la.type]);
 
-    if(loading) return <Container><LoadingBox><Loading /></LoadingBox></Container>
+    if(loading.teaser || loading.info || loading.still || loading.recommendations) 
+        return <Container><LoadingBox><Loading /></LoadingBox></Container>
 
     return (
         <Container url={`${IMG_URL}${anime.backdrop_path}`}>
@@ -365,3 +377,32 @@ const Detail = ({match, history}) => {
 }
 
 export default Detail;
+
+// api.getAnimeInfo(media, id, la.type).then(res => {
+//     //console.log(res);
+//     setAnime(res);
+//     if(media === 'tv')
+//         setLastSeason(res.seasons[res.seasons.length-1]);
+    
+//     setLoading({...loading, info: false})
+// }).then(() => {
+//     api.getAnimeImg(media, id).then(res => {
+//         //console.log(res);
+//         setStill(res.data.backdrops);
+//     }).then(() => {
+//         api.getAnimeRecommendation(media, id, la.type).then(res => {
+//             //console.log(res.data.results);
+//             setRecommendations(res.data.results);
+//         })
+//         .then(() => {
+//             if(media === 'movie') {
+//                 api.getAnimeVideo(media, id, la.type).then(res => {
+//                     //console.log(res.data);
+//                     setTeaser(res.data.results);
+//                     //console.log(anime);
+//                     setLoading(false);
+//                 })
+//             } else setLoading(false);
+//         })
+//     })
+// })
