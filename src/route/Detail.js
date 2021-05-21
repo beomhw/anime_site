@@ -377,32 +377,3 @@ const Detail = ({match, history}) => {
 }
 
 export default Detail;
-
-// api.getAnimeInfo(media, id, la.type).then(res => {
-//     //console.log(res);
-//     setAnime(res);
-//     if(media === 'tv')
-//         setLastSeason(res.seasons[res.seasons.length-1]);
-    
-//     setLoading({...loading, info: false})
-// }).then(() => {
-//     api.getAnimeImg(media, id).then(res => {
-//         //console.log(res);
-//         setStill(res.data.backdrops);
-//     }).then(() => {
-//         api.getAnimeRecommendation(media, id, la.type).then(res => {
-//             //console.log(res.data.results);
-//             setRecommendations(res.data.results);
-//         })
-//         .then(() => {
-//             if(media === 'movie') {
-//                 api.getAnimeVideo(media, id, la.type).then(res => {
-//                     //console.log(res.data);
-//                     setTeaser(res.data.results);
-//                     //console.log(anime);
-//                     setLoading(false);
-//                 })
-//             } else setLoading(false);
-//         })
-//     })
-// })
