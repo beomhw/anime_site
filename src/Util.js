@@ -1,8 +1,10 @@
+require('dotenv').config();
+
 // api 관련
-export const API_KEY = 'cb59848b3a5c6d911cf7fd94e24d30dc';
+export const API_KEY = process.env.REACT_APP_API_KEY;
+export const KEYWORD = process.env.REACT_APP_KEYWORD;
 export const URL = 'https://api.themoviedb.org/3/';
 export const IMG_URL = 'http://image.tmdb.org/t/p/w500';
-export const KEYWORD = 210024;
 
 export const Request = {
     all: '',

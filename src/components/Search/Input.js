@@ -67,8 +67,8 @@ const Input = ({setPages, setLoading, input, setInput, setSearchResults, la}) =>
 
     return (
         <SearchContainer>
-            <SearchInput autoComplete="off" onChange={e => onChange(e)} value={input} name="query" placeholder="Search" data-thememode={theme} />
-            <SearchButton onClick={() => onSearch(input)} data-thememode={theme}><BsSearch/></SearchButton>
+                <SearchInput autoComplete="off" onChange={e => onChange(e)} value={input} name="query" placeholder="Search" data-thememode={theme} />
+                <SearchButton onClick={() => onSearch(input)} data-thememode={theme}><BsSearch/></SearchButton>
         </SearchContainer>
     );
 }

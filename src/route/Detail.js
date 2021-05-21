@@ -171,7 +171,7 @@ const SeasonDescription = styled.div`
     flex-wrap: wrap;
     align-items: center;
     flex-direction: column;
-    padding: 40px 20px 20px 20px;
+    padding: 20px;
 `;
 
 const CompanyImgBox = styled.div`
@@ -254,6 +254,12 @@ const Detail = ({match, history}) => {
     })
 
     useEffect(() => {
+        setLoading({ // 로딩
+            still: true,
+            recommendations: true,
+            info: true,
+            teaser: true
+        });
         window.scrollTo(0,0);
 
         api.getAnimeInfo(media, id, la.type).then(res => {
