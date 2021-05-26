@@ -1,3 +1,4 @@
+import {useEffect} from 'react';
 import styled from 'styled-components';
 import {flexAlign} from '../../css/cssModule';
 import {useTheme} from '../../ThemeContext';
@@ -12,6 +13,14 @@ import YouTube from 'react-youtube';
 
 SwiperCore.use([Scrollbar]);
 
+const YoutubeStyle = styled(YouTube)`
+    max-width: 500px;
+    max-height: 280px;
+    @media(max-width: 500px) {
+        max-width: 400px;
+        max-height: 220px;
+    }
+`;
 
 const Container = styled.div`
     width: 80vw;
@@ -34,9 +43,19 @@ const NoneImg = styled.div`
     flex-direction: column;
 `;
 
-const StillCut = ({still, teaser, media}) => {
+const StillCut = ({still, teaser}) => {
     const theme = useTheme();
     const la = useLanguage();
+    
+    useEffect(() => {
+        if(teaser) {
+            if(teaser.length > 0) {
+                console.log('teaser true');
+            }
+        };
+    }, []);
+
+    console.log(teaser);
 
     if(still.length === 0) {
         return (
@@ -49,16 +68,23 @@ const StillCut = ({still, teaser, media}) => {
         )
     }
 
+    const onReady = e => e.target.pauseVideo();
+
     return (
         <Container themeMode={theme}>
             <Swiper
+                navigation
                 slidesPerView={1}
                 scrollbar={{draggable: true}} 
             >
-                {still.map((st, i) => 
-                
+                {still.map((st, i) =>
                     <SwiperSlide key={i}>
                         <Still src={`${IMG_URL}${st.file_path}`} />
+                    </SwiperSlide>
+                )}
+                {teaser.map((te, i) => 
+                    <SwiperSlide key={i}>
+                        <YoutubeStyle videoId={te.key} onReady={onReady} />
                     </SwiperSlide>
                 )}
             </Swiper>

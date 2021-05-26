@@ -283,20 +283,20 @@ const Detail = ({match, history}) => {
             setLoading(loading => ({...loading, recommendations: false}));
         })
 
-        if(media === 'movie') {
-            api.getAnimeVideo(media, id, la.type).then(res => {
-                //console.log(res.data);
-                setTeaser(res.data.results);
-                //console.log(anime);
-                setLoading(loading => ({...loading, teaser: false}));
-            })
-        } else setLoading(loading => ({...loading, teaser: false}));
+        api.getAnimeVideo(media, id, la.type).then(res => {
+            // console.log(res.data.results);
+            setTeaser(res.data.results);
+            //console.log(anime);
+            setLoading(loading => ({...loading, teaser: false}));
+        })
 
     },[id, la.type]);
 
+    // loading render
     if(loading.teaser || loading.info || loading.still || loading.recommendations) 
         return <Container><LoadingBox><Loading /></LoadingBox></Container>
 
+    // render detail
     return (
         <Container url={`${IMG_URL}${anime.backdrop_path}`}>
             {media === 'tv' && <Comp.EpisodeList id={anime.id} seasons={anime.seasons} modal={modal} setModal={setModal} /> }
@@ -368,7 +368,7 @@ const Detail = ({match, history}) => {
             </Content> }
             <Content>
                 <TextH1>{la.Detail.still}</TextH1>
-                <Comp.StillCut still={still} media={media} teaser={teaser} />
+                <Comp.StillCut still={still} teaser={teaser} />
             </Content>
             <Content>
                 <TextH1>{la.Detail.casts}</TextH1>
