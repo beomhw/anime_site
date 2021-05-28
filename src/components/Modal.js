@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 import {flexAlign} from '../css/cssModule';
 
@@ -25,4 +26,4 @@ const Modal = ({children, size, modal, onExit}) => {
     );
 }
 
-export default Modal;
+export default React.memo(Modal);

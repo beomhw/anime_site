@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useCallback} from 'react';
 import styled from 'styled-components';
 import {flexAlign} from '../../css/cssModule';
 import {useTheme} from '../../ThemeContext';
@@ -65,7 +65,7 @@ const Select = styled.select`
     }
 `;
 
-const SeasonMenu = ({list, setList}) => {
+const SeasonMenu = ({setList}) => {
     const theme = useTheme();
     const year = Number(new Date().getFullYear());
     const [season, setSeason] = useState({year: '2021', season: 'spring'});
@@ -75,7 +75,7 @@ const SeasonMenu = ({list, setList}) => {
         onView();
     },[la.type]);
 
-    const onView = () => {
+    const onView = useCallback(() => {
         setList([]);
         //console.log(season);
         let year = season.year;
@@ -112,7 +112,7 @@ const SeasonMenu = ({list, setList}) => {
                 })
             }
         });
-    }
+    }, [la.type, season]);
 
     const onChangeYear = (year) => setSeason({...season, year: year});
     const onChangeSeason = (se) => setSeason({...season, season: se});

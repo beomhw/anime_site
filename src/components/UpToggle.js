@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from 'react';
+import React,{useState, useEffect, useCallback} from 'react';
 import styled from 'styled-components';
 import {flexAlign} from '../css/cssModule';
 import {BsCaretUpFill} from 'react-icons/bs';
@@ -47,9 +47,9 @@ const UpToggle = () => {
         }
     },[])
 
-    const onTop = () => {
+    const onTop = useCallback(() => {
         window.scrollTo({top: 0, behavior: 'smooth'});
-    }
+    }, []);
 
     return (
         <Circle onClick={onTop} opacity={state.opacity} visibility={state.visibility}>

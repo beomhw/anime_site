@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useCallback} from 'react';
 import styled from 'styled-components';
 import {useTheme, useThemeDispatch} from '../ThemeContext';
 import {flexAlign} from '../css/cssModule';
@@ -61,9 +61,9 @@ const ThemeToggle = () => {
 
     //console.log(theme);
 
-    const Change = () => {
+    const Change = useCallback(() => {
         setOn(!on);
-    }
+    }, [on]);
 
     return (
         <Div>

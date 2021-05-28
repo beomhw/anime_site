@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useCallback} from 'react';
 import styled,{css} from 'styled-components';
 import {useTheme} from '../ThemeContext';
 import {flexAlign} from '../css/cssModule';
@@ -219,12 +219,6 @@ const MoreInfo = styled.div`
     }
 `;
 
-const TeaserContainer = styled.div`
-    height: 50px;
-    width: 100%;
-    border: 1px solid gray;
-`;
-
 const Detail = ({match, history}) => {
     const size = useGetSize();
     const la = useLanguage(); // 언어
@@ -248,10 +242,11 @@ const Detail = ({match, history}) => {
         opacity: 0,
         visibility: 'hidden'
     });
-    const onOpen = () => setModal({
+
+    const onOpen = useCallback(() => setModal({
         opacity: 1,
         visibility: 'visible'
-    })
+    }), [modal]);
 
     useEffect(() => {
         setLoading({ // 로딩

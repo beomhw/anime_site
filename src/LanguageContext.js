@@ -17,7 +17,7 @@ const LanguageReducer = (state, action) => {
         default:
             throw new Error(`Unknown action : ${action.type}`);
     }
-}
+};
 
 const LanguageContext = createContext();
 const LanguageReducerContext = createContext();

@@ -17,7 +17,7 @@ const Seasons = () => {
 
     return (
         <Container>
-            <Comp.SeasonMenu list={list} setList={setList} />
+            <Comp.SeasonMenu setList={setList} />
             <Comp.SeasonList list={list} />
         </Container>
     );

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -62,7 +62,7 @@ const Hamburger = ({la, setOn, nav, theme, pathname}) => {
         })
     },[pathname, la]);
 
-    const onActive = () => {
+    const onActive = useCallback(() => {
         if(nav) {
             setOn({
                 nav: false,
@@ -90,7 +90,7 @@ const Hamburger = ({la, setOn, nav, theme, pathname}) => {
                 y: 8
             })
         }
-    }
+    }, [nav]);
 
     return (
         <Container data-thememode={theme} onClick={onActive} on={burgerOn}>
