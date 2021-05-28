@@ -1,4 +1,4 @@
-import React,{useState, useEffect, useCallback} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import styled from 'styled-components';
 import {flexAlign} from '../css/cssModule';
 import {BsCaretUpFill} from 'react-icons/bs';
@@ -58,4 +58,4 @@ const UpToggle = () => {
     );
 }
 
-export default UpToggle;
+export default React.memo(UpToggle);

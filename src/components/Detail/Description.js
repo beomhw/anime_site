@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 import {flexAlign} from '../../css/cssModule';
 import {useTheme} from '../../ThemeContext';
@@ -57,4 +58,4 @@ const Description = ({la, overview}) => {
     );
 }
 
-export default Description;
+export default React.memo(Description);

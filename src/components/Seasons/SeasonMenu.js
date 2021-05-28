@@ -1,4 +1,4 @@
-import {useState, useEffect, useCallback} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import styled from 'styled-components';
 import {flexAlign} from '../../css/cssModule';
 import {useTheme} from '../../ThemeContext';
@@ -143,4 +143,4 @@ const SeasonMenu = ({setList}) => {
     );
 }
 
-export default SeasonMenu;
+export default React.memo(SeasonMenu);

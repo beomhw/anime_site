@@ -121,4 +121,4 @@ const Cast = ({media, id, la}) => {
     );
 }
 
-export default Cast;
+export default React.memo(Cast);

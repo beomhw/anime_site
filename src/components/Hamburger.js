@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -101,4 +101,4 @@ const Hamburger = ({la, setOn, nav, theme, pathname}) => {
     );
 };
 
-export default Hamburger;
+export default React.memo(Hamburger);

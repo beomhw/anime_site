@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 import ThemeToggle from './ThemeToggle';
@@ -89,4 +90,4 @@ const MobileNav = ({on, theme, pathname, setOn}) => {
     );
 };
 
-export default MobileNav;
+export default React.memo(MobileNav);

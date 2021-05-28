@@ -1,4 +1,4 @@
-import {useEffect} from 'react';
+import React, {useEffect} from 'react';
 import styled from 'styled-components';
 import {flexAlign} from '../../css/cssModule';
 import {useTheme} from '../../ThemeContext';
@@ -92,4 +92,4 @@ const StillCut = ({still, teaser}) => {
     );
 }
 
-export default StillCut;
+export default React.memo(StillCut);

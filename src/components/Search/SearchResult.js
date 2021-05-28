@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 import {IMG_URL} from '../../Util';
 import dogeza from '../../asset/dogeza_search.png';
@@ -93,4 +94,4 @@ const SearchResult = ({ani}) => {
     );
 }
 
-export default SearchResult;
+export default React.memo(SearchResult);

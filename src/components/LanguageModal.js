@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 import {useTheme} from '../ThemeContext';
 import {RiCloseLine} from 'react-icons/ri';
@@ -86,4 +87,4 @@ const LanguageModal = ({modal, setModal}) => {
     );
 }
 
-export default LanguageModal;
+export default React.memo(LanguageModal);

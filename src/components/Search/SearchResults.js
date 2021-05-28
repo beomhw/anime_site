@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import {flexAlign} from '../../css/cssModule';
 import {useTheme} from '../../ThemeContext';
@@ -45,12 +45,7 @@ const ViewmoreButton = styled.div`
     ${flexAlign};
 `;
 
-// 더보기 구현 flow
-// 1. 클릭 시 쿼리는 같게, page + 1로 api 검색 
-// if 결과에서 애니메이션 장르가 있을 경우 => 기존 state에 concat
-// if 결과에서 없을 경우 => 더 이상 없다는 메시지 출력
-
-const SearchResults = ({length, setSearchResults, results, pages, input}) => {
+const SearchResults = ({setSearchResults, results, pages, input}) => {
     const [count, setCount] = useState(1);
     const [loading, setLoading] = useState(false);
     const theme = useTheme();
@@ -96,4 +91,4 @@ const SearchResults = ({length, setSearchResults, results, pages, input}) => {
     )
 }
 
-export default SearchResults;
+export default React.memo(SearchResults);

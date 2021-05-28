@@ -1,5 +1,5 @@
 // 모달 형식으로 시즌 정보 제공
-import {useState, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import {useTheme} from '../../ThemeContext';
 import {flexAlign} from '../../css/cssModule';
@@ -143,4 +143,4 @@ const EpisodeList = ({id, seasons, modal, setModal}) => {
     );
 }
 
-export default EpisodeList;
+export default React.memo(EpisodeList);

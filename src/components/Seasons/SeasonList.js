@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 import SeasonItem from './SeasonItem';
 
@@ -23,4 +24,4 @@ const SeasonList = ({list}) => {
     );
 }
 
-export default SeasonList;
+export default React.memo(SeasonList);

@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 import {ImEarth} from 'react-icons/im';
 
@@ -26,4 +27,4 @@ const LanguageToggle = ({setModal}) => {
     );
 }
 
-export default LanguageToggle;
+export default React.memo(LanguageToggle);

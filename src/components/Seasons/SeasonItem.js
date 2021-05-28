@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 import {IMG_URL} from '../../Util';
 import dogeza from '../../asset/dogeza_reco.png';
@@ -65,4 +66,4 @@ const SeasonItem = ({item}) => {
     );
 }
 
-export default SeasonItem;
+export default React.memo(SeasonItem);

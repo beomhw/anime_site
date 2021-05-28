@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 import {flexAlign} from '../../css/cssModule';
 import {IMG_URL} from '../../Util';
@@ -12,8 +13,6 @@ import dogeza from '../../asset/dogeza_reco.png';
 import ApngComponent from 'react-apng';
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
-
-
 
 const Container = styled.div`
     width: 80vw;
@@ -156,4 +155,4 @@ const Recommend = ({recommendations, media, la}) => {
     );
 }
 
-export default Recommend;
+export default React.memo(Recommend);
