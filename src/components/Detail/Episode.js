@@ -7,7 +7,8 @@ const Container = styled.div`
     width: 60vw;
     border-radius: 10px;
     border: 1px solid #dddddd;
-    margin-bottom: 15px;
+    margin: 0 auto;
+    margin-bottom: 20px;
     grid-gap: 5px; // 그리드 셀 사이 공간\
     @media (max-width: ${p=>p.theme.tabletS}) {
         grid-template: auto;

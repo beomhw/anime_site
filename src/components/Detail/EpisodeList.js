@@ -67,10 +67,8 @@ const Exit = styled.div`
 const EpisodeContainer = styled.div`
     width: 100%;
     height: 100%;
-    display: flex;
     align-items: center;
     padding: 50px;
-    flex-direction: column;
     overflow-y: scroll; // 스크롤
 `;
 
