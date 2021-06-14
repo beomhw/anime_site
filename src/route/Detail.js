@@ -347,7 +347,7 @@ const Detail = ({match, history}) => {
                     }
                     <SeasonDescription>
                         <TextH2>{lastSeason.name}</TextH2>
-                        {lastSeason.air_date === null ?
+                        {(lastSeason.air_date === null || new Date(lastSeason.air_date) > new Date()) ?
                             <p className="overview">{anime.name}{la.Detail.last_season_first} {lastSeason.season_number}{la.Detail.next_season}</p> :
                             <>
                             <p className="air_date">{new Date(lastSeason.air_date).getFullYear()} | {lastSeason.episode_count}{la.Detail.ep_count}</p>
