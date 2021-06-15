@@ -25,7 +25,7 @@ const ContentContainer = styled.div`
 `;
 
 const TrendText = styled.p`
-    width: 80vw;
+    width: 90vw;
     font-size: 1.6em;
     margin: 0;
     @media (max-width: ${p=>p.theme.mobile}) {

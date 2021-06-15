@@ -61,8 +61,8 @@ const Img = styled.img`
     transition: 0.2s;
     @media (min-width: ${p=>p.theme.tabletS}) {
         &:hover {
-            max-width: 350px;
-            max-height: 450px;
+            max-width: 320px;
+            max-height: 420px;
         }
     }
 `;

@@ -82,6 +82,7 @@ const AnimePoster = styled.div`
     background-image: url(${p=>p.url});
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center center;
     @media (max-width: ${p=>p.theme.mobile}) {
         margin-left: 10px;
     }
@@ -162,7 +163,7 @@ const SeasonPosterMobile = styled.div`
     background-image: url(${p=>p.url});
     background-size: cover;
     border-radius: 20px 20px 0 0;
-    background-position-x: center;
+    background-position: center center;
 `;
 
 const SeasonDescription = styled.div`

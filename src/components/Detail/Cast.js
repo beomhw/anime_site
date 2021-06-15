@@ -35,21 +35,19 @@ const CastCard = styled.div`
     flex-direction: column;
     border-radius: 10px;
     background-color: ${p=>p['data-thememode'].container};
-    flex: none;
     overflow: hidden;
 `;
 
 const CastImg = styled.img`
-    flex: 3;
+    flex: 8;
     width: 100%;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 `;
 
 const CastName = styled.div`
-    flex: 1;
+    flex: 5;
     font-size: 0.8em;
-    padding: 5px;
     flex-direction: column;
 `;
 
@@ -104,16 +102,16 @@ const Cast = ({media, id, la}) => {
             <Swiper style={{width: '100%'}} breakpoints={breakpoints} navigation>
             {casts && casts.cast.map((cast, i) => 
                 <SwiperSlide key={i}>
-                <CastCard data-thememode={theme}>
-                    {cast.profile_path ? 
-                    <CastImg src={`${IMG_URL}${cast.profile_path}`} /> :
-                    <CastImg src={dogeza} />
-                    }
-                    <CastName>
-                        <p>{cast.name}</p>
-                        <p>{cast.character}</p>
-                    </CastName>
-                </CastCard>  
+                    <CastCard data-thememode={theme}>
+                        {cast.profile_path ? 
+                        <CastImg src={`${IMG_URL}${cast.profile_path}`} /> :
+                        <CastImg src={dogeza} />
+                        }
+                        <CastName>
+                            <p>{cast.name}</p>
+                            <p>{cast.character}</p>
+                        </CastName>
+                    </CastCard>  
                 </SwiperSlide>
             )}
             </Swiper>
