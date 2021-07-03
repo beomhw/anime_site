@@ -78,7 +78,7 @@ const MobileNav = ({on, theme, pathname, setOn}) => {
             <LinkStyle data-thememode={theme} style={pathname === '/anime_site/' ? {color: '#8c0000'} : {}} to='/anime_site/'>HOME</LinkStyle>
             <LinkStyle data-thememode={theme} style={pathname === '/anime_site/seasons' ? {color: '#8c0000'} : {}} to='/anime_site/seasons'>SEASONS</LinkStyle>
             <LinkStyle data-thememode={theme} style={pathname === '/anime_site/search' ? {color: '#8c0000'} : {}} to='/anime_site/search'>SEARCH</LinkStyle>
-            {/* <LinkStyle theme={theme} style={pathname === '/mypage' ? {color: '#8c0000'} : {}} to='/mypage'>MYPAGE</LinkStyle> */}
+            <LinkStyle data-thememode={theme} style={pathname === '/anime_site/mypage' ? {color: '#8c0000'} : {}} to='/mypage'>MYPAGE</LinkStyle>
             Choose your language!
             <Content>
                 <Flag url={kr} onClick={() => onChange('KO')}/>

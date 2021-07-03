@@ -144,6 +144,7 @@ const Navigation = () => {
                 <LinkStyle data-thememode={theme} style={pathname === '/anime_site/' ? {color: '#8c0000'} : {}} to='/anime_site/'>HOME</LinkStyle>
                 <LinkStyle data-thememode={theme} style={pathname === '/anime_site/seasons' ? {color: '#8c0000'} : {}} to='/anime_site/seasons'>SEASONS</LinkStyle>
                 <LinkStyle data-thememode={theme} style={pathname === '/anime_site/search' ? {color: '#8c0000'} : {}} to='/anime_site/search'>SEARCH</LinkStyle>
+                <LinkStyle data-thememode={theme} style={pathname === '/anime_site/mypage' ? {color: '#8c0000'} : {}} to='/anime_site/mypage'>MYPAGE</LinkStyle>
                 <LanguageToggle setModal={setModal}/>
                 <ThemeToggle />
             </HeaderContainer> :
@@ -160,6 +161,7 @@ const Navigation = () => {
                     <Route path='/anime_site/seasons' component={RC.Seasons} />
                     <Route path='/anime_site/search' component={RC.Search} />
                     <Route path='/anime_site/detail/:id/:media' component={RC.Detail} />
+                    <Route path="/anime_site/mypage" component={RC.Mypage} />
                 </Switch>
                 <UpToggle/>
             </BodyContainer>
