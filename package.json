@@ -30,7 +30,7 @@
     "swiper": "^6.5.3",
     "web-vitals": "^1.0.1",
     "webpack-bundle-analyzer": "^4.4.1",
-    "ws": "^6.2.1"
+    "ws": "^6.2.2"
   },
   "scripts": {
     "start": "react-scripts start",
