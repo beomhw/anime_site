@@ -37,6 +37,7 @@ const BodyContainer = styled.div`
     width: 100%;
     ${flexAlign};
     flex-direction: column;
+    margin-top: 70px;
     ${p=>p.on.nav ? css`
         height: 0px;
         overflow: hidden;
@@ -167,7 +168,7 @@ const Navigation = () => {
             </BodyContainer>
             <Footer data-thememode={theme}> 
                 <FooterText>
-                    THANKS FOR&nbsp;<TMDB data-thememode={theme} href="https://www.themoviedb.org/">TMDB!</TMDB>
+                    <TMDB data-thememode={theme} href="https://www.themoviedb.org/">TMDB</TMDB>
                 </FooterText>
                 <FooterIcons>
                     <IconsBox data-thememode={theme} href="https://github.com/beomhw">

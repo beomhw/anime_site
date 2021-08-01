@@ -5,11 +5,16 @@ import {Selector, Login} from '../components/Mypage/export';
 import { flexAlign } from '../css/cssModule';
 import { useUserContext } from '../UserContext';
 
-const Container = styled.div`
+const LoginContainer = styled.div`
     width: 80vw;
     height: 500px;
     ${flexAlign};
     flex-direction: column;
+`;
+
+const Container = styled.div`
+    width: 100%;
+    height: 100%;
 `;
 
 const Mypage = () => {
@@ -18,10 +23,10 @@ const Mypage = () => {
 
     return (
         <Container>
-            {!userState.googleID ? <Login /> : 
-                <>
+            {!userState.googleID ? <LoginContainer><Login /></LoginContainer> : 
+                <Container>
                     환영합니당 {userState.nickname}
-                </>
+                </Container>
             }
         </Container>
     );

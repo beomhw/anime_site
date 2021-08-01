@@ -9,7 +9,7 @@ const Container = styled.div`
     width: 100%;
     height: 100%;
     ${flexAlign};
-    flex-direction: column;    
+    flex-direction: column;
 `;
 
 const ContentContainer = styled.div`
@@ -33,7 +33,6 @@ const TrendText = styled.p`
 `;
 
 const P = styled.p`
-    margin-top: 70px;
     font-size: 1.4rem;
     width: 90vw;
     @media (max-width: ${p=>p.theme.mobile}) {
