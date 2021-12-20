@@ -67,8 +67,8 @@ const Select = styled.select`
 
 const SeasonMenu = ({setList}) => {
     const theme = useTheme();
-    const year = Number(new Date().getFullYear());
-    const [season, setSeason] = useState({year: '2021', season: 'spring'});
+    const year = 2022;
+    const [season, setSeason] = useState({year: '2022', season: 'spring'});
     const la = useLanguage();
 
     useEffect(() => {
