@@ -18,6 +18,11 @@ const LinkStyle = styled(Link)`
     z-index: 10;
 `;
 
+const SwiperStyle = styled(Swiper)`
+    justify-content: center;
+    width: 100%;
+`;
+
 const Container = styled.div`
     width: 100%;
     height: 500px;
@@ -71,12 +76,18 @@ const breakpoints = {
     0: {
         slidesPerView: 2,
         spaceBetween: 0,
-        freeMode: true
+        freeMode: {
+            enabled: true,
+            momentum: false,
+            momentumBounce: false,
+            sticky: true
+        }
     },
     620: {
         slidesPerView: 2,
         spaceBetween: 5,
-        slidesPerGroup: 2
+        slidesPerGroup: 2,
+        freeMode: false
     },
     920: {
         slidesPerView: 3,
@@ -111,7 +122,7 @@ const AniList = ({media,type,la,year}) => {
 
     return (
         <Container>
-            <Swiper
+            <SwiperStyle
                 breakpoints={breakpoints}
                 pagination={{clickable: true}}
                 navigation
@@ -130,7 +141,7 @@ const AniList = ({media,type,la,year}) => {
                     </SwiperSlide>
                 );
             })}
-            </Swiper>
+            </SwiperStyle>
         </Container>
     );
 }

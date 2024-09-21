@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import styled from 'styled-components';
 import {flexAlign} from '../../css/cssModule';
 import {useTheme} from '../../ThemeContext';
-import {IMG_URL} from '../../Util';
+import {IMG_ORIGINAL_URL} from '../../Util';
 import {Swiper, SwiperSlide} from 'swiper/react';
 import SwiperCore,{Scrollbar} from 'swiper/core';
 import '../../css/swiperStyle.css';
@@ -32,8 +32,12 @@ const Container = styled.div`
 `;
 
 const Still = styled.img`
+    max-height: 300px;
     max-width: 100%;
     border-radius: 10px;
+    @media(max-width: ${p=>p.theme.mobile}) {
+        max-width: 100%;
+    }
 `;
 
 const NoneImg = styled.div`
@@ -79,7 +83,7 @@ const StillCut = ({still, teaser}) => {
             >
                 {still.map((st, i) =>
                     <SwiperSlide key={i}>
-                        <Still src={`${IMG_URL}${st.file_path}`} />
+                        <Still src={`${IMG_ORIGINAL_URL}${st.file_path}`} />
                     </SwiperSlide>
                 )}
                 {teaser.map((te, i) => 

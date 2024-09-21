@@ -46,6 +46,7 @@ const ThemeToggle = () => {
     const dispatch = useThemeDispatch();
 
     useEffect(() => {
+        console.log(x) // TODO::버그 대응 필요하다!!!!!
         setX(-1);
     },[]);
 
