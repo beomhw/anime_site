@@ -1,29 +1,29 @@
 {
   "files": {
-    "main.css": "/anime_site/static/css/main.84b43c1f.chunk.css",
-    "main.js": "/anime_site/static/js/main.8927ca13.chunk.js",
-    "main.js.map": "/anime_site/static/js/main.8927ca13.chunk.js.map",
+    "main.css": "/anime_site/static/css/main.cddef52a.chunk.css",
+    "main.js": "/anime_site/static/js/main.0f2f15d6.chunk.js",
+    "main.js.map": "/anime_site/static/js/main.0f2f15d6.chunk.js.map",
     "runtime-main.js": "/anime_site/static/js/runtime-main.489b8d6d.js",
     "runtime-main.js.map": "/anime_site/static/js/runtime-main.489b8d6d.js.map",
-    "static/css/2.491580c3.chunk.css": "/anime_site/static/css/2.491580c3.chunk.css",
-    "static/js/2.c408153e.chunk.js": "/anime_site/static/js/2.c408153e.chunk.js",
-    "static/js/2.c408153e.chunk.js.map": "/anime_site/static/js/2.c408153e.chunk.js.map",
+    "static/css/2.d9be8991.chunk.css": "/anime_site/static/css/2.d9be8991.chunk.css",
+    "static/js/2.7f0c87ba.chunk.js": "/anime_site/static/js/2.7f0c87ba.chunk.js",
+    "static/js/2.7f0c87ba.chunk.js.map": "/anime_site/static/js/2.7f0c87ba.chunk.js.map",
     "index.html": "/anime_site/index.html",
-    "static/css/2.491580c3.chunk.css.map": "/anime_site/static/css/2.491580c3.chunk.css.map",
-    "static/css/main.84b43c1f.chunk.css.map": "/anime_site/static/css/main.84b43c1f.chunk.css.map",
-    "static/js/2.c408153e.chunk.js.LICENSE.txt": "/anime_site/static/js/2.c408153e.chunk.js.LICENSE.txt",
+    "static/css/2.d9be8991.chunk.css.map": "/anime_site/static/css/2.d9be8991.chunk.css.map",
+    "static/css/main.cddef52a.chunk.css.map": "/anime_site/static/css/main.cddef52a.chunk.css.map",
+    "static/js/2.7f0c87ba.chunk.js.LICENSE.txt": "/anime_site/static/js/2.7f0c87ba.chunk.js.LICENSE.txt",
     "static/media/dogeza.7eb46446.png": "/anime_site/static/media/dogeza.7eb46446.png",
     "static/media/dogeza_reco.74b47a16.png": "/anime_site/static/media/dogeza_reco.74b47a16.png",
     "static/media/en.bdcaa975.png": "/anime_site/static/media/en.bdcaa975.png",
     "static/media/ghost.a893df16.png": "/anime_site/static/media/ghost.a893df16.png",
     "static/media/kr.c146cdf9.png": "/anime_site/static/media/kr.c146cdf9.png",
-    "static/media/loading.5e3674ef.svg": "/anime_site/static/media/loading.5e3674ef.svg"
+    "static/media/loading.de2f5a4e.svg": "/anime_site/static/media/loading.de2f5a4e.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.489b8d6d.js",
-    "static/css/2.491580c3.chunk.css",
-    "static/js/2.c408153e.chunk.js",
-    "static/css/main.84b43c1f.chunk.css",
-    "static/js/main.8927ca13.chunk.js"
+    "static/css/2.d9be8991.chunk.css",
+    "static/js/2.7f0c87ba.chunk.js",
+    "static/css/main.cddef52a.chunk.css",
+    "static/js/main.0f2f15d6.chunk.js"
   ]
 }
