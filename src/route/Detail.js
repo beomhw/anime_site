@@ -4,7 +4,7 @@ import {useTheme} from '../ThemeContext';
 import {flexAlign} from '../css/cssModule';
 import * as api from '../api';
 import dogeza from '../asset/dogeza.png';
-import {IMG_URL} from '../Util';
+import {IMG_URL, IMG_ORIGINAL_URL} from '../Util';
 import Loading from '../components/Loading';
 import * as Comp from '../components/Detail/export';
 import {useGetSize} from '../components/resize';
@@ -17,63 +17,71 @@ const Container = styled.div`
     width: 100%;
     height: 100%;
     flex-direction: column;
-    margin-top: 50px;
+    margin-top: 0;
 `;
 
 const Header = styled.div`
     width: 100%;
-    min-height: 300px;
+    /* min-height: 350px; */
+    display: grid;  // grid 레이아웃 사용
     background-color: ${p=>p['data-thememode'].container};
-    ${flexAlign};
     margin-bottom: 50px;
-    @media (max-width: ${p=>p.theme.mobile}) {
-        padding-top: 100px;
+    grid-template-columns: 500px 1fr 1fr 1fr;
+    column-gap: 20px;
+    row-gap: 20px;
+    padding-right: 5px;
+    @media (max-width: ${p=>p.theme.tabletM}) {
+        grid-template: auto;
+        grid-template-rows: minmax(auto, auto);
+        grid-auto-rows: minmax(200px, auto);
+        grid-template-columns: minmax(200px, auto);
         background-image: url(${p=>p.url});
         background-size: cover;
         background-position-x: center;
         ${p=>p['data-thememode'].mode === 'dark' ? 
-        css`box-shadow: inset 0px 100px 10px 0px rgba(0, 0, 0, 0.7);` : 
-        css`box-shadow: inset 0px 100px 10px 0px rgba(255, 255, 255, 0.7);`
+        css`box-shadow: inset 0px 150vh 0px 0px rgba(0, 0, 0, 0.6);` : 
+        css`box-shadow: inset 0px 150vh 0px 0px rgba(255, 255, 255, 0.4);`
         }
+        padding-left: 10px;
+        /* overflow-y:  */
+        max-height: 100%;
     }
 `;
 
 const BackdropCover = styled.div`
-    flex: 3;
     height: 100%;
     background-image: url(${p=>p.url});
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    @media (max-width: ${p=>p.theme.mobile}) {
+    grid-column: 1;
+    grid-row: 1 / 4;
+    ${flexAlign};
+    margin-bottom: 10px;
+    @media (max-width: ${p=>p.theme.tabletM}) {
         background-image: none;
         background-size: cover;
+        /* grid-column: 1;
+        grid-row: 2 / 3; */
     }
 `;
 
 const PosterContainer = styled.div`
-    flex: 3;
+    width: 200px;
+    height: 300px;
+    background-image: url(${p=>p.url});
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
     position: relative;
     top: 50px;
-    ${flexAlign};
-    @media (max-width: ${p=>p.theme.mobile}) {
+    @media (max-width: ${p=>p.theme.tabletM}) {
+        position: static;
+        /* grid-column: 1 / 4;
+        grid-row: 2 / 3; */
         top: 0;
+        margin-right: 10px;
     }
-`;
-
-const HeaderInfoContainer = styled.div`
-    flex: 7;
-    margin: 20px;
-    display: flex;
-    flex-direction: flex-start;
-    @media (max-width: ${p=>p.theme.mobile}) {  
-        flex-direction: column;
-    }
-`;
-
-const Content = styled.div`
-    ${flexAlign};
-    flex-direction: column;
 `;
 
 const AnimePoster = styled.div`
@@ -88,13 +96,44 @@ const AnimePoster = styled.div`
     }
 `;
 
+const HeaderInfoContainer = styled.div`
+    margin: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+    grid-column: 2 / 5;
+    grid-row: 2;
+    @media (max-width: ${p=>p.theme.tabletM}) {  
+        align-items: flex-start;
+        flex-direction: column;
+        margin: 20px 0 20px 0px;
+        grid-row: 2;
+    }
+`;
+
+const Content = styled.div`
+    ${flexAlign};
+    flex-direction: column;
+    margin-top: 10px;
+`;
+
 const TitleText = styled.div`
     font-size: 2em;
     font-weight: bold;
+    grid-column: 2 / span 3;
+    grid-row: 1 / 2;
+    margin: 30px auto auto auto;
+    @media (max-width: ${p=>p.theme.tabletM}) {
+        grid-column: 1 / span 4;
+        grid-row: 1;
+        margin: 20px auto 10px auto;
+    }
     @media (max-width: ${p=>p.theme.mobile}) {
-        position: absolute;
-        top: 60px;
-        left: 0px;
+        text-align: center;
+        grid-row: 1;
+        grid-column: 1 / span 4;
+        margin: 20px 0 30px 0;
     }
 `;
 
@@ -122,14 +161,7 @@ const GenreBox = styled.div`
     margin: 5px;
     border: 1px solid #dddddd;
     ${flexAlign};
-
-`;
-
-const TitleGenreContainer = styled.div`
-    flex: 7;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-wrap: wrap;
 `;
 
 const LoadingBox = styled.div`
@@ -146,7 +178,7 @@ const SeasonContainer = styled.div`
     margin-bottom: 20px;
     display: flex;
     flex-direction: flex-start;
-    @media (max-width: ${p=>p.theme.mobile}) {
+    @media (max-width: ${p=>p.theme.tabletM}) {
         flex-wrap: wrap;
         height: auto;
     }
@@ -175,15 +207,20 @@ const SeasonDescription = styled.div`
     padding: 20px;
 `;
 
+const CompanyContainer = styled.div`
+    ${flexAlign};
+    flex-wrap: wrap;
+`;
+
 const CompanyImgBox = styled.div`
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    justify-content: center;
-    @media (max-width: ${p=>p.theme.mobile}) {
-        flex-direction: row;
-        background-color: mintcream;
+    ${flexAlign};
+    @media (max-width: ${p=>p.theme.tabletM}) {
+        margin: 5px;
         border-radius: 5px;
+        ${p=>p['data-thememode'].mode === 'dark' ? 
+        css`box-shadow: inset 0px 100vh 10px 0px rgba(255, 255, 255, 0.2);` : 
+        css`box-shadow: inset 0px 100vh 10px 0px rgba(0, 0, 0, 0.2);`
+        }
     }
 `;
 
@@ -196,15 +233,15 @@ const CompanyImg = styled.div`
     background-position: center;
     margin: 15px;
     @media (max-width: ${p=>p.theme.mobile}) {
-        width: 40px;
-        height: 30px;
-        margin: 10px;
+        width: 50px;
+        height: 40px;
+        margin: 5px;
     }
 `;
 
 const MoreInfo = styled.div`
     width: 100px;
-    height: 30px;
+    height: 35px;
     font-size: 1.1em;
     border: 1px solid #dddddd;
     background-color: #8c0000;
@@ -213,11 +250,19 @@ const MoreInfo = styled.div`
     color: white;
     z-index: 10;
     border-radius: 8px;
-    text-align: center;
+    ${flexAlign};
     @media (max-width: ${p=>p.theme.mobile}) {
         position: relative;
         top: 10px;
     }
+`;
+
+const MovieAirContainer = styled.p`
+    /* grid-row: 2;
+    grid-column: 2 / span 3; */
+    text-align: center;
+    font-size: 0.5em;
+    font-weight: normal;
 `;
 
 const Detail = ({match, history}) => {
@@ -296,35 +341,37 @@ const Detail = ({match, history}) => {
     return (
         <Container url={`${IMG_URL}${anime.backdrop_path}`}>
             {media === 'tv' && <Comp.EpisodeList id={anime.id} seasons={anime.seasons} modal={modal} setModal={setModal} /> }
-            <Header data-thememode={theme} url={`${IMG_URL}${anime.backdrop_path}`}>
+            <Header data-thememode={theme} url={`${IMG_ORIGINAL_URL}${anime.backdrop_path}`}>
+                {media === 'tv' 
+                    ?<TitleText>{anime.name} ({new Date(anime.first_air_date).getFullYear()})</TitleText> 
+                    :<TitleText>{anime.title}
+                    {media === 'movie' ? <MovieAirContainer>{la.Detail.movie_air_date} : {anime.release_date}</MovieAirContainer> : null}
+                    </TitleText>}
                 <BackdropCover 
                     url={anime.backdrop_path ? 
-                    `${IMG_URL}${anime.backdrop_path}` : 
+                    `${IMG_ORIGINAL_URL}${anime.backdrop_path}` : 
                     `${dogeza}`}>
-                    <PosterContainer>
-                        <AnimePoster url={anime.poster_path ? 
+                    <PosterContainer url={anime.poster_path ? 
                         `${IMG_URL}${anime.poster_path}` : 
                         `${dogeza}`}/>
-                    </PosterContainer>
                 </BackdropCover>
                 <HeaderInfoContainer>
-                    <TitleGenreContainer>
-                    {media === 'tv' 
-                    ?<TitleText>{anime.name} ({new Date(anime.first_air_date).getFullYear()})</TitleText> 
-                    :<><TitleText>{anime.title}</TitleText><p>{la.Detail.movie_air_date} : {anime.release_date}</p></>}
+                    {/* <TitleGenreContainer> */}
                     <GenreContainer>
                         {anime.genres.map((ge, i) => 
                         <GenreBox key={i} data-thememode={theme}>{ge.name}</GenreBox>)}
                     </GenreContainer>
-                    </TitleGenreContainer>
-                    <CompanyImgBox data-thememode={theme}>
+                    <CompanyContainer data-thememode={theme}>
                         {anime.production_companies.map((company, i) => {
                             if(i > 2) return <div key={i}></div>
                             if(company.logo_path) return (
-                                <CompanyImg key={i} url={IMG_URL + company.logo_path} />
+                                <CompanyImgBox data-thememode={theme}>
+                                    <CompanyImg key={i} url={IMG_URL + company.logo_path} />
+                                </CompanyImgBox>
                             )
                         })}
-                    </CompanyImgBox>
+                    </CompanyContainer>
+                    {/* </TitleGenreContainer> */}
                 </HeaderInfoContainer>
             </Header>
             <Content>
@@ -335,10 +382,10 @@ const Detail = ({match, history}) => {
             <Content>
                 <TextH1>{la.Detail.season}</TextH1>
                 <SeasonContainer data-thememode={theme}>
-                    {size.width < 500 ? 
+                    {size.width <= 1220 ? 
                         <SeasonPosterMobile url={lastSeason.backdrop_path ? 
-                            `${IMG_URL}${lastSeason.poster_path}` :
-                            `${IMG_URL}${anime.backdrop_path}`} 
+                            `${IMG_ORIGINAL_URL}${lastSeason.poster_path}` :
+                            `${IMG_ORIGINAL_URL}${anime.backdrop_path}`} 
                         />
                     : 
                         <SeasonPoster url={lastSeason.poster_path ? 

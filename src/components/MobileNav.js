@@ -27,7 +27,7 @@ const Nav = styled.div`
     justify-content: center;
     width: 100vw;
     height: 100vh;
-    background-color: #693c72;
+    background-color: #78B7D0;
     opacity: ${p=>p.on.opacity};
     visibility: ${p=>p.on.visibility};
     z-index: 100;
@@ -45,7 +45,7 @@ const Content = styled.div`
 const Flag = styled.div`
     width: 100px;
     height: 100px;
-    border-radius: 50px;
+    border-radius: 10px;
     background-image: url(${p=>p.url});
     background-size: cover;
     margin: 10px;
@@ -59,6 +59,11 @@ const Flag = styled.div`
         height: 60px;
         border-radius: 30px;
     }
+`;
+
+const SelectLanguage = styled.p`
+    justify-content: center;
+    margin: 20px 0 0 0;
 `;
 
 const MobileNav = ({on, theme, pathname, setOn}) => {
@@ -79,7 +84,7 @@ const MobileNav = ({on, theme, pathname, setOn}) => {
             <LinkStyle data-thememode={theme} style={pathname === '/anime_site/seasons' ? {color: '#8c0000'} : {}} to='/anime_site/seasons'>SEASONS</LinkStyle>
             <LinkStyle data-thememode={theme} style={pathname === '/anime_site/search' ? {color: '#8c0000'} : {}} to='/anime_site/search'>SEARCH</LinkStyle>
             <LinkStyle data-thememode={theme} style={pathname === '/anime_site/mypage' ? {color: '#8c0000'} : {}} to='/mypage'>MYPAGE</LinkStyle>
-            Choose your language!
+            <SelectLanguage>Select language!</SelectLanguage>
             <Content>
                 <Flag url={kr} onClick={() => onChange('KO')}/>
                 <Flag url={en} onClick={() => onChange('EN')} />

@@ -7,7 +7,7 @@ import {Link} from 'react-router-dom';
 
 const Title = styled.div`
     width: 250px;
-    height: 50px;
+    min-height: 40px;
     opacity: 0;
     visibility: hidden;
     background-color: rgba(255,255,255,0.7);
@@ -17,10 +17,12 @@ const Title = styled.div`
     user-select: none;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+    padding: 5px;
     @media (max-width: ${p=>p.theme.mobile}) {
         width: 140px;
-        height: 20px;
+        min-height: 20px;
         font-size: 0.7em;
+        padding: 3px;
     }
 `;
 

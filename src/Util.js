@@ -5,16 +5,20 @@ export const API_KEY = process.env.REACT_APP_API_KEY;
 export const KEYWORD = process.env.REACT_APP_KEYWORD;
 export const URL = 'https://api.themoviedb.org/3/';
 export const IMG_URL = 'http://image.tmdb.org/t/p/w500';
+export const IMG_ORIGINAL_URL = 'http://image.tmdb.org/t/p/original';
 
 // 테마 관련
 export const BACKGROUND_LI = '#e9ecef';
 export const BACKGROUND_DA = '#1b2021';
-export const TEXT_LI = '#000000';
-export const TEXT_DA = '#f3f4ed';
+export const TEXT_LI = '#343131';
+export const TEXT_DA = '#E9EFEC';
 export const CONTAINER_LI ='#ffffff';
 export const CONTAINER_DA = '#312c51';
 export const INPUT_LI = '#e9ecef';
 export const INPUT_DA = '#3c415c';
+
+// DATE
+export const NOW_DATE = new Date();
 
 // 언어 관련
 export const Language = {
@@ -26,7 +30,7 @@ export const Language = {
             popular_drama: '드라마 TOP 20',
             popular_comedy: '코미디 TOP 20',
             popular_action: '액션 판타지 TOP 20',
-            popular_year: '2020년 애니메이션!'
+            popular_year: '년 애니메이션!'
         },
         Season: {
             quarter_1: '1분기',
@@ -46,6 +50,7 @@ export const Language = {
             recommend: '추천',
             null_intro: '이런! 이 작품은 아직 한국어 번역이 없네요..',
             null_recommend: '이 작품에 대한 추천 알고리즘을 점검 중인 거 같아요...',
+            null_overview: "해당 에피소드에 대한 개요는 준비 중입니다..",
             more: '상세..',
             no_casts: '출연진 정보가 없어요..',
             still: '미디어',
@@ -69,7 +74,7 @@ export const Language = {
             popular_drama: 'DRAMA TOP 20',
             popular_comedy: 'COMEDY TOP 20',
             popular_action: 'ACTION FANTASY TOP 20',
-            popular_year: "2020's ANIME"
+            popular_year: "'s ANIME"
         },
         Season: {
             quarter_1: 'Q1',
@@ -89,6 +94,7 @@ export const Language = {
             recommend: 'Recommend',
             null_intro: "OOPS! There's no intro! :( ",
             null_recommend: "Checking the recommended algorithms for this piece.",
+            null_overview: "There is no outline of the episode.",
             more: 'more..',
             no_casts: "Couldn't find any information about the voice actors...",
             still: 'media',
@@ -112,7 +118,7 @@ export const Language = {
             popular_drama: 'ドラマ TOP 20',
             popular_comedy: 'コメディ TOP 20',
             popular_action: 'アクション・ファンタジー TOP 20',
-            popular_year: '2020年 アニメ!'
+            popular_year: '年 アニメ!'
         },
         Season: {
             quarter_1: '第1四半期',
@@ -133,6 +139,7 @@ export const Language = {
             null_intro: '日本語バージョンのがいようがありません',
             popular_action: 'あらあら、日本語バージョンがありません。',
             null_recommend: 'この作品に対するおすすめアルゴリズムを 点検中のようです。',
+            null_overview: "このエピソードの概要は準備中です..",
             more: '詳しく',
             no_casts: '声優さんたちの情報を見つけませんでした..',
             still: 'メディア',

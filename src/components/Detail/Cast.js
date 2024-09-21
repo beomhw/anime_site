@@ -53,8 +53,8 @@ const CastName = styled.div`
 
 const breakpoints = {
     320: {
-        slidesPerView: 1,
-        spaceBetween: 3
+        slidesPerView: 2,
+        spaceBetween: 0
     },
     400: {
         slidesPerView: 2,
@@ -108,8 +108,8 @@ const Cast = ({media, id, la}) => {
                         <CastImg src={dogeza} />
                         }
                         <CastName>
-                            <p>{cast.name}</p>
-                            <p>{cast.character}</p>
+                            <p style={{width: '100%', textAlign: "center"}}>{cast.name}</p>
+                            <p style={{width: '100%', textAlign: "center"}}>{cast.character}</p>
                         </CastName>
                     </CastCard>  
                 </SwiperSlide>

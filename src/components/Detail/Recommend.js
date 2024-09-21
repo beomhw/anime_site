@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import {flexAlign} from '../../css/cssModule';
-import {IMG_URL} from '../../Util';
+import {IMG_ORIGINAL_URL} from '../../Util';
 import SwiperCore, {Navigation, Pagination, Scrollbar, A11y} from 'swiper';
 import {Swiper, SwiperSlide} from 'swiper/react';
 import 'swiper/swiper-bundle.css';
@@ -20,7 +20,7 @@ const Container = styled.div`
     overflow: hidden;
     display: flex;
     flex-direction: flex-start;
-    margin-top: 20px;
+    margin: 20px 0 10px 0;
 `;
 
 const ContentBox = styled.div`
@@ -63,9 +63,15 @@ const BackDrop = styled.div`
     &:hover ${OpacityInfo} {
         opacity: 1;
     }
+    @media (max-width: ${p=>p.theme.tabletM}) {
+        ${OpacityInfo} {
+            opacity: 1;
+        }
+    };
 `;
 
 const Title = styled.div`
+    margin: 5px 0 0 0;
     font-size: 0.8em;
     padding-left: 5px;
     flex: 1;
@@ -84,8 +90,8 @@ const NoneAl = styled.h1`
 
 const breakpoints = {
     500: {
-        slidesPerView: 1,
-        spaceBetween: 5
+        slidesPerView: 2,
+        spaceBetween: 0
     },
     620: {
         slidesPerView: 2,
@@ -137,7 +143,7 @@ const Recommend = ({recommendations, media, la}) => {
                                     <BsCalendar />  {media === 'movie' ? re.release_date : re.first_air_date}
                                 </OpacityInfo>
                             </BackDrop> :
-                            <BackDrop url={`${IMG_URL}${re.backdrop_path}`}>
+                            <BackDrop url={`${IMG_ORIGINAL_URL}${re.backdrop_path}`}>
                                 <OpacityInfo>
                                     <BsCalendar /> {media === 'movie' ? re.release_date : re.first_air_date} 
                                 </OpacityInfo>

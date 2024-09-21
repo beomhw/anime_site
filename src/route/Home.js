@@ -3,7 +3,9 @@ import {useLanguage} from '../LanguageContext';
 import {flexAlign} from '../css/cssModule';
 import {AniList} from '../components/Home/export';
 import {HomeProvider} from '../HomeContext';
-import { useUserContext } from '../UserContext';
+// import { useUserContext } from '../UserContext';
+import {useState, useEffect} from 'react';
+import { NOW_DATE } from '../Util';
 
 const Container = styled.div`
     width: 100%;
@@ -13,7 +15,7 @@ const Container = styled.div`
 `;
 
 const ContentContainer = styled.div`
-    width: 100%;
+    width: 90%;
     height: 540px;
     margin-bottom: 30px;
     ${flexAlign};
@@ -40,37 +42,43 @@ const P = styled.p`
     }
 `;
 
+const getRandomYear = () => {
+    const min = 2000;
+    const max = NOW_DATE.getFullYear() - 1;
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
 const Home = () => {
     const text = useLanguage();
-    const user = useUserContext();
+    const [year] = useState(getRandomYear());
+    const nowYear = NOW_DATE.getFullYear();
 
     return (
         <HomeProvider>
-            {user.googleID && <P>환영합니다 {user.nickname}</P>}
             <Container>
                 <ContentContainer>
                     <TrendText>{text.Home.popular_tv}</TrendText>
-                    <AniList media="tv" type="16" la={text.type}/>
+                    <AniList media="tv" type="16" la={text.type} year={nowYear} sort="popularity.desc"/>
                 </ContentContainer>
                 <ContentContainer>
                     <TrendText>{text.Home.popular_movie}</TrendText>
-                    <AniList media="movie" type="16" la={text.type}/>
+                    <AniList media="movie" type="16" la={text.type} year={nowYear} sort="vote_count.desc"/>
                 </ContentContainer>
                 <ContentContainer>
-                    <TrendText>{text.Home.popular_year}</TrendText>
-                    <AniList media="tv" type="16,18" la={text.type} year="2020"/>
+                    <TrendText>{year}{text.Home.popular_year}</TrendText>
+                    <AniList media="tv" type="16" la={text.type} year={year}/>
                 </ContentContainer>   
                 <ContentContainer>
                     <TrendText>{text.Home.popular_drama}</TrendText>
-                    <AniList media="tv" type="16,18" la={text.type}/>
+                    <AniList media="tv" type="16,18" la={text.type} year={nowYear} sort="vote_count.desc"/>
                 </ContentContainer>                
                 <ContentContainer>
                     <TrendText>{text.Home.popular_comedy}</TrendText>
-                    <AniList media="tv" type="16,35" la={text.type}/>
+                    <AniList media="tv" type="16,35" la={text.type} year={nowYear} sort="vote_count.desc"/>
                 </ContentContainer>
                 <ContentContainer>
                     <TrendText>{text.Home.popular_action}</TrendText>
-                    <AniList media="tv" type="16,10759,10765" la={text.type}/>
+                    <AniList media="tv" type="16,10759,10765" la={text.type} year={nowYear} sort="vote_count.desc"/>
                 </ContentContainer>
             </Container>
         </HomeProvider>

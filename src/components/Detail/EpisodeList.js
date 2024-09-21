@@ -12,13 +12,13 @@ import Loading from '../Loading';
 import Modal from '../Modal';
 
 const Container = styled.div`
-    width: 80vw;
+    width: 90vw;
     height: 80vh;
     border-radius: 20px;
     background-color: ${p=>p['data-thememode'].container};
     margin: 0 auto;
     position: fixed;
-    z-index: 100;
+    z-index: 102;
     display: flex;
     flex-direction: column;
 `;
@@ -70,6 +70,9 @@ const EpisodeContainer = styled.div`
     align-items: center;
     padding: 50px;
     overflow-y: scroll; // 스크롤
+    &::-webkit-scrollbar {
+        display: none;
+    }
 `;
 
 const LoadingBox = styled.div`
