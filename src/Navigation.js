@@ -31,10 +31,6 @@ const HeaderContainer = styled.div`
     width: 100%;
     z-index: 50;
     background-color: ${p=>p['data-thememode'].background};
-    /* anime detail*/
-    ${(props) => props.isAnimeDetailPage && `
-        background-color : rgb(255,255,255,0);
-    `}
 `;
 
 const BodyContainer = styled.div`
