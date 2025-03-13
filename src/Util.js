@@ -18,7 +18,7 @@ export const INPUT_LI = '#e9ecef';
 export const INPUT_DA = '#3c415c';
 
 // DATE
-export const NOW_DATE = new Date();
+export const NOW_DATE = () => new Date();
 
 // 언어 관련
 export const Language = {

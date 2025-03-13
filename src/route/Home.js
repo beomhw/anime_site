@@ -44,14 +44,14 @@ const P = styled.p`
 
 const getRandomYear = () => {
     const min = 2000;
-    const max = NOW_DATE.getFullYear() - 1;
+    const max = NOW_DATE().getFullYear() - 1;
     return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
 const Home = () => {
     const text = useLanguage();
     const [year] = useState(getRandomYear());
-    const nowYear = NOW_DATE.getFullYear();
+    const nowYear = NOW_DATE().getFullYear();
 
     return (
         <HomeProvider>

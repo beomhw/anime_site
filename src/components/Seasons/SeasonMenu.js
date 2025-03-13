@@ -44,7 +44,7 @@ const Select = styled.select`
 
 const SeasonMenu = ({setList}) => {
     const theme = useTheme();
-    const year = NOW_DATE.getFullYear();
+    const year = NOW_DATE().getFullYear();
     const [season, setSeason] = useState({year: year, season: 'spring'});
     const la = useLanguage();
 
