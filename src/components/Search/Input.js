@@ -61,9 +61,15 @@ const Input = ({setPages, setLoading, input, setInput, setSearchResults, la}) =>
         })
     }, []);
 
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            onSearch(input);
+        }
+    };
+
     return (
         <SearchContainer>
-                <SearchInput autoComplete="off" onChange={e => onChange(e)} value={input} name="query" placeholder="Search" data-thememode={theme} />
+                <SearchInput autoComplete="off" onChange={e => onChange(e)} value={input} onKeyDown={handleKeyDown} name="query" placeholder="Search" data-thememode={theme} />
                 <SearchButton onClick={() => onSearch(input)} data-thememode={theme}><BsSearch/></SearchButton>
         </SearchContainer>
     );

@@ -54,7 +54,11 @@ const SeasonMenu = ({setList}) => {
 
     useEffect(() => {
         onView();
-    }, [season])
+    }, [season.year]);
+
+    useEffect(() => {
+        onView();
+    }, [season.season]);
 
     const onView = useCallback(() => {
         setList([]);
@@ -84,16 +88,25 @@ const SeasonMenu = ({setList}) => {
         }
         // console.log(gte, lte);
         api.getSeason(gte, lte, 1, la.type).then(res => {
-            //console.log(res);
-            setList(li => li.concat(res.results));
             const total_pages = res.total_pages;
+            let allResults = [...res.results];  // 첫 번째 페이지 결과
+        
+            // 나머지 페이지 결과 수집
+            const promises = [];
             for (let i = 2; i <= total_pages; i++) {
-                api.getSeason(gte, lte, i, la.type).then(res => {
-                    //console.log(res);
-                    setList(li => li.concat(res.results));
-                    //console.log(list);
-                })
+                promises.push(api.getSeason(gte, lte, i, la.type).then(res => res.results));
             }
+        
+            // 모든 페이지 결과 처리
+            Promise.all(promises).then(results => {
+                // 배열을 평평하게 만들고 중복 제거
+                allResults = allResults.concat(...results);
+                const uniqueResults = Array.from(new Set(allResults.map(item => item.id))) // 'id'로 중복 제거
+                    .map(id => allResults.find(item => item.id === id));
+        
+                // 최종 리스트 업데이트
+                setList(uniqueResults);
+            });
         });
     }, [la.type, season, setList]);
 

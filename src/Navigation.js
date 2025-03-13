@@ -31,6 +31,10 @@ const HeaderContainer = styled.div`
     width: 100%;
     z-index: 50;
     background-color: ${p=>p['data-thememode'].background};
+    /* anime detail*/
+    ${(props) => props.isAnimeDetailPage && `
+        background-color : rgb(255,255,255,0);
+    `}
 `;
 
 const BodyContainer = styled.div`
@@ -115,6 +119,7 @@ function usePathname () {
 }
 
 const Navigation = () => {
+    const location = useLocation();
     const [on, setOn] = useState({
         nav: false,
         opacity: 0,
@@ -135,12 +140,13 @@ const Navigation = () => {
         
         setTimeout(setLoading(0), 1500);
     },[state])
+    const isAnimeDetailPage = /^\/anime_site\/detail\/\d+\/\w+$/.test(location.pathname);
 
     return (
         <Container>
             {loading ? <>Now Loading..</> : <>
             {size.width > 960 ? 
-            <HeaderContainer data-thememode={theme}>
+            <HeaderContainer data-thememode={theme} isAnimeDetailPage={isAnimeDetailPage}>
                 <LinkStyle data-thememode={theme} to='/anime_site/'><img src={logo} /></LinkStyle>
                 <LinkStyle data-thememode={theme} style={pathname === '/anime_site/' ? {color: '#8c0000'} : {}} to='/anime_site/'>HOME</LinkStyle>
                 <LinkStyle data-thememode={theme} style={pathname === '/anime_site/seasons' ? {color: '#8c0000'} : {}} to='/anime_site/seasons'>SEASONS</LinkStyle>
@@ -149,7 +155,7 @@ const Navigation = () => {
                 <LanguageToggle setModal={setModal}/>
                 <ThemeToggle />
             </HeaderContainer> :
-            <HeaderContainer data-thememode={theme}>
+            <HeaderContainer data-thememode={theme} isAnimeDetailPage={isAnimeDetailPage}>
                 <MobileNav setOn={setOn} on={on} theme={theme} pathname={pathname} />
                 <LinkStyle data-thememode={theme} to='/anime_site/'><img src={logo} /></LinkStyle>
                 <Hamburger la={state} pathname={pathname} theme={theme} setOn={setOn} nav={on.nav} />
